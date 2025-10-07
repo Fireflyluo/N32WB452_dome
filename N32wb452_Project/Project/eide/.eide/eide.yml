@@ -1,0 +1,223 @@
+version: "4.1"
+name: dame
+type: ARM
+deviceName: N32WB452CEQ6
+packDir: .pack/Nationstech/N32WB452_DFP.1.1.0
+srcDirs: []
+virtualFolder:
+  name: <virtual_root>
+  files: []
+  folders:
+    - name: Application
+      files:
+        - path: ../../Application/Src/main.c
+        - path: ../../Application/Src/n32wb452_it.c
+        - path: ../../Application/Inc/main.h
+        - path: ../../Application/Inc/n32wb452_it.h
+      folders: []
+    - name: BSP
+      files: []
+      folders:
+        - name: MCU_Peripheral
+          files: []
+          folders: []
+        - name: Device_REG
+          files: []
+          folders: []
+    - name: Drivers
+      files: []
+      folders: []
+    - name: Middleware
+      files: []
+      folders: []
+    - name: Public
+      files: []
+      folders: []
+    - name: Libraries
+      files:
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/misc.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_adc.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_bkp.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_can.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_crc.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_dac.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_dbg.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_dma.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_dvp.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_exti.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_flash.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_gpio.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_i2c.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_iwdg.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_pwr.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_rcc.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_rtc.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_sdio.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_spi.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_tim.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_tsc.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_usart.c
+        - path: ../../Libraries/n32wb452_std_periph_driver/src/n32wb452_wwdg.c
+      folders: []
+    - name: star
+      files:
+        - path: ../../Libraries/CMSIS/device/system_n32wb452.c
+        - path: ../../Libraries/CMSIS/device/startup/startup_n32wb452.s
+      folders: []
+    - name: ::Device
+      files: []
+      folders: []
+dependenceList: []
+outDir: build
+miscInfo:
+  uid: 77bafda61d840dd37f068e5dbae0fbfc
+targets:
+  Target 1:
+    cppPreprocessAttrs:
+      defineList:
+        - N32WB452
+        - USE_STDPERIPH_DRIVER
+      incList:
+        - .
+        - ../../Libraries/CMSIS/core
+        - ../../Libraries/CMSIS/device
+        - ../../Libraries/CMSIS/device/startup
+        - ../../Libraries/n32wb452_algo_lib/inc
+        - ../../Libraries/n32wb452_ble_driver/inc
+        - ../../Libraries/n32wb452_std_periph_driver/inc
+        - ../../Libraries/n32wb452_usbfs_driver/inc
+        - ../../Application/Inc
+        - ../../BSP/Device_REG
+        - ../../BSP/MCU_Peripheral/Inc
+        - ../../Drivers
+        - ../../Include
+        - .cmsis/include
+        - ../MDK-ARM/RTE/_Target 1
+      libList: []
+    excludeList: []
+    toolchain: AC6
+    toolchainConfigMap:
+      AC6:
+        archExtensions: ""
+        cpuType: Cortex-M4
+        floatingPointHardware: single
+        options:
+          version: 3
+          afterBuildTasks: []
+          asm-compiler:
+            $use: asm-auto
+          beforeBuildTasks: []
+          c/cpp-compiler:
+            language-c: c11
+            language-cpp: c++11
+            one-elf-section-per-function: true
+            optimization: level-0
+            short-enums#wchar: true
+            warnings: ac5-like-warnings
+          global:
+            output-debug-info: enable
+          linker:
+            $outputTaskExcludes:
+              - .bin
+            misc-controls: --diag_suppress=L6329
+            output-format: elf
+            ro-base: "0x08000000"
+            rw-base: "0x20000000"
+        scatterFilePath: ""
+        storageLayout:
+          RAM:
+            - id: 1
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: RAM
+            - id: 2
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: RAM
+            - id: 3
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: RAM
+            - id: 1
+              isChecked: true
+              mem:
+                size: "0x24000"
+                startAddr: "0x20000000"
+              noInit: false
+              tag: IRAM
+            - id: 2
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: IRAM
+          ROM:
+            - id: 1
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: ROM
+            - id: 2
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: ROM
+            - id: 3
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: ROM
+            - id: 1
+              isChecked: true
+              isStartup: true
+              mem:
+                size: "0x80000"
+                startAddr: "0x8000000"
+              tag: IROM
+            - id: 2
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: IROM
+        useCustomScatterFile: false
+    uploadConfigMap:
+      JLink:
+        baseAddr: ""
+        bin: ""
+        cpuInfo:
+          cpuName: "null"
+          vendor: "null"
+        otherCmds: ""
+        proType: 1
+        speed: 8000
+      OpenOCD:
+        baseAddr: "0x08000000"
+        bin: ""
+        interface: cmsis-dap
+        target: stm32f7x
+      pyOCD:
+        baseAddr: "0x08000000"
+        bin: ""
+        config: .eide/target 1.pyocd.yaml
+        otherCmds: ""
+        speed: 4M
+        targetName: n32wb452ceq6
+    uploader: pyOCD

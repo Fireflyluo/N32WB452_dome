@@ -1,0 +1,36 @@
+./objects/n32wb452_gpio.o: \
+  ..\..\Libraries\n32wb452_std_periph_driver\src\n32wb452_gpio.c \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_gpio.h \
+  ..\..\Libraries\CMSIS\device\n32wb452.h \
+  ..\..\Libraries\CMSIS\core\core_cm4.h \
+  D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  ..\..\Libraries\CMSIS\core\cmsis_version.h \
+  ..\..\Libraries\CMSIS\core\cmsis_compiler.h \
+  ..\..\Libraries\CMSIS\core\cmsis_armclang.h \
+  D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
+  D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
+  ..\..\Libraries\CMSIS\core\mpu_armv7.h \
+  ..\..\Libraries\CMSIS\device\system_n32wb452.h \
+  D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
+  ..\..\Libraries\CMSIS\device\n32wb452_conf.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_adc.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_bkp.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_can.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_crc.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_dac.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_dbg.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_dma.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_dvp.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_exti.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_flash.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_i2c.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_iwdg.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_pwr.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_rcc.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_rtc.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_spi.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tim.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_usart.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_wwdg.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tsc.h \
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h
