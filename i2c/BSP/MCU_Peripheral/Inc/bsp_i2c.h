@@ -63,7 +63,7 @@ typedef enum
 // 通信模式枚举
 typedef enum {
     BSP_I2C_MODE_POLLING,   // 轮询模式
-    BSP_I2C_MODE_INTERRUPT, // 中断模式
+    BSP_I2C_MODE_IT, // 中断模式
     BSP_I2C_MODE_DMA        // DMA模式
 } BSP_I2C_CommMode;
 
@@ -84,8 +84,8 @@ int BSP_I2C_Master_Transmit_Polling(BSP_I2C_Device* device, uint8_t reg_addr, ui
 int BSP_I2C_Master_Receive_Polling(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size);
 
 // 中断模式接口
-int BSP_I2C_Master_Transmit_Interrupt(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size);
-int BSP_I2C_Master_Receive_Interrupt(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size);
+int BSP_I2C_Master_Transmit_IT(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size);
+int BSP_I2C_Master_Receive_IT(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size);
 void BSP_I2C_IRQHandler(BSP_I2C_Device* device);
 
 // DMA模式接口

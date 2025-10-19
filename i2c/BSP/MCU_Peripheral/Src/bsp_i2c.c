@@ -42,14 +42,14 @@ void BSP_I2C_Init(BSP_I2C_Device* device, I2C_Module* i2c_base, uint8_t device_a
             // 轮询模式初始化
             bsp_i2c_polingInit(i2c_base);
             break;
-        case BSP_I2C_MODE_INTERRUPT:
+        case BSP_I2C_MODE_IT:
             // 中断模式初始化，配置NVIC等
-
+            // 待实现
 
             break;
         case BSP_I2C_MODE_DMA:
             // DMA模式初始化，使能DMA时钟等
-            RCC_EnableAHBPeriphClk(RCC_AHB_PERIPH_DMA1, ENABLE);
+            // 待实现
             break;
     }
 }
@@ -66,8 +66,8 @@ int BSP_I2C_Master_Transmit(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* d
     switch(device->comm_mode) {
         case BSP_I2C_MODE_POLLING:
             return BSP_I2C_Master_Transmit_Polling(device, reg_addr, data, size);
-        case BSP_I2C_MODE_INTERRUPT:
-            return BSP_I2C_Master_Transmit_Interrupt(device, reg_addr, data, size);
+        case BSP_I2C_MODE_IT:
+            return BSP_I2C_Master_Transmit_IT(device, reg_addr, data, size);
         case BSP_I2C_MODE_DMA:
             return BSP_I2C_Master_Transmit_DMA(device, reg_addr, data, size);
         default:
@@ -87,8 +87,8 @@ int BSP_I2C_Master_Receive(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* da
     switch(device->comm_mode) {
         case BSP_I2C_MODE_POLLING:
             return BSP_I2C_Master_Receive_Polling(device, reg_addr, data, size);
-        case BSP_I2C_MODE_INTERRUPT:
-            return BSP_I2C_Master_Receive_Interrupt(device, reg_addr, data, size);
+        case BSP_I2C_MODE_IT:
+            return BSP_I2C_Master_Receive_IT(device, reg_addr, data, size);
         case BSP_I2C_MODE_DMA:
             return BSP_I2C_Master_Receive_DMA(device, reg_addr, data, size);
         default:
@@ -169,6 +169,12 @@ static void bsp_i2c_polingInit(I2C_Module* i2c_base)
  * @param data 数据缓冲区
  * @param size 数据大小
  * @return 0成功，其他值失败
+ * I2C通信流程：
+ *
+ *   发送起始条件
+ *   发送从设备地址 + 读/写位
+ *   等待从设备ACK响应（通过 I2C_EVT_MASTER_TXMODE_FLAG 事件确认）
+ *   如果有数据，则继续发送数据
  */
 int BSP_I2C_Master_Transmit_Polling(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size)
 {
@@ -226,6 +232,8 @@ int BSP_I2C_Master_Transmit_Polling(BSP_I2C_Device* device, uint8_t reg_addr, ui
     }
     Comm_Flag = C_READY;
 
+    // 如果没有数据需要发送，直接返回成功
+    if(size == 0){ return 0;}
     
     // 如果需要发送寄存器地址
     if (reg_addr != 0xFF) {
@@ -305,7 +313,7 @@ error_cleanup:
 #ifdef NON_REENTRANT
     Mutex_Flag = 0;
 #endif
-    return 0;
+    return -1;
 }
 
 /**
@@ -536,7 +544,7 @@ error_cleanup:
 #ifdef NON_REENTRANT
     Mutex_Flag = 0;
 #endif
-    return 0;
+    return -1;
 }
 
 /**
@@ -547,7 +555,7 @@ error_cleanup:
  * @param size 数据大小
  * @return 0成功，其他值失败
  */
-int BSP_I2C_Master_Transmit_Interrupt(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size)
+int BSP_I2C_Master_Transmit_IT(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size)
 {
     // 初始化全局变量
     i2c_current_device = device;
@@ -573,7 +581,7 @@ int BSP_I2C_Master_Transmit_Interrupt(BSP_I2C_Device* device, uint8_t reg_addr, 
  * @param size 数据大小
  * @return 0成功，其他值失败
  */
-int BSP_I2C_Master_Receive_Interrupt(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size)
+int BSP_I2C_Master_Receive_IT(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t* data, uint16_t size)
 {
     // 初始化全局变量
     i2c_current_device = device;
@@ -841,24 +849,22 @@ int BSP_I2C_Master_Receive_DMA(BSP_I2C_Device* device, uint8_t reg_addr, uint8_t
     return 0;
 }
 
+
 /**
  * @brief 扫描I2C总线上的设备
  * @param device I2C设备指针
  * @param found_addresses 存储找到的设备地址的数组
  * @param max_devices 数组最大容量
- * @return 找到的设备数量
- */
-/**
- * @brief 扫描I2C总线上的设备（基于轮询模式读写函数的实现）
- * @param device I2C设备指针
- * @param found_addresses 存储找到的设备地址的数组
- * @param max_devices 数组最大容量
- * @return 找到的设备数量
+ * @return 找到的设备数量，负值表示错误
  */
 int BSP_I2C_ScanDevices(BSP_I2C_Device* device, uint8_t* found_addresses, int max_devices)
 {
     int found_count = 0;
     int result;
+    
+    if (!device || !found_addresses || max_devices <= 0) {
+        return -1;
+    }
     
     // 遍历所有可能的7位I2C地址 (0x08到0x77是合法的7位地址范围)
     for (uint8_t addr = 0x08; addr <= 0x77; addr++) {
@@ -871,22 +877,22 @@ int BSP_I2C_ScanDevices(BSP_I2C_Device* device, uint8_t* found_addresses, int ma
         uint8_t original_addr = device->device_addr;
         
         // 设置当前扫描的设备地址
-        device->device_addr = addr;
+        device->device_addr = addr << 1;
         
-        // 尝试向设备发送一个字节的数据（寄存器地址设为0xFF表示不发送寄存器地址）
-        // 这里使用一个简单的写操作来检测设备是否存在
-        result = BSP_I2C_Master_Transmit_Polling(device, 0xFF, (uint8_t*)"", 0);
+        // 这里使用一个简单的写操作来检测设备是否存在 0xFF表示不发送寄存器地址
+        result = BSP_I2C_Master_Transmit(device, 0xFF, (uint8_t*)"", 0);
         
         // 恢复原始设备地址
         device->device_addr = original_addr;
         
-        // 如果发送成功，说明设备存在
+        // 设备存在并记录
         if (result == 0) {
             found_addresses[found_count++] = addr;
         }
+        // result != 0，说明设备不存在或通信失败，继续扫描下一个地址
         
-        // 添加小延迟以避免总线过于繁忙
-        for(volatile int i = 0; i < 1000; i++);
+        // 小延迟
+        for(volatile int i = 0; i < 500; i++);
     }
     
     return found_count;
@@ -899,13 +905,97 @@ int BSP_I2C_ScanDevices(BSP_I2C_Device* device, uint8_t* found_addresses, int ma
  */
 void CommTimeOut_CallBack(ErrCode_t errcode)
 {
+    // 将通信标志设置为就绪状态，表示可以进行新的通信
     Comm_Flag = C_READY;
     
+    // 根据错误代码执行不同的处理逻辑（预留）
+    switch(errcode) {
+        case MASTER_BUSY:
+            // 主设备忙错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case MASTER_MODE:
+            // 主模式错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case MASTER_TXMODE:
+            // 主发送模式错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case MASTER_RXMODE:
+            // 主接收模式错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case MASTER_SENDING:
+            // 主发送中错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case MASTER_SENDED:
+            // 主发送完成错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case MASTER_RECVD:
+            // 主接收错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case MASTER_BYTEF:
+            // 主字节完成错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case MASTER_BUSERR:
+            // 主总线错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case MASTER_UNKNOW:
+            // 主未知错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case SLAVE_BUSY:
+            // 从设备忙错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case SLAVE_MODE:
+            // 从模式错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case SLAVE_BUSERR:
+            // 从总线错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        case SLAVE_UNKNOW:
+            // 从未知错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+            
+        default:
+            // 默认错误处理
+            // TODO: 添加具体处理逻辑
+            break;
+    }
+    
+    // 根据配置的恢复模式执行相应的复位操作
 #if (COMM_RECOVER_MODE == MODULE_SELF_RESET)
-//    IIC_SWReset();
+    // 模块自复位模式
+    // TODO: 实现具体的模块自复位逻辑
+    // IIC_SWReset();
 #elif (COMM_RECOVER_MODE == MODULE_RCC_RESET)
+    // 模块时钟复位模式
     IIC_RCCReset();
 #elif (COMM_RECOVER_MODE == SYSTEM_NVIC_RESET)
+    // 系统NVIC复位模式
     SystemNVICReset();
 #endif
 }

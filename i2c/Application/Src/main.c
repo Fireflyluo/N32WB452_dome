@@ -1,29 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2019, Nations Technologies Inc.
- *
- * All rights reserved.
- * ****************************************************************************
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * - Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the disclaimer below.
- *
- * Nations' name may not be used to endorse or promote products derived from
- * this software without specific prior written permission.
- *
- * DISCLAIMER: THIS SOFTWARE IS PROVIDED BY NATIONS "AS IS" AND ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * DISCLAIMED. IN NO EVENT SHALL NATIONS BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * ****************************************************************************/
 
 /**
  * @file main.c
@@ -46,7 +20,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "bsp_i2c.h"
-#include "MyI2C.h"     
+     
 BSP_I2C_Device i2c_device;
 /**
  * @brief  延时函数
@@ -60,39 +34,23 @@ void Delay(uint32_t count)
     for (; count > 0; count--)
         ;
 }
-/**
- * @brief I2C设备扫描测试函数
- */
-void I2C_Scan_Test(void)
-{
-    uint8_t found_devices[120];  // 足够存储所有可能的I2C设备地址
-    int count;
-    
-    // 初始化I2C设备（使用任意地址，因为扫描时会覆盖）
-    BSP_I2C_Init(&i2c_device, I2C1, 0x28, BSP_I2C_MODE_POLLING);
 
-    // 扫描设备
-    count = BSP_I2C_ScanDevices(&i2c_device, found_devices, 120);
-//      count =  MyI2C_ScanDevices(found_devices,120);
-    // 输出扫描结果
-//    printf("找到 %d 个I2C设备:\n", count);
-    for (int i = 0; i < count; i++) {
-//        printf("  地址: 0x%02X\n", found_devices[i]);
-    }
-}
+
 /**
  * @brief I2C 轮询模式测试函数
  * 
  * 此函数演示如何使用轮询模式进行 I2C 通信
  */
+  uint8_t found_devices[120]={0};  // 存储找到的设备地址
 void I2C_Polling_Test(void)
 {
     uint8_t test_data[4] = {0x12, 0x34, 0x56, 0x78};
     uint8_t read_data[4] = {0};
+   
     int result;
     uint8_t cmd[1] = {0x10};
     // 初始化 I2C 设备为轮询模式
-    BSP_I2C_Init(&i2c_device, I2C1, 0x60, BSP_I2C_MODE_POLLING); // 假设设备地址为 0x68
+    BSP_I2C_Init(&i2c_device, I2C1, 0xD2, BSP_I2C_MODE_POLLING); // 设备地址为 0x69 << 1
 //    BSP_I2C_Master_Transmit(&i2c_device, 0x05, cmd, 1);
     // 写入数据到寄存器地址 0x00
 //    result = BSP_I2C_Master_Transmit(&i2c_device, 0x1B, test_data, 4);
@@ -119,6 +77,8 @@ void I2C_Polling_Test(void)
     {
 //        printf("I2C 读取失败\n");
     }
+    // 扫描I2C总线上的设备
+    BSP_I2C_ScanDevices(&i2c_device, found_devices, 120);
 }
 /**
  * @brief  初始化LED GPIO引脚
@@ -249,12 +209,12 @@ int main(void)
     /* 初始化Led1~Led5为输出推挽模式 */
     LedInit(PORT_GROUP1, LED1_PIN);
     LedInit(PORT_GROUP2, LED2_PIN);
-    MyI2C_Init();
+
     /* 点亮Led1 */
     LedOn(PORT_GROUP1, LED1_PIN);
 
      I2C_Polling_Test();
-//    I2C_Scan_Test();
+
     while (1)
     {
         /* LED1和LED2在同一个端口组，通过异或操作使Led2闪烁，不影响Led1 */

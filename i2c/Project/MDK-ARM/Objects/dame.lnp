@@ -2,7 +2,6 @@
 ".\objects\main.o"
 ".\objects\n32wb452_it.o"
 ".\objects\bsp_i2c.o"
-".\objects\myi2c.o"
 ".\objects\misc.o"
 ".\objects\n32wb452_adc.o"
 ".\objects\n32wb452_bkp.o"

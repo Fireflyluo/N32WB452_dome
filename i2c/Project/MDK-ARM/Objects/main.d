@@ -35,4 +35,4 @@
   ..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h \
   D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   ..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h \
-  ..\..\Application\Inc\ioconfig.h ..\..\BSP\MCU_Peripheral\Inc\MyI2C.h
+  ..\..\Application\Inc\ioconfig.h

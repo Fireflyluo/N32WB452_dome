@@ -1,6 +1,6 @@
 Dependencies for Project 'dame', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 6190000::V6.19::ARMCLANG
-F (..\..\Application\Src\main.c)(0x68ECA547)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Libraries/CMSIS/core -I ../../Libraries/CMSIS/device -I ../../Libraries/CMSIS/device/startup -I ../../Libraries/n32wb452_algo_lib/inc -I ../../Libraries/n32wb452_ble_driver/inc -I ../../Libraries/n32wb452_std_periph_driver/inc -I ../../Libraries/n32wb452_usbfs_driver/inc -I ../../Application/Inc -I ../../BSP/Device_REG -I ../../BSP/MCU_Peripheral/Inc -I ../../Drivers -I ../../Include-ID:/APP/Keil_v5/ARM/PACK/Nationstech/N32WB452_DFP/1.1.0/firmware/CMSIS/device-D__UVISION_VERSION="538" -DN32WB452 -DN32WB452 -DUSE_STDPERIPH_DRIVER -DN32WB452 -DUSE_STDPERIPH_DRIVER-o ./objects/main.o -MD)
+F (..\..\Application\Src\main.c)(0x68F4DF38)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Libraries/CMSIS/core -I ../../Libraries/CMSIS/device -I ../../Libraries/CMSIS/device/startup -I ../../Libraries/n32wb452_algo_lib/inc -I ../../Libraries/n32wb452_ble_driver/inc -I ../../Libraries/n32wb452_std_periph_driver/inc -I ../../Libraries/n32wb452_usbfs_driver/inc -I ../../Application/Inc -I ../../BSP/Device_REG -I ../../BSP/MCU_Peripheral/Inc -I ../../Drivers -I ../../Include-ID:/APP/Keil_v5/ARM/PACK/Nationstech/N32WB452_DFP/1.1.0/firmware/CMSIS/device-D__UVISION_VERSION="538" -DN32WB452 -DN32WB452 -DUSE_STDPERIPH_DRIVER -DN32WB452 -DUSE_STDPERIPH_DRIVER-o ./objects/main.o -MD)
 I (..\..\Application\Inc\main.h)(0x68E8A311)
 I (..\..\Libraries\CMSIS\device\n32wb452.h)(0x68E1394E)
 I (..\..\Libraries\CMSIS\core\core_cm4.h)(0x68DFB1C1)
@@ -37,9 +37,10 @@ I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_wwdg.h)(0x68DFB1C2)
 I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tsc.h)(0x68DFB1C2)
 I (..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h)(0x68DFB1C2)
 I (D:\APP\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6388AB77)
-I (..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h)(0x68EA854B)
-I (..\..\Application\Inc\ioconfig.h)(0x68E8A311)
-I (..\..\BSP\MCU_Peripheral\Inc\MyI2C.h)(0x68E8C5E5)
+I (..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h)(0x68F4DF37)
+I (..\..\Application\Inc\ioconfig.h)(0x68ECB25D)
+F (..\..\Application\Inc\main.h)(0x68E8A311)()
+F (..\..\Application\Inc\ioconfig.h)(0x68ECB25D)()
 F (..\..\Application\Src\n32wb452_it.c)(0x68E898E1)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Libraries/CMSIS/core -I ../../Libraries/CMSIS/device -I ../../Libraries/CMSIS/device/startup -I ../../Libraries/n32wb452_algo_lib/inc -I ../../Libraries/n32wb452_ble_driver/inc -I ../../Libraries/n32wb452_std_periph_driver/inc -I ../../Libraries/n32wb452_usbfs_driver/inc -I ../../Application/Inc -I ../../BSP/Device_REG -I ../../BSP/MCU_Peripheral/Inc -I ../../Drivers -I ../../Include-ID:/APP/Keil_v5/ARM/PACK/Nationstech/N32WB452_DFP/1.1.0/firmware/CMSIS/device-D__UVISION_VERSION="538" -DN32WB452 -DN32WB452 -DUSE_STDPERIPH_DRIVER -DN32WB452 -DUSE_STDPERIPH_DRIVER-o ./objects/n32wb452_it.o -MD)
 I (..\..\Application\Inc\n32wb452_it.h)(0x68DFB1CB)
 I (..\..\Libraries\CMSIS\device\n32wb452.h)(0x68E1394E)
@@ -77,10 +78,9 @@ I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_wwdg.h)(0x68DFB1C2)
 I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tsc.h)(0x68DFB1C2)
 I (..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h)(0x68DFB1C2)
 I (..\..\Application\Inc\main.h)(0x68E8A311)
-F (..\..\Application\Inc\main.h)(0x68E8A311)()
 F (..\..\Application\Inc\n32wb452_it.h)(0x68DFB1CB)()
-F (..\..\BSP\MCU_Peripheral\Src\bsp_i2c.c)(0x68EC856F)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Libraries/CMSIS/core -I ../../Libraries/CMSIS/device -I ../../Libraries/CMSIS/device/startup -I ../../Libraries/n32wb452_algo_lib/inc -I ../../Libraries/n32wb452_ble_driver/inc -I ../../Libraries/n32wb452_std_periph_driver/inc -I ../../Libraries/n32wb452_usbfs_driver/inc -I ../../Application/Inc -I ../../BSP/Device_REG -I ../../BSP/MCU_Peripheral/Inc -I ../../Drivers -I ../../Include-ID:/APP/Keil_v5/ARM/PACK/Nationstech/N32WB452_DFP/1.1.0/firmware/CMSIS/device-D__UVISION_VERSION="538" -DN32WB452 -DN32WB452 -DUSE_STDPERIPH_DRIVER -DN32WB452 -DUSE_STDPERIPH_DRIVER-o ./objects/bsp_i2c.o -MD)
-I (..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h)(0x68EA854B)
+F (..\..\BSP\MCU_Peripheral\Src\bsp_i2c.c)(0x68F4DF34)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Libraries/CMSIS/core -I ../../Libraries/CMSIS/device -I ../../Libraries/CMSIS/device/startup -I ../../Libraries/n32wb452_algo_lib/inc -I ../../Libraries/n32wb452_ble_driver/inc -I ../../Libraries/n32wb452_std_periph_driver/inc -I ../../Libraries/n32wb452_usbfs_driver/inc -I ../../Application/Inc -I ../../BSP/Device_REG -I ../../BSP/MCU_Peripheral/Inc -I ../../Drivers -I ../../Include-ID:/APP/Keil_v5/ARM/PACK/Nationstech/N32WB452_DFP/1.1.0/firmware/CMSIS/device-D__UVISION_VERSION="538" -DN32WB452 -DN32WB452 -DUSE_STDPERIPH_DRIVER -DN32WB452 -DUSE_STDPERIPH_DRIVER-o ./objects/bsp_i2c.o -MD)
+I (..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h)(0x68F4DF37)
 I (..\..\Libraries\CMSIS\device\n32wb452.h)(0x68E1394E)
 I (..\..\Libraries\CMSIS\core\core_cm4.h)(0x68DFB1C1)
 I (D:\APP\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB77)
@@ -116,46 +116,8 @@ I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_wwdg.h)(0x68DFB1C2)
 I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tsc.h)(0x68DFB1C2)
 I (..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h)(0x68DFB1C2)
 I (D:\APP\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6388AB77)
-I (..\..\Application\Inc\ioconfig.h)(0x68E8A311)
-F (..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h)(0x68EA854B)()
-F (..\..\BSP\MCU_Peripheral\Src\MyI2C.c)(0x68E8C999)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Libraries/CMSIS/core -I ../../Libraries/CMSIS/device -I ../../Libraries/CMSIS/device/startup -I ../../Libraries/n32wb452_algo_lib/inc -I ../../Libraries/n32wb452_ble_driver/inc -I ../../Libraries/n32wb452_std_periph_driver/inc -I ../../Libraries/n32wb452_usbfs_driver/inc -I ../../Application/Inc -I ../../BSP/Device_REG -I ../../BSP/MCU_Peripheral/Inc -I ../../Drivers -I ../../Include-ID:/APP/Keil_v5/ARM/PACK/Nationstech/N32WB452_DFP/1.1.0/firmware/CMSIS/device-D__UVISION_VERSION="538" -DN32WB452 -DN32WB452 -DUSE_STDPERIPH_DRIVER -DN32WB452 -DUSE_STDPERIPH_DRIVER-o ./objects/myi2c.o -MD)
-I (..\..\BSP\MCU_Peripheral\Inc\MyI2C.h)(0x68E8C5E5)
-I (..\..\Libraries\CMSIS\device\n32wb452.h)(0x68E1394E)
-I (..\..\Libraries\CMSIS\core\core_cm4.h)(0x68DFB1C1)
-I (D:\APP\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6388AB77)
-I (..\..\Libraries\CMSIS\core\cmsis_version.h)(0x68DFB1C1)
-I (..\..\Libraries\CMSIS\core\cmsis_compiler.h)(0x68DFB1C1)
-I (..\..\Libraries\CMSIS\core\cmsis_armclang.h)(0x68DFB1C1)
-I (D:\APP\Keil_v5\ARM\ARMCLANG\include\arm_compat.h)(0x6388AB77)
-I (D:\APP\Keil_v5\ARM\ARMCLANG\include\arm_acle.h)(0x6388AB76)
-I (..\..\Libraries\CMSIS\core\mpu_armv7.h)(0x68DFB1C1)
-I (..\..\Libraries\CMSIS\device\system_n32wb452.h)(0x68DFB1C1)
-I (D:\APP\Keil_v5\ARM\ARMCLANG\include\stdbool.h)(0x6388AB76)
-I (..\..\Libraries\CMSIS\device\n32wb452_conf.h)(0x68DFB1C1)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_adc.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_bkp.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_can.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_crc.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_dac.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_dbg.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_dma.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_dvp.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_exti.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_flash.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_gpio.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_i2c.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_iwdg.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_pwr.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_rcc.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_rtc.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_spi.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tim.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_usart.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_wwdg.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tsc.h)(0x68DFB1C2)
-I (..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h)(0x68DFB1C2)
-I (D:\APP\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6388AB77)
-I (..\..\Application\Inc\ioconfig.h)(0x68E8A311)
+I (..\..\Application\Inc\ioconfig.h)(0x68ECB25D)
+F (..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h)(0x68F4DF37)()
 F (..\..\Libraries\n32wb452_std_periph_driver\src\misc.c)(0x68DFB1C2)(-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../Libraries/CMSIS/core -I ../../Libraries/CMSIS/device -I ../../Libraries/CMSIS/device/startup -I ../../Libraries/n32wb452_algo_lib/inc -I ../../Libraries/n32wb452_ble_driver/inc -I ../../Libraries/n32wb452_std_periph_driver/inc -I ../../Libraries/n32wb452_usbfs_driver/inc -I ../../Application/Inc -I ../../BSP/Device_REG -I ../../BSP/MCU_Peripheral/Inc -I ../../Drivers -I ../../Include-ID:/APP/Keil_v5/ARM/PACK/Nationstech/N32WB452_DFP/1.1.0/firmware/CMSIS/device-D__UVISION_VERSION="538" -DN32WB452 -DN32WB452 -DUSE_STDPERIPH_DRIVER -DN32WB452 -DUSE_STDPERIPH_DRIVER-o ./objects/misc.o -MD)
 I (..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h)(0x68DFB1C2)
 I (..\..\Libraries\CMSIS\device\n32wb452.h)(0x68E1394E)
