@@ -124,104 +124,6 @@ void I2C_Polling_Test(void)
     // 扫描I2C总线上的设备
     BSP_I2C_ScanDevices(&i2c_device, found_devices, 120);
 }
-/**
- * @brief  初始化LED GPIO引脚
- * 
- * 配置指定GPIO引脚为推挽输出模式，用于控制LED
- * 
- * @param GPIOx GPIO端口，可选GPIOA~GPIOE
- * @param Pin GPIO引脚号，可选GPIO_PIN_0~GPIO_PIN_15
- */
-void LedInit(GPIO_Module* GPIOx, uint16_t Pin)
-{
-    GPIO_InitType GPIO_InitStructure;
-
-    /* 检查参数有效性 */
-    assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
-
-    /* 使能对应GPIO端口的时钟 */
-    if (GPIOx == GPIOA)
-    {
-        RCC_EnableAPB2PeriphClk(RCC_APB2_PERIPH_GPIOA, ENABLE);
-    }
-    else if (GPIOx == GPIOB)
-    {
-        RCC_EnableAPB2PeriphClk(RCC_APB2_PERIPH_GPIOB, ENABLE);
-    }
-    else if (GPIOx == GPIOC)
-    {
-        RCC_EnableAPB2PeriphClk(RCC_APB2_PERIPH_GPIOC, ENABLE);
-    }
-    else if (GPIOx == GPIOD)
-    {
-        RCC_EnableAPB2PeriphClk(RCC_APB2_PERIPH_GPIOD, ENABLE);
-    }
-    else if (GPIOx == GPIOE)
-    {
-        RCC_EnableAPB2PeriphClk(RCC_APB2_PERIPH_GPIOE, ENABLE);
-    }
-
-    /* 配置GPIO引脚 */
-    if (Pin <= GPIO_PIN_ALL)
-    {
-        GPIO_InitStructure.Pin        = Pin;
-        GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_PP;     /* 推挽输出模式 */
-        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;     /* 输出速度50MHz */
-        GPIO_InitPeripheral(GPIOx, &GPIO_InitStructure);
-    }
-}
-
-/**
- * @brief  点亮指定LED
- * 
- * 通过设置PBSC寄存器将指定引脚输出高电平，点亮LED
- * 
- * @param GPIOx GPIO端口
- * @param Pin GPIO引脚号
- */
-void LedOn(GPIO_Module* GPIOx, uint16_t Pin)
-{
-    GPIOx->PBSC = Pin;
-}
-
-/**
- * @brief  熄灭指定LED
- * 
- * 通过设置PBC寄存器将指定引脚输出低电平，熄灭LED
- * 
- * @param GPIOx GPIO端口
- * @param Pin GPIO引脚号
- */
-void LedOff(GPIO_Module* GPIOx, uint16_t Pin)
-{
-    GPIOx->PBC = Pin;
-}
-
-/**
- * @brief  控制LED开关状态
- * 
- * 根据参数的高16位和低16位分别控制LED的关和开
- * 
- * @param GPIOx GPIO端口
- * @param Pin 控制参数，低16位表示要点亮的引脚，高16位表示要熄灭的引脚
- */
-void LedOnOff(GPIO_Module* GPIOx, uint32_t Pin)
-{
-    GPIOx->PBSC = Pin;
-}
-
-/**
- * @brief  LED翻转（闪烁）
- * 
- * 使用异或操作翻转指定引脚的电平状态，实现LED闪烁效果
- * 
- * @param GPIOx GPIO端口
- * @param Pin GPIO引脚号
- */
-void LedBlink(GPIO_Module* GPIOx, uint16_t Pin)
-{
-    GPIOx->POD ^= Pin;
-}
 
 /**
  * @brief 断言失败处理函数
@@ -250,39 +152,27 @@ int main(void)
 {
     /* SystemInit()函数已在启动文件startup_n32wb452.s中调用 */
 
-    /* 初始化Led1~Led5为输出推挽模式 */
-    // LedInit(PORT_GROUP1, LED1_PIN);
-    // LedInit(PORT_GROUP2, LED2_PIN);
     BSP_GPIO_Init();    
-
-
     BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_SET);
-    /* 点亮Led1 */
-    // LedOn(PORT_GROUP1, LED1_PIN);
+
 
      I2C_Polling_Test();
 
     while (1)
     {
-        /* LED1和LED2在同一个端口组，通过异或操作使Led2闪烁，不影响Led1 */
-        // LedBlink(PORT_GROUP1, LED1_PIN);
-//        BSP_GPIO_TogglePin(G_LED_GPIO, G_LED_PIN);
-//        BSP_GPIO_TogglePin(R_LED_GPIO, R_LED_PIN);
-        /* LED3、LED4和LED5在同一个端口组 */
-        /* 通过PBC寄存器关闭Led3和Led4，不影响同一端口组的其他引脚 */
-        // LedOff(PORT_GROUP2, LED2_PIN);
-        BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_SET);
+       
+       BSP_GPIO_TogglePin(G_LED_GPIO, G_LED_PIN);
+       BSP_GPIO_TogglePin(R_LED_GPIO, R_LED_PIN);
+ 
         /* 插入延时 */
         Delay(0x28FFFF);
 
 
-        // LedOnOff(PORT_GROUP2, (LED2_PIN << 16));
         BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_RESET);
         /* 插入延时 */
         Delay(0x28FFFF);
 
         /* 点亮Led3 */
-        // LedOn(PORT_GROUP2, LED2_PIN);
         BSP_GPIO_WritePin(G_LED_GPIO, G_LED_PIN, GPIO_PIN_SET);
         /* 插入延时 */
         Delay(0x28FFFF);
