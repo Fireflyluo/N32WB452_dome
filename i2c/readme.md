@@ -1,45 +1,48 @@
-# N32WB452 LED闪烁示例工程
+# N32WB452 I2C通信工程
 
-本工程是基于N32WB452微控制器的基础LED控制示例工程，演示如何使用GPIO控制LED灯的亮灭和闪烁效果。
-用于工程构建以及板子测试。后续其他工程和工程文档均在本工程基础结构上构建，本工程为模板工程。
+本工程是基于N32WB452微控制器的基础I2C示例工程。
+
 
 ## 项目概述
 
-这是一个简单的LED控制示例程序，展示N32WB452微控制器的基本GPIO操作。程序通过配置GPIO引脚为推挽输出模式来控制LED，实现LED的点亮、熄灭和闪烁功能。
+这是一个简单的I2C示例程序，展示N32WB452的基本硬件i2c操作。
 
 ## 目录结构
 
 ```
 .
-├── Application     # 应用程序代码
-│   ├── Inc         # 头文件
+├── Application             # 应用程序代码
+│   ├── Inc                 # 头文件
 │   │   ├── main.h
 │   │   └── n32wb452_it.h
-│   └── Src         # 源文件
+│   └── Src                 # 源文件
 │       ├── main.c
 │       └── n32wb452_it.c
-├── Libraries       # 芯片标准外设库和协议栈
-│   ├── CMSIS              # Cortex微控制器软件接口标准
-│   ├── n32wb452_algo_lib  # 加密算法库
-│   ├── n32wb452_ble_driver# BLE协议栈
-│   ├── n32wb452_std_periph_driver # 标准外设驱动库
-│   └── n32wb452_usbfs_driver      # USB全速驱动库
-└── Project         # 工程配置文件
-    ├── MDK-ARM     # Keil MDK工程配置
-    └── eide        # EIDE工程配置
+├── BSP                     # 硬件抽象层
+|   ├── Device_REG          # 设备寄存器
+│   └── MCU_Peripheral      # 硬件抽象层
+│   │   ├─  Src
+│   │   |   └── bsp_i2c.c
+│   │   └── Inc  
+├── Libraries               # 芯片标准外设库和协议栈
+└── Project                 # 工程配置文件
+    ├── MDK-ARM             # Keil MDK工程配置
+    └── eide                # EIDE工程配置
 ```
 
 ## 主要特性
 
-- GPIO初始化配置
-- LED点亮/熄灭控制
-- LED闪烁效果实现
-- 软件延时函数
+- BSP层 - 硬件抽象层，提供I2C操作接口
+- I2C扫描函数
+- I2C轮询收发函数
 
 ## 硬件配置
 
-- LED1连接到GPIOA_PIN_11
-- LED2连接到GPIOC_PIN_13
+- i2c1 SDA 接到 GPIOB_PIN_7
+- i2c1 SCL 接到 GPIOB_PIN_6
+
+- i2c2 SDA 接到 GPIOB_PIN_11
+- i2c2 SCL 接到 GPIOB_PIN_10
 
 ## 软件架构
 
@@ -48,24 +51,12 @@
 2. `main.h` - 头文件，定义引脚配置和相关常量
 3. 标准外设驱动库 - 提供GPIO和RCC等外设控制接口
 
-### 示例程序功能
-1. 初始化GPIO引脚为推挽输出模式
-2. 点亮LED1
-3. 在主循环中控制LED的亮灭和闪烁：
-   - LED1持续闪烁
-   - LED2按一定节奏闪烁
 
 ## 使用方法
 
 1. 使用Keil MDK或EIDE打开对应工程
 2. 编译并下载程序到N32WB452开发板
-3. 观察LED闪烁效果
+
 
 ## API说明
 
-### GPIO控制函数
-- `LedInit()` - 初始化LED GPIO引脚
-- `LedOn()` - 点亮指定LED
-- `LedOff()` - 熄灭指定LED
-- `LedBlink()` - 切换LED状态（开<->关）
-- `Delay()` - 简单的软件延时函数

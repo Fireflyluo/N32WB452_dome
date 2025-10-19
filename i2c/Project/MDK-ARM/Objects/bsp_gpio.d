@@ -1,5 +1,6 @@
-./objects/main.o: ..\..\Application\Src\main.c \
-  ..\..\Application\Inc\main.h ..\..\Libraries\CMSIS\device\n32wb452.h \
+./objects/bsp_gpio.o: ..\..\BSP\MCU_Peripheral\Src\bsp_gpio.c \
+  ..\..\BSP\MCU_Peripheral\Inc\bsp_gpio.h \
+  ..\..\Libraries\CMSIS\device\n32wb452.h \
   ..\..\Libraries\CMSIS\core\core_cm4.h \
   D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
   ..\..\Libraries\CMSIS\core\cmsis_version.h \
@@ -33,7 +34,4 @@
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_wwdg.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tsc.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h \
-  D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  ..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h \
-  ..\..\Application\Inc\ioconfig.h \
-  ..\..\BSP\MCU_Peripheral\Inc\bsp_gpio.h
+  ..\..\Application\Inc\ioconfig.h

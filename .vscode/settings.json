@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "bsp_i2c.h": "c"
+        "bsp_i2c.h": "c",
+        "n32wb452_gpio.h": "c",
+        "compare": "c",
+        "n32wb452.h": "c",
+        "bsp_gpio.h": "c"
     }
 }

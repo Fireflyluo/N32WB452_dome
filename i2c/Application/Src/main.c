@@ -61,7 +61,9 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdint.h>
+
 #include "bsp_i2c.h"
+#include "bsp_gpio.h"
      
 BSP_I2C_Device i2c_device;
 /**
@@ -249,34 +251,43 @@ int main(void)
     /* SystemInit()函数已在启动文件startup_n32wb452.s中调用 */
 
     /* 初始化Led1~Led5为输出推挽模式 */
-    LedInit(PORT_GROUP1, LED1_PIN);
-    LedInit(PORT_GROUP2, LED2_PIN);
+    // LedInit(PORT_GROUP1, LED1_PIN);
+    // LedInit(PORT_GROUP2, LED2_PIN);
+    BSP_GPIO_Init();    
 
+
+    BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_SET);
     /* 点亮Led1 */
-    LedOn(PORT_GROUP1, LED1_PIN);
+    // LedOn(PORT_GROUP1, LED1_PIN);
 
      I2C_Polling_Test();
 
     while (1)
     {
         /* LED1和LED2在同一个端口组，通过异或操作使Led2闪烁，不影响Led1 */
-        LedBlink(PORT_GROUP1, LED1_PIN);
-
+        // LedBlink(PORT_GROUP1, LED1_PIN);
+//        BSP_GPIO_TogglePin(G_LED_GPIO, G_LED_PIN);
+//        BSP_GPIO_TogglePin(R_LED_GPIO, R_LED_PIN);
         /* LED3、LED4和LED5在同一个端口组 */
         /* 通过PBC寄存器关闭Led3和Led4，不影响同一端口组的其他引脚 */
-        LedOff(PORT_GROUP2, LED2_PIN);
+        // LedOff(PORT_GROUP2, LED2_PIN);
+        BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_SET);
         /* 插入延时 */
         Delay(0x28FFFF);
 
 
-        LedOnOff(PORT_GROUP2, (LED2_PIN << 16));
+        // LedOnOff(PORT_GROUP2, (LED2_PIN << 16));
+        BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_RESET);
         /* 插入延时 */
         Delay(0x28FFFF);
 
         /* 点亮Led3 */
-        LedOn(PORT_GROUP2, LED2_PIN);
+        // LedOn(PORT_GROUP2, LED2_PIN);
+        BSP_GPIO_WritePin(G_LED_GPIO, G_LED_PIN, GPIO_PIN_SET);
         /* 插入延时 */
         Delay(0x28FFFF);
+        BSP_GPIO_WritePin(G_LED_GPIO, G_LED_PIN, GPIO_PIN_RESET);
+         Delay(0x28FFFF);
     }
 }
 /**

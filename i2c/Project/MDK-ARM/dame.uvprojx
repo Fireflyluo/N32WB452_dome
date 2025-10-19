@@ -314,7 +314,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>2</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -423,6 +423,16 @@
               <FileName>bsp_i2c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\MCU_Peripheral\Src\bsp_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_gpio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\MCU_Peripheral\Inc\bsp_gpio.h</FilePath>
             </File>
           </Files>
         </Group>
