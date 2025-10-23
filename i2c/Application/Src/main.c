@@ -42,7 +42,7 @@
   *
   ******************************************************************************
 -----------------------------------------------File Info------------------------------------------------
-** File Name:               main.c 
+** File Name:               main.c
 ** Created date:            2025.7.1
 ** author:                  Fireflyluo
 ** Version:                 V0.1
@@ -51,7 +51,7 @@
 */
 /**
  * @brief 主函数文件，包含LED控制示例
- * 
+ *
  * 本文件演示了如何在N32WB452芯片上控制LED灯：
  * - LED初始化
  * - LED开关控制
@@ -63,14 +63,22 @@
 #include <stdint.h>
 
 #include "bsp_i2c.h"
+#include "bsp_uart.h"
 #include "bsp_gpio.h"
-     
+
 BSP_I2C_Device i2c_device;
+// 定义UART设备实例
+BSP_UART_Device uart2_device;
+BSP_UART_Device uart3_device;
+// 接收缓冲区
+uint8_t rx_buffer[128];
+uint8_t tx_buffer[20] = "hello UART!\r\n";
+
 /**
  * @brief  延时函数
- * 
+ *
  * 通过空循环实现简单的软件延时
- * 
+ *
  * @param count 延时循环计数，数值越大延时越长
  */
 void Delay(uint32_t count)
@@ -79,10 +87,9 @@ void Delay(uint32_t count)
         ;
 }
 
-
 /**
  * @brief I2C 轮询模式测试函数
- * 
+ *
  * 此函数演示如何使用轮询模式进行 I2C 通信
  */
 
@@ -90,36 +97,36 @@ void I2C_Polling_Test(void)
 {
     uint8_t test_data[4] = {0x12, 0x34, 0x56, 0x78};
     uint8_t read_data[4] = {0};
-    uint8_t found_devices[120]={0};  // 存储找到的设备地址
+    uint8_t found_devices[120] = {0}; // 存储找到的设备地址
     int result;
 
     // 初始化 I2C 设备为轮询模式
     BSP_I2C_Init(&i2c_device, I2C1, 0xD2, BSP_I2C_MODE_POLLING); // 设备地址为 0x69 << 1
-//    BSP_I2C_Master_Transmit(&i2c_device, 0x05, cmd, 1);
+                                                                 //    BSP_I2C_Master_Transmit(&i2c_device, 0x05, cmd, 1);
     // 写入数据到寄存器地址 0x00
-//    result = BSP_I2C_Master_Transmit(&i2c_device, 0x1B, test_data, 4);
-//    if(result == 0)
-//    {
-////        printf("I2C 写入成功\n");
-//    }
-//    else
-//    {
-////        printf("I2C 写入失败\n");
-//    }
-//    
-//    // 延时一段时间
-//    Delay(0xFFFF);
-    
+    //    result = BSP_I2C_Master_Transmit(&i2c_device, 0x1B, test_data, 4);
+    //    if(result == 0)
+    //    {
+    ////        printf("I2C 写入成功\n");
+    //    }
+    //    else
+    //    {
+    ////        printf("I2C 写入失败\n");
+    //    }
+    //
+    //    // 延时一段时间
+    //    Delay(0xFFFF);
+
     // 从寄存器地址 0x00 读取数据
     result = BSP_I2C_Master_Receive(&i2c_device, 0x75, read_data, 4);
-    if(result == 0)
+    if (result == 0)
     {
-//        printf("I2C 读取成功: 0x%02X 0x%02X 0x%02X 0x%02X\n", 
-//               read_data[0], read_data[1], read_data[2], read_data[3]);
+        //        printf("I2C 读取成功: 0x%02X 0x%02X 0x%02X 0x%02X\n",
+        //               read_data[0], read_data[1], read_data[2], read_data[3]);
     }
     else
     {
-//        printf("I2C 读取失败\n");
+        //        printf("I2C 读取失败\n");
     }
     // 扫描I2C总线上的设备
     BSP_I2C_ScanDevices(&i2c_device, found_devices, 120);
@@ -127,15 +134,15 @@ void I2C_Polling_Test(void)
 
 /**
  * @brief 断言失败处理函数
- * 
+ *
  * 当启用断言检查且断言条件不满足时，会调用此函数
- * 
+ *
  * @param expr 失败的断言表达式
  * @param file 发生失败的源文件名
  * @param line 发生失败的行号
  */
 #ifdef USE_FULL_ASSERT
-void assert_failed(const uint8_t* expr, const uint8_t* file, uint32_t line)
+void assert_failed(const uint8_t *expr, const uint8_t *file, uint32_t line)
 {
     while (1)
     {
@@ -145,28 +152,33 @@ void assert_failed(const uint8_t* expr, const uint8_t* file, uint32_t line)
 
 /**
  * @brief  主程序入口
- * 
+ *
  * 程序启动后首先初始化LED，然后进入循环执行LED控制逻辑
  */
 int main(void)
 {
     /* SystemInit()函数已在启动文件startup_n32wb452.s中调用 */
 
-    BSP_GPIO_Init();    
+    BSP_GPIO_Init();
     BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_SET);
+    CIRCUIT_SWITCH_UART3_ON();
 
-
-     I2C_Polling_Test();
+    // 初始化UART2设备，波特率115200，中断模式
+    BSP_UART_Init(&uart2_device, USART2, 115200, BSP_UART_MODE_IT);
+    BSP_UART_Init(&uart3_device, USART3, 115200, BSP_UART_MODE_IT);
+//    I2C_Polling_Test();
 
     while (1)
     {
-       
-       BSP_GPIO_TogglePin(G_LED_GPIO, G_LED_PIN);
-       BSP_GPIO_TogglePin(R_LED_GPIO, R_LED_PIN);
- 
+        // 启动中断模式发送
+        BSP_Uart_Transmit_IT(&uart2_device, tx_buffer, sizeof(tx_buffer) - 1);
+        BSP_Uart_Transmit_IT(&uart3_device, tx_buffer, sizeof(tx_buffer) - 1);
+        
+        BSP_GPIO_TogglePin(G_LED_GPIO, G_LED_PIN);
+        BSP_GPIO_TogglePin(R_LED_GPIO, R_LED_PIN);
+
         /* 插入延时 */
         Delay(0x28FFFF);
-
 
         BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_RESET);
         /* 插入延时 */
@@ -177,7 +189,7 @@ int main(void)
         /* 插入延时 */
         Delay(0x28FFFF);
         BSP_GPIO_WritePin(G_LED_GPIO, G_LED_PIN, GPIO_PIN_RESET);
-         Delay(0x28FFFF);
+        Delay(0x28FFFF);
     }
 }
 /**
