@@ -21,7 +21,7 @@
 static uint32_t Mutex_Flag = 0;
 #endif
 
-// 中断模式相关全局变量
+// 中断模式相关全局变量（未实现）
 static BSP_I2C_Device* i2c_current_device = NULL;
 static uint8_t* i2c_tx_buffer = NULL;
 static uint8_t* i2c_rx_buffer = NULL;

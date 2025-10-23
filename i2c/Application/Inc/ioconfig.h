@@ -1,8 +1,17 @@
+/*-----------------------------------------------File Info------------------------------------------------
+** File Name:               ioconfig.h
+** Created date:            2025.7.1
+** author:                  Fireflyluo
+** Version:                 V0.1
+** Descriptions:            定义IO引脚配置宏
+**--------------------------------------------------------------------------------------------------------
+*/
 #ifndef __IOCONFIG_H__
 #define __IOCONFIG_H__
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #include "n32wb452.h"
@@ -42,7 +51,7 @@ extern "C" {
 #define UART3_RX_PIN GPIO_PIN_11
 #define UART3_RX_GPIO GPIOB
 
-/* SPI */ 
+/* SPI */
 // 屏幕
 #define SRC_SCL_PIN GPIO_PIN_5
 #define SRC_SCL_GPIO GPIOA
@@ -66,7 +75,6 @@ extern "C" {
 #define SPI2_MOSI_GPIO GPIOB
 #define SPI2_NSS_PIN GPIO_PIN_12
 #define SPI2_NSS_GPIO GPIOB
-
 
 #ifdef __cplusplus
 }

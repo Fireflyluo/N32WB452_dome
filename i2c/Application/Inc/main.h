@@ -40,15 +40,7 @@ extern "C" {
 #endif
 
 #include "n32wb452.h"
-
-/*Led1-PB10,Led2-PB15,Led3-PA9,Led4-PA5,Led5-PA6*/
-#define PORT_GROUP1 GPIOA
-#define PORT_GROUP2 GPIOC
-#define LED1_PORT   PORT_GROUP1
-#define LED2_PORT   PORT_GROUP2
-#define LED1_PIN    GPIO_PIN_11
-#define LED2_PIN    GPIO_PIN_13
-
+#include "ioconfig.h"
 
 
 

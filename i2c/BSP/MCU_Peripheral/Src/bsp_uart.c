@@ -1,18 +1,21 @@
 /*-----------------------------------------------File Info------------------------------------------------
 ** File Name:               bsp_uart.c
-** Last modified date:      2025.10.19
+** Last modified date:      2025.10.23
 ** Last version:            V0.1
-** Description:             BSP层uart设备初始化代码
+** Description:             移除全局状态变量，优化为内部静态结构体
 **
 **--------------------------------------------------------------------------------------------------------
 ** Created date:            2025.7.1
 ** author:                  Fireflyluo
 ** Version:                 V0.1
-** Descriptions:
-**                          定义uart初始化、发送/接收函数的实现；
+** Descriptions:            BSP层uart设备初始化代码
+**
 **--------------------------------------------------------------------------------------------------------*/
 /* Includes ------------------------------------------------------------------*/
 #include "bsp_uart.h"
+
+// 定义全局调试UART设备指针（需在外部初始化）
+BSP_UART_Device *debug_uart_device = NULL;
 
 // UART超时计数器
 static __IO uint32_t UARTTimeout;
@@ -33,7 +36,7 @@ typedef struct
 } UART_State;
 
 // 静态全局状态数组
-static UART_State uart_states[UART_DEVICE_COUNT]; 
+static UART_State uart_states[UART_DEVICE_COUNT];
 
 // 内部函数声明
 static void bsp_uart_polingInit(BSP_UART_Device *device);
@@ -492,8 +495,8 @@ void USART3_IRQHandler(void)
     // 创建临时设备结构获取状态
     BSP_UART_Device device = {.uart_base = USART3};
     UART_State *state = get_uart_state(&device);
-    if (!state)return;
-
+    if (!state)
+        return;
 
     // 处理发送数据寄存器空中断(USART_INT_TXDE)
     if (USART_GetIntStatus(USART3, USART_INT_TXDE) != RESET)
@@ -627,3 +630,43 @@ uint8_t BSP_UART_GetRxError(BSP_UART_Device *device)
     UART_State *state = get_uart_state(device);
     return (state) ? state->rx_error : 0;
 }
+
+
+
+int fputc(int ch, FILE *f)
+{
+    if (debug_uart_device)
+    {
+        // 使用轮询模式发送单个字符
+        BSP_Uart_Transmit(debug_uart_device, (uint8_t *)&ch, 1);
+    }
+    return ch;
+}
+
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif
+
+PUTCHAR_PROTOTYPE
+{
+    if (debug_uart_device)
+    {
+        // 使用轮询模式发送单个字符
+        BSP_Uart_Transmit(debug_uart_device, (uint8_t *)&ch, 1);
+    }
+    return ch;
+}
+
+#ifdef __GNUC__
+int _write(int fd, char *ptr, int len)
+{
+    if (debug_uart_device)
+    {
+        // 使用轮询模式发送整个字符串
+        BSP_Uart_Transmit(debug_uart_device, (uint8_t *)ptr, len);
+    }
+    return len;
+}
+#endif

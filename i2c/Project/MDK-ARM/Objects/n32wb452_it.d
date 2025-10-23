@@ -34,4 +34,4 @@
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_wwdg.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tsc.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h \
-  ..\..\Application\Inc\main.h
+  ..\..\Application\Inc\main.h ..\..\Application\Inc\ioconfig.h

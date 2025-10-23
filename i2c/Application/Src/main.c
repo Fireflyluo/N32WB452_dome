@@ -165,21 +165,25 @@ int main(void)
 
     // 初始化UART2设备，波特率115200，中断模式
     BSP_UART_Init(&uart2_device, USART2, 115200, BSP_UART_MODE_IT);
-    BSP_UART_Init(&uart3_device, USART3, 115200, BSP_UART_MODE_IT);
-//    I2C_Polling_Test();
+    BSP_UART_Init(&uart3_device, USART3, 115200, BSP_UART_MODE_POLLING);
+
+    // 设置全局调试设备指针
+    debug_uart_device = &uart3_device;
+    //    I2C_Polling_Test();
 
     while (1)
     {
         // 启动中断模式发送
         BSP_Uart_Transmit_IT(&uart2_device, tx_buffer, sizeof(tx_buffer) - 1);
         BSP_Uart_Transmit_IT(&uart3_device, tx_buffer, sizeof(tx_buffer) - 1);
-        
+
         BSP_GPIO_TogglePin(G_LED_GPIO, G_LED_PIN);
         BSP_GPIO_TogglePin(R_LED_GPIO, R_LED_PIN);
 
         /* 插入延时 */
         Delay(0x28FFFF);
 
+        printf("debug test?");
         BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_RESET);
         /* 插入延时 */
         Delay(0x28FFFF);

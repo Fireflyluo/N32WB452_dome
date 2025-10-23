@@ -33,8 +33,8 @@
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_wwdg.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tsc.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h \
+  ..\..\Application\Inc\ioconfig.h \
   D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
   ..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h \
-  ..\..\Application\Inc\ioconfig.h \
   ..\..\BSP\MCU_Peripheral\Inc\bsp_uart.h \
   ..\..\BSP\MCU_Peripheral\Inc\bsp_gpio.h
