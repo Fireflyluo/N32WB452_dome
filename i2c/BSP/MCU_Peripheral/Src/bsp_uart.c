@@ -33,6 +33,8 @@ typedef struct
     volatile uint16_t rx_index;   // 接收缓冲区索引
     volatile uint8_t rx_complete; // 接收完成标志
     volatile uint8_t rx_error;    // 接收错误标志
+
+    volatile uint16_t rx_received_length; // 实际接收长度
 } UART_State;
 
 // 静态全局状态数组
@@ -81,6 +83,10 @@ void BSP_UART_Init(BSP_UART_Device *device, USART_Module *uart_base, uint32_t ba
         state->rx_index = 0;
         state->rx_complete = 0;
         state->rx_error = 0;
+    }
+    if (!state)
+    {
+        return ; // 错误处理
     }
 
     // 根据不同模式进行相应初始化
@@ -405,8 +411,9 @@ int BSP_Uart_Receive_IT(BSP_UART_Device *device, uint8_t *pData, uint16_t size)
     state->rx_complete = 0;
     state->rx_error = 0;
 
-    // 启用RXDNE中断
+    // 启用RXDNE中断 空闲中断
     USART_ConfigInt(device->uart_base, USART_INT_RXDNE, ENABLE);
+    USART_ConfigInt(device->uart_base, USART_INT_IDLEF, ENABLE);
     return 0;
 }
 
@@ -415,42 +422,42 @@ int BSP_Uart_Receive_IT(BSP_UART_Device *device, uint8_t *pData, uint16_t size)
 // }
 
 /**
- * @brief USART2中断服务函数
- * 处理USART2的发送中断请求
+ * @brief USART中断服务函数通用处理
+ * 处理USART的发送中断请求
  */
-void USART2_IRQHandler(void)
+static void BSP_UART_IRQHandler(USART_Module *uart_base)
 {
     // 创建临时设备结构获取状态
-    BSP_UART_Device device = {.uart_base = USART2};
+    BSP_UART_Device device = {.uart_base = uart_base};
     UART_State *state = get_uart_state(&device);
     if (!state)
         return;
 
     // 处理发送数据寄存器空中断(USART_INT_TXDE)
-    if (USART_GetIntStatus(USART2, USART_INT_TXDE) != RESET)
+    if (USART_GetIntStatus(device.uart_base, USART_INT_TXDE) != RESET)
     {
         // 清除发送数据寄存器空标志位
-        USART_ClrFlag(USART2, USART_FLAG_TXDE);
+        USART_ClrFlag(device.uart_base, USART_FLAG_TXDE);
         // 还有数据
         if (state->tx_index < state->tx_len)
         {
-            USART_SendData(USART2, state->tx_buf[state->tx_index]);
+            USART_SendData(device.uart_base, state->tx_buf[state->tx_index]);
             state->tx_index++;
         }
         else
         {
             // 数据发送完成，关闭空中断
-            USART_ConfigInt(USART2, USART_INT_TXDE, DISABLE);
+            USART_ConfigInt(device.uart_base, USART_INT_TXDE, DISABLE);
             // 使能发送完成中断
-            USART_ConfigInt(USART2, USART_INT_TXC, ENABLE);
+            USART_ConfigInt(device.uart_base, USART_INT_TXC, ENABLE);
         }
     }
 
     // 发送完成中断
-    if (USART_GetIntStatus(USART2, USART_INT_TXC) != RESET)
+    if (USART_GetIntStatus(device.uart_base, USART_INT_TXC) != RESET)
     {
-        USART_ClrFlag(USART2, USART_FLAG_TXC);
-        USART_ConfigInt(USART2, USART_INT_TXC, DISABLE);
+        USART_ClrFlag(device.uart_base, USART_FLAG_TXC);
+        USART_ConfigInt(device.uart_base, USART_INT_TXC, DISABLE);
 
         state->tx_complete = 1;
         state->tx_buf = NULL;
@@ -458,32 +465,56 @@ void USART2_IRQHandler(void)
         state->tx_index = 0;
     }
 
-    uint8_t received_data;
-
     // 接收中断
-    if (USART_GetIntStatus(USART2, USART_INT_RXDNE) != RESET)
+    if (USART_GetIntStatus(device.uart_base, USART_INT_RXDNE) != RESET)
     {
-        uint8_t received_data = USART_ReceiveData(USART2);
-        USART_ClrFlag(USART2, USART_FLAG_RXDNE);
+        uint8_t received_data = USART_ReceiveData(device.uart_base);
+        USART_ClrFlag(device.uart_base, USART_FLAG_RXDNE);
 
         // 接收数据
         if (state->rx_buf && state->rx_index < state->rx_len)
         {
             state->rx_buf[state->rx_index++] = received_data;
 
+            // 完成接收
             if (state->rx_index >= state->rx_len)
             {
-                USART_ConfigInt(USART2, USART_INT_RXDNE, DISABLE);
+                // 保存实际接收长度
+                state->rx_received_length = state->rx_index;
+                USART_ConfigInt(device.uart_base, USART_INT_RXDNE, DISABLE);
                 state->rx_complete = 1;
-                state->rx_buf = NULL;
-                state->rx_len = 0;
-                state->rx_index = 0;
             }
+        }
+    }
+    // 空闲中断处理
+    if (USART_GetIntStatus(device.uart_base, USART_INT_IDLEF) != RESET)
+    {
+        // 清除空闲中断标志（必须先读STS再读DAT）
+        USART_GetFlagStatus(device.uart_base, USART_FLAG_IDLEF);
+        USART_ReceiveData(device.uart_base);
+        // 未达到设定接收长度提前接收完成
+        if (state->rx_buf && state->rx_index < state->rx_len)
+        {
+            // 保存实际接收长度
+            state->rx_received_length = state->rx_index;
+            // 接收完成
+            state->rx_complete = 1;
+            USART_ConfigInt(device.uart_base, USART_INT_RXDNE, DISABLE);
+            USART_ConfigInt(device.uart_base, USART_INT_IDLEF, DISABLE);
         }
     }
 
     // 错误中断
-    bsp_uart_error(&device);
+    int error_status = bsp_uart_error(&device);
+}
+
+/**
+ * @brief USART2中断服务函数
+ * 处理USART2的发送中断请求
+ */
+void USART2_IRQHandler(void)
+{
+    BSP_UART_IRQHandler(USART2);
 }
 
 /**
@@ -492,70 +523,7 @@ void USART2_IRQHandler(void)
  */
 void USART3_IRQHandler(void)
 {
-    // 创建临时设备结构获取状态
-    BSP_UART_Device device = {.uart_base = USART3};
-    UART_State *state = get_uart_state(&device);
-    if (!state)
-        return;
-
-    // 处理发送数据寄存器空中断(USART_INT_TXDE)
-    if (USART_GetIntStatus(USART3, USART_INT_TXDE) != RESET)
-    {
-        // 清除发送数据寄存器空标志位
-        USART_ClrFlag(USART3, USART_FLAG_TXDE);
-        // 还有数据
-        if (state->tx_index < state->tx_len)
-        {
-            USART_SendData(USART3, state->tx_buf[state->tx_index]);
-            state->tx_index++;
-        }
-        else
-        {
-            // 数据发送完成，关闭空中断
-            USART_ConfigInt(USART3, USART_INT_TXDE, DISABLE);
-            // 使能发送完成中断
-            USART_ConfigInt(USART3, USART_INT_TXC, ENABLE);
-        }
-    }
-
-    // 发送完成中断
-    if (USART_GetIntStatus(USART3, USART_INT_TXC) != RESET)
-    {
-        USART_ClrFlag(USART3, USART_FLAG_TXC);
-        USART_ConfigInt(USART3, USART_INT_TXC, DISABLE);
-
-        state->tx_complete = 1;
-        state->tx_buf = NULL;
-        state->tx_len = 0;
-        state->tx_index = 0;
-    }
-
-    uint8_t received_data;
-
-    // 接收中断
-    if (USART_GetIntStatus(USART3, USART_INT_RXDNE) != RESET)
-    {
-        uint8_t received_data = USART_ReceiveData(USART3);
-        USART_ClrFlag(USART3, USART_FLAG_RXDNE);
-
-        // 接收数据
-        if (state->rx_buf && state->rx_index < state->rx_len)
-        {
-            state->rx_buf[state->rx_index++] = received_data;
-
-            if (state->rx_index >= state->rx_len)
-            {
-                USART_ConfigInt(USART3, USART_INT_RXDNE, DISABLE);
-                state->rx_complete = 1;
-                state->rx_buf = NULL;
-                state->rx_len = 0;
-                state->rx_index = 0;
-            }
-        }
-    }
-
-    // 错误中断
-    bsp_uart_error(&device);
+    BSP_UART_IRQHandler(USART3);
 }
 /**
  * @brief  UART错误处理函数
@@ -599,6 +567,26 @@ int bsp_uart_error(BSP_UART_Device *device)
     return status;
 }
 /**
+ * @brief 状态重置
+ * @param device UART设备指针
+ * @return 0: 成功, -1: 失败
+ */
+int BSP_Uart_Receive_Finish(BSP_UART_Device *device)
+{
+    UART_State *state = get_uart_state(device);
+    if (!state || !state->rx_complete)
+        return -1; // 还未完成接收
+
+    // 重置接收状态
+    state->rx_buf = NULL;
+    state->rx_len = 0;
+    state->rx_index = 0;
+    state->rx_complete = 0;
+    state->rx_error = 0;
+
+    return 0;
+}
+/**
  * @brief 获取发送完成状态
  * @param device UART设备指针
  * @return 1: 完成, 0: 未完成
@@ -630,9 +618,18 @@ uint8_t BSP_UART_GetRxError(BSP_UART_Device *device)
     UART_State *state = get_uart_state(device);
     return (state) ? state->rx_error : 0;
 }
+/**
+ * @brief 获取实际接收的数据长度
+ * @param device UART设备指针
+ * @return 实际接收的字节数
+ */
+uint16_t BSP_UART_GetRxLength(BSP_UART_Device *device)
+{
+    UART_State *state = get_uart_state(device);
+    return (state) ? state->rx_received_length : 0;
+}
 
-
-
+/******************************************串口重定向*****************************************************************/
 int fputc(int ch, FILE *f)
 {
     if (debug_uart_device)

@@ -102,31 +102,16 @@ void I2C_Polling_Test(void)
 
     // 初始化 I2C 设备为轮询模式
     BSP_I2C_Init(&i2c_device, I2C1, 0xD2, BSP_I2C_MODE_POLLING); // 设备地址为 0x69 << 1
-                                                                 //    BSP_I2C_Master_Transmit(&i2c_device, 0x05, cmd, 1);
-    // 写入数据到寄存器地址 0x00
-    //    result = BSP_I2C_Master_Transmit(&i2c_device, 0x1B, test_data, 4);
-    //    if(result == 0)
-    //    {
-    ////        printf("I2C 写入成功\n");
-    //    }
-    //    else
-    //    {
-    ////        printf("I2C 写入失败\n");
-    //    }
-    //
-    //    // 延时一段时间
-    //    Delay(0xFFFF);
 
-    // 从寄存器地址 0x00 读取数据
     result = BSP_I2C_Master_Receive(&i2c_device, 0x75, read_data, 4);
     if (result == 0)
     {
-        //        printf("I2C 读取成功: 0x%02X 0x%02X 0x%02X 0x%02X\n",
-        //               read_data[0], read_data[1], read_data[2], read_data[3]);
+        printf("I2C success!\n");
+
     }
     else
     {
-        //        printf("I2C 读取失败\n");
+        printf("I2C error!\n");
     }
     // 扫描I2C总线上的设备
     BSP_I2C_ScanDevices(&i2c_device, found_devices, 120);
@@ -163,19 +148,15 @@ int main(void)
     BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_SET);
     CIRCUIT_SWITCH_UART3_ON();
 
-    // 初始化UART2设备，波特率115200，中断模式
-    BSP_UART_Init(&uart2_device, USART2, 115200, BSP_UART_MODE_IT);
     BSP_UART_Init(&uart3_device, USART3, 115200, BSP_UART_MODE_POLLING);
 
     // 设置全局调试设备指针
     debug_uart_device = &uart3_device;
-    //    I2C_Polling_Test();
+
+    I2C_Polling_Test();
 
     while (1)
     {
-        // 启动中断模式发送
-        BSP_Uart_Transmit_IT(&uart2_device, tx_buffer, sizeof(tx_buffer) - 1);
-        BSP_Uart_Transmit_IT(&uart3_device, tx_buffer, sizeof(tx_buffer) - 1);
 
         BSP_GPIO_TogglePin(G_LED_GPIO, G_LED_PIN);
         BSP_GPIO_TogglePin(R_LED_GPIO, R_LED_PIN);
@@ -183,7 +164,6 @@ int main(void)
         /* 插入延时 */
         Delay(0x28FFFF);
 
-        printf("debug test?");
         BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_RESET);
         /* 插入延时 */
         Delay(0x28FFFF);

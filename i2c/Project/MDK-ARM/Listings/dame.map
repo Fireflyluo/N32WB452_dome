@@ -9,21 +9,19 @@ Section Cross References
     main.o(.text.I2C_Polling_Test) refers to main.o(.bss.i2c_device) for i2c_device
     main.o(.text.I2C_Polling_Test) refers to bsp_i2c.o(.text.BSP_I2C_Init) for BSP_I2C_Init
     main.o(.text.I2C_Polling_Test) refers to bsp_i2c.o(.text.BSP_I2C_Master_Receive) for BSP_I2C_Master_Receive
+    main.o(.text.I2C_Polling_Test) refers to main.o(.rodata.str1.1) for .L.str
+    main.o(.text.I2C_Polling_Test) refers to printfa.o(i.__0printf) for printf
     main.o(.text.I2C_Polling_Test) refers to bsp_i2c.o(.text.BSP_I2C_ScanDevices) for BSP_I2C_ScanDevices
     main.o(.ARM.exidx.text.I2C_Polling_Test) refers to main.o(.text.I2C_Polling_Test) for [Anonymous Symbol]
     main.o(.text.main) refers to bsp_gpio.o(.text.BSP_GPIO_Init) for BSP_GPIO_Init
     main.o(.text.main) refers to bsp_gpio.o(.text.BSP_GPIO_WritePin) for BSP_GPIO_WritePin
     main.o(.text.main) refers to n32wb452_gpio.o(.text.GPIO_ResetBits) for GPIO_ResetBits
-    main.o(.text.main) refers to main.o(.bss.uart2_device) for uart2_device
-    main.o(.text.main) refers to bsp_uart.o(.text.BSP_UART_Init) for BSP_UART_Init
     main.o(.text.main) refers to main.o(.bss.uart3_device) for uart3_device
+    main.o(.text.main) refers to bsp_uart.o(.text.BSP_UART_Init) for BSP_UART_Init
     main.o(.text.main) refers to bsp_uart.o(.bss.debug_uart_device) for debug_uart_device
-    main.o(.text.main) refers to main.o(.data.tx_buffer) for tx_buffer
-    main.o(.text.main) refers to bsp_uart.o(.text.BSP_Uart_Transmit_IT) for BSP_Uart_Transmit_IT
+    main.o(.text.main) refers to main.o(.text.I2C_Polling_Test) for I2C_Polling_Test
     main.o(.text.main) refers to bsp_gpio.o(.text.BSP_GPIO_TogglePin) for BSP_GPIO_TogglePin
     main.o(.text.main) refers to main.o(.text.Delay) for Delay
-    main.o(.text.main) refers to main.o(.rodata.str1.1) for .L.str
-    main.o(.text.main) refers to printfa.o(i.__0printf) for printf
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
     n32wb452_it.o(.ARM.exidx.text.NMI_Handler) refers to n32wb452_it.o(.text.NMI_Handler) for [Anonymous Symbol]
     n32wb452_it.o(.ARM.exidx.text.HardFault_Handler) refers to n32wb452_it.o(.text.HardFault_Handler) for [Anonymous Symbol]
@@ -137,6 +135,7 @@ Section Cross References
     bsp_i2c.o(.ARM.exidx.text.BSP_I2C_IRQHandler) refers to bsp_i2c.o(.text.BSP_I2C_IRQHandler) for [Anonymous Symbol]
     bsp_i2c.o(.text.BSP_I2C_ScanDevices) refers to bsp_i2c.o(.rodata.str1.1) for .L.str
     bsp_i2c.o(.text.BSP_I2C_ScanDevices) refers to bsp_i2c.o(.text.BSP_I2C_Master_Transmit) for BSP_I2C_Master_Transmit
+    bsp_i2c.o(.text.BSP_I2C_ScanDevices) refers to printfa.o(i.__0printf) for printf
     bsp_i2c.o(.ARM.exidx.text.BSP_I2C_ScanDevices) refers to bsp_i2c.o(.text.BSP_I2C_ScanDevices) for [Anonymous Symbol]
     bsp_gpio.o(.text.BSP_GPIO_Init) refers to n32wb452_rcc.o(.text.RCC_EnableAPB2PeriphClk) for RCC_EnableAPB2PeriphClk
     bsp_gpio.o(.text.BSP_GPIO_Init) refers to n32wb452_gpio.o(.text.GPIO_InitPeripheral) for GPIO_InitPeripheral
@@ -193,31 +192,29 @@ Section Cross References
     bsp_uart.o(.text.BSP_Uart_Receive_IT) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
     bsp_uart.o(.text.BSP_Uart_Receive_IT) refers to n32wb452_usart.o(.text.USART_ConfigInt) for USART_ConfigInt
     bsp_uart.o(.ARM.exidx.text.BSP_Uart_Receive_IT) refers to bsp_uart.o(.text.BSP_Uart_Receive_IT) for [Anonymous Symbol]
-    bsp_uart.o(.text.USART2_IRQHandler) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
-    bsp_uart.o(.text.USART2_IRQHandler) refers to n32wb452_usart.o(.text.USART_GetIntStatus) for USART_GetIntStatus
-    bsp_uart.o(.text.USART2_IRQHandler) refers to n32wb452_usart.o(.text.USART_ClrFlag) for USART_ClrFlag
-    bsp_uart.o(.text.USART2_IRQHandler) refers to n32wb452_usart.o(.text.USART_SendData) for USART_SendData
-    bsp_uart.o(.text.USART2_IRQHandler) refers to n32wb452_usart.o(.text.USART_ConfigInt) for USART_ConfigInt
-    bsp_uart.o(.text.USART2_IRQHandler) refers to n32wb452_usart.o(.text.USART_ReceiveData) for USART_ReceiveData
-    bsp_uart.o(.text.USART2_IRQHandler) refers to bsp_uart.o(.text.bsp_uart_error) for bsp_uart_error
+    bsp_uart.o(.text.USART2_IRQHandler) refers to bsp_uart.o(.text.BSP_UART_IRQHandler) for BSP_UART_IRQHandler
     bsp_uart.o(.ARM.exidx.text.USART2_IRQHandler) refers to bsp_uart.o(.text.USART2_IRQHandler) for [Anonymous Symbol]
-    bsp_uart.o(.text.bsp_uart_error) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
-    bsp_uart.o(.text.bsp_uart_error) refers to n32wb452_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
-    bsp_uart.o(.ARM.exidx.text.bsp_uart_error) refers to bsp_uart.o(.text.bsp_uart_error) for [Anonymous Symbol]
-    bsp_uart.o(.text.USART3_IRQHandler) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
-    bsp_uart.o(.text.USART3_IRQHandler) refers to n32wb452_usart.o(.text.USART_GetIntStatus) for USART_GetIntStatus
-    bsp_uart.o(.text.USART3_IRQHandler) refers to n32wb452_usart.o(.text.USART_ClrFlag) for USART_ClrFlag
-    bsp_uart.o(.text.USART3_IRQHandler) refers to n32wb452_usart.o(.text.USART_SendData) for USART_SendData
-    bsp_uart.o(.text.USART3_IRQHandler) refers to n32wb452_usart.o(.text.USART_ConfigInt) for USART_ConfigInt
-    bsp_uart.o(.text.USART3_IRQHandler) refers to n32wb452_usart.o(.text.USART_ReceiveData) for USART_ReceiveData
-    bsp_uart.o(.text.USART3_IRQHandler) refers to bsp_uart.o(.text.bsp_uart_error) for bsp_uart_error
+    bsp_uart.o(.text.BSP_UART_IRQHandler) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
+    bsp_uart.o(.text.BSP_UART_IRQHandler) refers to n32wb452_usart.o(.text.USART_GetIntStatus) for USART_GetIntStatus
+    bsp_uart.o(.text.BSP_UART_IRQHandler) refers to n32wb452_usart.o(.text.USART_ClrFlag) for USART_ClrFlag
+    bsp_uart.o(.text.BSP_UART_IRQHandler) refers to n32wb452_usart.o(.text.USART_SendData) for USART_SendData
+    bsp_uart.o(.text.BSP_UART_IRQHandler) refers to n32wb452_usart.o(.text.USART_ConfigInt) for USART_ConfigInt
+    bsp_uart.o(.text.BSP_UART_IRQHandler) refers to n32wb452_usart.o(.text.USART_ReceiveData) for USART_ReceiveData
+    bsp_uart.o(.text.BSP_UART_IRQHandler) refers to n32wb452_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    bsp_uart.o(.text.BSP_UART_IRQHandler) refers to bsp_uart.o(.text.bsp_uart_error) for bsp_uart_error
+    bsp_uart.o(.ARM.exidx.text.BSP_UART_IRQHandler) refers to bsp_uart.o(.text.BSP_UART_IRQHandler) for [Anonymous Symbol]
+    bsp_uart.o(.text.USART3_IRQHandler) refers to bsp_uart.o(.text.BSP_UART_IRQHandler) for BSP_UART_IRQHandler
     bsp_uart.o(.ARM.exidx.text.USART3_IRQHandler) refers to bsp_uart.o(.text.USART3_IRQHandler) for [Anonymous Symbol]
+    bsp_uart.o(.text.BSP_Uart_Receive_Finish) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
+    bsp_uart.o(.ARM.exidx.text.BSP_Uart_Receive_Finish) refers to bsp_uart.o(.text.BSP_Uart_Receive_Finish) for [Anonymous Symbol]
     bsp_uart.o(.text.BSP_UART_GetTxComplete) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
     bsp_uart.o(.ARM.exidx.text.BSP_UART_GetTxComplete) refers to bsp_uart.o(.text.BSP_UART_GetTxComplete) for [Anonymous Symbol]
     bsp_uart.o(.text.BSP_UART_GetRxComplete) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
     bsp_uart.o(.ARM.exidx.text.BSP_UART_GetRxComplete) refers to bsp_uart.o(.text.BSP_UART_GetRxComplete) for [Anonymous Symbol]
     bsp_uart.o(.text.BSP_UART_GetRxError) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
     bsp_uart.o(.ARM.exidx.text.BSP_UART_GetRxError) refers to bsp_uart.o(.text.BSP_UART_GetRxError) for [Anonymous Symbol]
+    bsp_uart.o(.text.BSP_UART_GetRxLength) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
+    bsp_uart.o(.ARM.exidx.text.BSP_UART_GetRxLength) refers to bsp_uart.o(.text.BSP_UART_GetRxLength) for [Anonymous Symbol]
     bsp_uart.o(.text.fputc) refers to bsp_uart.o(.bss.debug_uart_device) for debug_uart_device
     bsp_uart.o(.text.fputc) refers to bsp_uart.o(.text.BSP_Uart_Transmit) for BSP_Uart_Transmit
     bsp_uart.o(.ARM.exidx.text.fputc) refers to bsp_uart.o(.text.fputc) for [Anonymous Symbol]
@@ -227,6 +224,9 @@ Section Cross References
     bsp_uart.o(.text._write) refers to bsp_uart.o(.bss.debug_uart_device) for debug_uart_device
     bsp_uart.o(.text._write) refers to bsp_uart.o(.text.BSP_Uart_Transmit) for BSP_Uart_Transmit
     bsp_uart.o(.ARM.exidx.text._write) refers to bsp_uart.o(.text._write) for [Anonymous Symbol]
+    bsp_uart.o(.text.bsp_uart_error) refers to bsp_uart.o(.text.get_uart_state) for get_uart_state
+    bsp_uart.o(.text.bsp_uart_error) refers to n32wb452_usart.o(.text.USART_GetFlagStatus) for USART_GetFlagStatus
+    bsp_uart.o(.ARM.exidx.text.bsp_uart_error) refers to bsp_uart.o(.text.bsp_uart_error) for [Anonymous Symbol]
     misc.o(.ARM.exidx.text.NVIC_PriorityGroupConfig) refers to misc.o(.text.NVIC_PriorityGroupConfig) for [Anonymous Symbol]
     misc.o(.ARM.exidx.text.NVIC_Init) refers to misc.o(.text.NVIC_Init) for [Anonymous Symbol]
     misc.o(.ARM.exidx.text.NVIC_SetVectorTable) refers to misc.o(.text.NVIC_SetVectorTable) for [Anonymous Symbol]
@@ -985,11 +985,11 @@ Removing Unused input sections from the image.
 
     Removing main.o(.text), (0 bytes).
     Removing main.o(.ARM.exidx.text.Delay), (8 bytes).
-    Removing main.o(.text.I2C_Polling_Test), (98 bytes).
     Removing main.o(.ARM.exidx.text.I2C_Polling_Test), (8 bytes).
     Removing main.o(.ARM.exidx.text.main), (8 bytes).
+    Removing main.o(.data.tx_buffer), (20 bytes).
     Removing main.o(.rodata.cst4), (4 bytes).
-    Removing main.o(.bss.i2c_device), (8 bytes).
+    Removing main.o(.bss.uart2_device), (12 bytes).
     Removing main.o(.bss.rx_buffer), (128 bytes).
     Removing main.o(.ARM.use_no_argv), (4 bytes).
     Removing n32wb452_it.o(.text), (0 bytes).
@@ -1004,42 +1004,20 @@ Removing Unused input sections from the image.
     Removing n32wb452_it.o(.text.DMA_IRQ_HANDLER), (2 bytes).
     Removing n32wb452_it.o(.ARM.exidx.text.DMA_IRQ_HANDLER), (8 bytes).
     Removing bsp_i2c.o(.text), (0 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_Init), (82 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_Init), (8 bytes).
-    Removing bsp_i2c.o(.text.bsp_i2c_polingInit), (350 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.bsp_i2c_polingInit), (8 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_Master_Transmit), (118 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_Master_Transmit), (8 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_Master_Transmit_Polling), (658 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_Master_Transmit_Polling), (8 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_Master_Transmit_IT), (114 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_Master_Transmit_IT), (8 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_Master_Transmit_DMA), (452 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_Master_Transmit_DMA), (8 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_Master_Receive), (118 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_Master_Receive), (8 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_Master_Receive_Polling), (1154 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_Master_Receive_Polling), (8 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_Master_Receive_IT), (110 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_Master_Receive_IT), (8 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_Master_Receive_DMA), (576 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_Master_Receive_DMA), (8 bytes).
-    Removing bsp_i2c.o(.text.CommTimeOut_CallBack), (96 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.CommTimeOut_CallBack), (8 bytes).
     Removing bsp_i2c.o(.text.BSP_I2C_IRQHandler), (586 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_IRQHandler), (8 bytes).
-    Removing bsp_i2c.o(.text.BSP_I2C_ScanDevices), (192 bytes).
     Removing bsp_i2c.o(.ARM.exidx.text.BSP_I2C_ScanDevices), (8 bytes).
-    Removing bsp_i2c.o(.bss.I2CTimeout), (4 bytes).
-    Removing bsp_i2c.o(.bss.Comm_Flag), (1 bytes).
-    Removing bsp_i2c.o(.bss.i2c_current_device), (4 bytes).
-    Removing bsp_i2c.o(.bss.i2c_tx_buffer), (4 bytes).
-    Removing bsp_i2c.o(.bss.i2c_tx_size), (2 bytes).
-    Removing bsp_i2c.o(.data.i2c_reg_addr), (1 bytes).
-    Removing bsp_i2c.o(.bss.i2c_direction), (1 bytes).
-    Removing bsp_i2c.o(.bss.i2c_rx_buffer), (4 bytes).
-    Removing bsp_i2c.o(.bss.i2c_rx_size), (2 bytes).
-    Removing bsp_i2c.o(.rodata.str1.1), (1 bytes).
     Removing bsp_gpio.o(.text), (0 bytes).
     Removing bsp_gpio.o(.ARM.exidx.text.BSP_GPIO_Init), (8 bytes).
     Removing bsp_gpio.o(.text.BSP_GPIO_DeInit), (46 bytes).
@@ -1056,25 +1034,29 @@ Removing Unused input sections from the image.
     Removing bsp_uart.o(.ARM.exidx.text.BSP_Uart_Transmit), (8 bytes).
     Removing bsp_uart.o(.text.BSP_Uart_Receive), (152 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.BSP_Uart_Receive), (8 bytes).
+    Removing bsp_uart.o(.text.BSP_Uart_Transmit_IT), (140 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.BSP_Uart_Transmit_IT), (8 bytes).
-    Removing bsp_uart.o(.text.BSP_Uart_Receive_IT), (120 bytes).
+    Removing bsp_uart.o(.text.BSP_Uart_Receive_IT), (136 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.BSP_Uart_Receive_IT), (8 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.USART2_IRQHandler), (8 bytes).
-    Removing bsp_uart.o(.ARM.exidx.text.bsp_uart_error), (8 bytes).
+    Removing bsp_uart.o(.ARM.exidx.text.BSP_UART_IRQHandler), (8 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.USART3_IRQHandler), (8 bytes).
+    Removing bsp_uart.o(.text.BSP_Uart_Receive_Finish), (68 bytes).
+    Removing bsp_uart.o(.ARM.exidx.text.BSP_Uart_Receive_Finish), (8 bytes).
     Removing bsp_uart.o(.text.BSP_UART_GetTxComplete), (42 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.BSP_UART_GetTxComplete), (8 bytes).
     Removing bsp_uart.o(.text.BSP_UART_GetRxComplete), (42 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.BSP_UART_GetRxComplete), (8 bytes).
     Removing bsp_uart.o(.text.BSP_UART_GetRxError), (42 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.BSP_UART_GetRxError), (8 bytes).
+    Removing bsp_uart.o(.text.BSP_UART_GetRxLength), (42 bytes).
+    Removing bsp_uart.o(.ARM.exidx.text.BSP_UART_GetRxLength), (8 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.fputc), (8 bytes).
     Removing bsp_uart.o(.text.__io_putchar), (46 bytes).
     Removing bsp_uart.o(.ARM.exidx.text.__io_putchar), (8 bytes).
     Removing bsp_uart.o(.text._write), (52 bytes).
     Removing bsp_uart.o(.ARM.exidx.text._write), (8 bytes).
-    Removing bsp_uart.o(.rodata..L__const.USART2_IRQHandler.device), (12 bytes).
-    Removing bsp_uart.o(.rodata..L__const.USART3_IRQHandler.device), (12 bytes).
+    Removing bsp_uart.o(.ARM.exidx.text.bsp_uart_error), (8 bytes).
     Removing misc.o(.text), (0 bytes).
     Removing misc.o(.ARM.exidx.text.NVIC_PriorityGroupConfig), (8 bytes).
     Removing misc.o(.ARM.exidx.text.NVIC_Init), (8 bytes).
@@ -1322,13 +1304,9 @@ Removing Unused input sections from the image.
     Removing n32wb452_dbg.o(.text.DBG_GetSramSize), (24 bytes).
     Removing n32wb452_dbg.o(.ARM.exidx.text.DBG_GetSramSize), (8 bytes).
     Removing n32wb452_dma.o(.text), (0 bytes).
-    Removing n32wb452_dma.o(.text.DMA_DeInit), (580 bytes).
     Removing n32wb452_dma.o(.ARM.exidx.text.DMA_DeInit), (8 bytes).
-    Removing n32wb452_dma.o(.text.DMA_Init), (108 bytes).
     Removing n32wb452_dma.o(.ARM.exidx.text.DMA_Init), (8 bytes).
-    Removing n32wb452_dma.o(.text.DMA_StructInit), (54 bytes).
     Removing n32wb452_dma.o(.ARM.exidx.text.DMA_StructInit), (8 bytes).
-    Removing n32wb452_dma.o(.text.DMA_EnableChannel), (46 bytes).
     Removing n32wb452_dma.o(.ARM.exidx.text.DMA_EnableChannel), (8 bytes).
     Removing n32wb452_dma.o(.text.DMA_ConfigInt), (46 bytes).
     Removing n32wb452_dma.o(.ARM.exidx.text.DMA_ConfigInt), (8 bytes).
@@ -1336,7 +1314,6 @@ Removing Unused input sections from the image.
     Removing n32wb452_dma.o(.ARM.exidx.text.DMA_SetCurrDataCounter), (8 bytes).
     Removing n32wb452_dma.o(.text.DMA_GetCurrDataCounter), (14 bytes).
     Removing n32wb452_dma.o(.ARM.exidx.text.DMA_GetCurrDataCounter), (8 bytes).
-    Removing n32wb452_dma.o(.text.DMA_GetFlagStatus), (54 bytes).
     Removing n32wb452_dma.o(.ARM.exidx.text.DMA_GetFlagStatus), (8 bytes).
     Removing n32wb452_dma.o(.text.DMA_ClearFlag), (16 bytes).
     Removing n32wb452_dma.o(.ARM.exidx.text.DMA_ClearFlag), (8 bytes).
@@ -1465,23 +1442,14 @@ Removing Unused input sections from the image.
     Removing n32wb452_gpio.o(.text.GPIO_ConfigEXTILine), (84 bytes).
     Removing n32wb452_gpio.o(.ARM.exidx.text.GPIO_ConfigEXTILine), (8 bytes).
     Removing n32wb452_i2c.o(.text), (0 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_DeInit), (170 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_DeInit), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_Init), (516 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_Init), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_InitStruct), (46 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_InitStruct), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_Enable), (44 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_Enable), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_EnableDMA), (44 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_EnableDMA), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_EnableDmaLastSend), (44 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_EnableDmaLastSend), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_GenerateStart), (44 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_GenerateStart), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_GenerateStop), (44 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_GenerateStop), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_ConfigAck), (44 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_ConfigAck), (8 bytes).
     Removing n32wb452_i2c.o(.text.I2C_ConfigOwnAddr2), (64 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_ConfigOwnAddr2), (8 bytes).
@@ -1489,13 +1457,9 @@ Removing Unused input sections from the image.
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_EnableDualAddr), (8 bytes).
     Removing n32wb452_i2c.o(.text.I2C_EnableGeneralCall), (44 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_EnableGeneralCall), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_ConfigInt), (52 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_ConfigInt), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_SendData), (20 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_SendData), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_RecvData), (14 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_RecvData), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_SendAddr7bit), (60 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_SendAddr7bit), (8 bytes).
     Removing n32wb452_i2c.o(.text.I2C_GetRegister), (34 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_GetRegister), (8 bytes).
@@ -1519,11 +1483,9 @@ Removing Unused input sections from the image.
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_EnableExtendClk), (8 bytes).
     Removing n32wb452_i2c.o(.text.I2C_ConfigFastModeDutyCycle), (48 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_ConfigFastModeDutyCycle), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_CheckEvent), (84 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_CheckEvent), (8 bytes).
     Removing n32wb452_i2c.o(.text.I2C_GetLastEvent), (48 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_GetLastEvent), (8 bytes).
-    Removing n32wb452_i2c.o(.text.I2C_GetFlag), (98 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_GetFlag), (8 bytes).
     Removing n32wb452_i2c.o(.text.I2C_ClrFlag), (30 bytes).
     Removing n32wb452_i2c.o(.ARM.exidx.text.I2C_ClrFlag), (8 bytes).
@@ -2161,7 +2123,7 @@ Removing Unused input sections from the image.
     Removing system_n32wb452.o(.rodata.AHBPrescTable), (16 bytes).
     Removing startup_n32wb452.o(HEAP), (2048 bytes).
 
-1177 unused section(s) (total 52244 bytes) removed from the image.
+1139 unused section(s) (total 46226 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2254,102 +2216,161 @@ Image Symbol Table
     RESERVE82_IRQHandler                     0x080001c7   Thumb Code     0  startup_n32wb452.o(.text)
     RESERVE83_IRQHandler                     0x080001c7   Thumb Code     0  startup_n32wb452.o(.text)
     RESERVE84_IRQHandler                     0x080001c7   Thumb Code     0  startup_n32wb452.o(.text)
-    .text                                    0x080001d0   Section        0  uidiv.o(.text)
-    .text                                    0x080001fc   Section        0  uldiv.o(.text)
-    .text                                    0x0800025e   Section        0  iusefp.o(.text)
-    .text                                    0x0800025e   Section        0  dadd.o(.text)
-    .text                                    0x080003ac   Section        0  dmul.o(.text)
-    .text                                    0x08000490   Section        0  ddiv.o(.text)
-    .text                                    0x0800056e   Section        0  dfixul.o(.text)
-    .text                                    0x080005a0   Section       48  cdrcmple.o(.text)
-    .text                                    0x080005d0   Section       36  init.o(.text)
-    .text                                    0x080005f4   Section        0  llshl.o(.text)
-    .text                                    0x08000612   Section        0  llushr.o(.text)
-    .text                                    0x08000632   Section        0  llsshr.o(.text)
-    .text                                    0x08000656   Section        0  depilogue.o(.text)
-    [Anonymous Symbol]                       0x08000710   Section        0  bsp_gpio.o(.text.BSP_GPIO_Init)
-    [Anonymous Symbol]                       0x080007dc   Section        0  bsp_gpio.o(.text.BSP_GPIO_TogglePin)
-    [Anonymous Symbol]                       0x0800080c   Section        0  bsp_gpio.o(.text.BSP_GPIO_WritePin)
-    [Anonymous Symbol]                       0x0800082c   Section        0  bsp_uart.o(.text.BSP_UART_Init)
-    [Anonymous Symbol]                       0x080008b8   Section        0  bsp_uart.o(.text.BSP_Uart_Transmit)
-    [Anonymous Symbol]                       0x0800098c   Section        0  bsp_uart.o(.text.BSP_Uart_Transmit_IT)
-    [Anonymous Symbol]                       0x08000a18   Section        0  n32wb452_it.o(.text.BusFault_Handler)
-    [Anonymous Symbol]                       0x08000a1c   Section        0  n32wb452_it.o(.text.DebugMon_Handler)
-    [Anonymous Symbol]                       0x08000a20   Section        0  main.o(.text.Delay)
-    [Anonymous Symbol]                       0x08000a3c   Section        0  n32wb452_gpio.o(.text.GPIO_ConfigPinRemap)
-    [Anonymous Symbol]                       0x08000e18   Section        0  n32wb452_gpio.o(.text.GPIO_InitPeripheral)
-    [Anonymous Symbol]                       0x08000fa0   Section        0  n32wb452_gpio.o(.text.GPIO_InitStruct)
-    [Anonymous Symbol]                       0x08000fbc   Section        0  n32wb452_gpio.o(.text.GPIO_ReadOutputDataBit)
-    [Anonymous Symbol]                       0x08000ff0   Section        0  n32wb452_gpio.o(.text.GPIO_ResetBits)
-    [Anonymous Symbol]                       0x08001004   Section        0  n32wb452_gpio.o(.text.GPIO_WriteBit)
-    [Anonymous Symbol]                       0x08001030   Section        0  n32wb452_it.o(.text.HardFault_Handler)
-    [Anonymous Symbol]                       0x08001034   Section        0  n32wb452_it.o(.text.MemManage_Handler)
-    [Anonymous Symbol]                       0x08001038   Section        0  n32wb452_it.o(.text.NMI_Handler)
-    [Anonymous Symbol]                       0x0800103c   Section        0  misc.o(.text.NVIC_Init)
-    [Anonymous Symbol]                       0x080010e8   Section        0  misc.o(.text.NVIC_PriorityGroupConfig)
-    [Anonymous Symbol]                       0x08001104   Section        0  n32wb452_rcc.o(.text.RCC_ConfigSysclk)
-    [Anonymous Symbol]                       0x08001130   Section        0  n32wb452_rcc.o(.text.RCC_EnableAPB1PeriphClk)
-    [Anonymous Symbol]                       0x08001168   Section        0  n32wb452_rcc.o(.text.RCC_EnableAPB1PeriphReset)
-    [Anonymous Symbol]                       0x080011a0   Section        0  n32wb452_rcc.o(.text.RCC_EnableAPB2PeriphClk)
-    [Anonymous Symbol]                       0x080011d8   Section        0  n32wb452_rcc.o(.text.RCC_EnableAPB2PeriphReset)
-    [Anonymous Symbol]                       0x08001210   Section        0  n32wb452_rcc.o(.text.RCC_GetClocksFreqValue)
-    [Anonymous Symbol]                       0x080013d4   Section        0  n32wb452_rcc.o(.text.RCC_GetSysclkSrc)
-    [Anonymous Symbol]                       0x080013e4   Section        0  n32wb452_it.o(.text.SVC_Handler)
-    SetSysClock                              0x080013e9   Thumb Code   366  system_n32wb452.o(.text.SetSysClock)
-    [Anonymous Symbol]                       0x080013e8   Section        0  system_n32wb452.o(.text.SetSysClock)
-    SetVDDDBKTrim                            0x08001559   Thumb Code   152  system_n32wb452.o(.text.SetVDDDBKTrim)
-    [Anonymous Symbol]                       0x08001558   Section        0  system_n32wb452.o(.text.SetVDDDBKTrim)
-    [Anonymous Symbol]                       0x080015f0   Section        0  n32wb452_it.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x080015f4   Section        0  system_n32wb452.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x0800171c   Section        0  bsp_uart.o(.text.USART2_IRQHandler)
-    [Anonymous Symbol]                       0x080018a4   Section        0  bsp_uart.o(.text.USART3_IRQHandler)
-    [Anonymous Symbol]                       0x08001a2c   Section        0  n32wb452_usart.o(.text.USART_ClrFlag)
-    [Anonymous Symbol]                       0x08001a50   Section        0  n32wb452_usart.o(.text.USART_ConfigInt)
-    [Anonymous Symbol]                       0x08001ae4   Section        0  n32wb452_usart.o(.text.USART_DeInit)
-    [Anonymous Symbol]                       0x08001c04   Section        0  n32wb452_usart.o(.text.USART_Enable)
-    [Anonymous Symbol]                       0x08001c30   Section        0  n32wb452_usart.o(.text.USART_GetFlagStatus)
-    [Anonymous Symbol]                       0x08001c74   Section        0  n32wb452_usart.o(.text.USART_GetIntStatus)
-    [Anonymous Symbol]                       0x08001d24   Section        0  n32wb452_usart.o(.text.USART_Init)
-    [Anonymous Symbol]                       0x08001e74   Section        0  n32wb452_usart.o(.text.USART_ReceiveData)
-    [Anonymous Symbol]                       0x08001e84   Section        0  n32wb452_usart.o(.text.USART_SendData)
-    [Anonymous Symbol]                       0x08001e9c   Section        0  n32wb452_usart.o(.text.USART_StructInit)
-    [Anonymous Symbol]                       0x08001ec4   Section        0  n32wb452_it.o(.text.UsageFault_Handler)
-    bsp_uart_InterruptInit                   0x08001ec9   Thumb Code   496  bsp_uart.o(.text.bsp_uart_InterruptInit)
-    [Anonymous Symbol]                       0x08001ec8   Section        0  bsp_uart.o(.text.bsp_uart_InterruptInit)
-    bsp_uart_error                           0x080020b9   Thumb Code   210  bsp_uart.o(.text.bsp_uart_error)
-    [Anonymous Symbol]                       0x080020b8   Section        0  bsp_uart.o(.text.bsp_uart_error)
-    bsp_uart_polingInit                      0x0800218d   Thumb Code   384  bsp_uart.o(.text.bsp_uart_polingInit)
-    [Anonymous Symbol]                       0x0800218c   Section        0  bsp_uart.o(.text.bsp_uart_polingInit)
-    [Anonymous Symbol]                       0x0800230c   Section        0  bsp_uart.o(.text.fputc)
-    get_uart_state                           0x0800233d   Thumb Code   110  bsp_uart.o(.text.get_uart_state)
-    [Anonymous Symbol]                       0x0800233c   Section        0  bsp_uart.o(.text.get_uart_state)
-    [Anonymous Symbol]                       0x080023ac   Section        0  main.o(.text.main)
-    i.__0printf                              0x080024c0   Section        0  printfa.o(i.__0printf)
-    i.__scatterload_copy                     0x080024e0   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x080024ee   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x080024f0   Section       14  handlers.o(i.__scatterload_zeroinit)
-    _fp_digits                               0x08002501   Thumb Code   366  printfa.o(i._fp_digits)
-    i._fp_digits                             0x08002500   Section        0  printfa.o(i._fp_digits)
-    _printf_core                             0x08002685   Thumb Code  1744  printfa.o(i._printf_core)
-    i._printf_core                           0x08002684   Section        0  printfa.o(i._printf_core)
-    _printf_post_padding                     0x08002d61   Thumb Code    36  printfa.o(i._printf_post_padding)
-    i._printf_post_padding                   0x08002d60   Section        0  printfa.o(i._printf_post_padding)
-    _printf_pre_padding                      0x08002d85   Thumb Code    46  printfa.o(i._printf_pre_padding)
-    i._printf_pre_padding                    0x08002d84   Section        0  printfa.o(i._printf_pre_padding)
-    s_AdcHclkPresTable                       0x08002db2   Data          16  n32wb452_rcc.o(.rodata.s_AdcHclkPresTable)
-    [Anonymous Symbol]                       0x08002db2   Section        0  n32wb452_rcc.o(.rodata.s_AdcHclkPresTable)
-    s_AdcPllClkPresTable                     0x08002dc2   Data          32  n32wb452_rcc.o(.rodata.s_AdcPllClkPresTable)
-    [Anonymous Symbol]                       0x08002dc2   Section        0  n32wb452_rcc.o(.rodata.s_AdcPllClkPresTable)
-    s_ApbAhbPresTable                        0x08002de2   Data          16  n32wb452_rcc.o(.rodata.s_ApbAhbPresTable)
-    [Anonymous Symbol]                       0x08002de2   Section        0  n32wb452_rcc.o(.rodata.s_ApbAhbPresTable)
-    .L.str                                   0x08002df2   Data          12  main.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08002df2   Section        0  main.o(.rodata.str1.1)
+    .text                                    0x080001d0   Section        0  memseta.o(.text)
+    .text                                    0x080001f4   Section        0  uidiv.o(.text)
+    .text                                    0x08000220   Section        0  uldiv.o(.text)
+    .text                                    0x08000282   Section        0  iusefp.o(.text)
+    .text                                    0x08000282   Section        0  dadd.o(.text)
+    .text                                    0x080003d0   Section        0  dmul.o(.text)
+    .text                                    0x080004b4   Section        0  ddiv.o(.text)
+    .text                                    0x08000592   Section        0  dfixul.o(.text)
+    .text                                    0x080005c4   Section       48  cdrcmple.o(.text)
+    .text                                    0x080005f4   Section       36  init.o(.text)
+    .text                                    0x08000618   Section        0  llshl.o(.text)
+    .text                                    0x08000636   Section        0  llushr.o(.text)
+    .text                                    0x08000656   Section        0  llsshr.o(.text)
+    .text                                    0x0800067a   Section        0  depilogue.o(.text)
+    [Anonymous Symbol]                       0x08000734   Section        0  bsp_gpio.o(.text.BSP_GPIO_Init)
+    [Anonymous Symbol]                       0x08000800   Section        0  bsp_gpio.o(.text.BSP_GPIO_TogglePin)
+    [Anonymous Symbol]                       0x08000830   Section        0  bsp_gpio.o(.text.BSP_GPIO_WritePin)
+    [Anonymous Symbol]                       0x08000850   Section        0  bsp_i2c.o(.text.BSP_I2C_Init)
+    [Anonymous Symbol]                       0x080008a4   Section        0  bsp_i2c.o(.text.BSP_I2C_Master_Receive)
+    [Anonymous Symbol]                       0x0800091c   Section        0  bsp_i2c.o(.text.BSP_I2C_Master_Receive_DMA)
+    [Anonymous Symbol]                       0x08000b5c   Section        0  bsp_i2c.o(.text.BSP_I2C_Master_Receive_IT)
+    [Anonymous Symbol]                       0x08000bcc   Section        0  bsp_i2c.o(.text.BSP_I2C_Master_Receive_Polling)
+    [Anonymous Symbol]                       0x08001050   Section        0  bsp_i2c.o(.text.BSP_I2C_Master_Transmit)
+    [Anonymous Symbol]                       0x080010c8   Section        0  bsp_i2c.o(.text.BSP_I2C_Master_Transmit_DMA)
+    [Anonymous Symbol]                       0x0800128c   Section        0  bsp_i2c.o(.text.BSP_I2C_Master_Transmit_IT)
+    [Anonymous Symbol]                       0x08001300   Section        0  bsp_i2c.o(.text.BSP_I2C_Master_Transmit_Polling)
+    [Anonymous Symbol]                       0x08001594   Section        0  bsp_i2c.o(.text.BSP_I2C_ScanDevices)
+    BSP_UART_IRQHandler                      0x08001691   Thumb Code   412  bsp_uart.o(.text.BSP_UART_IRQHandler)
+    [Anonymous Symbol]                       0x08001690   Section        0  bsp_uart.o(.text.BSP_UART_IRQHandler)
+    [Anonymous Symbol]                       0x0800182c   Section        0  bsp_uart.o(.text.BSP_UART_Init)
+    [Anonymous Symbol]                       0x080018c0   Section        0  bsp_uart.o(.text.BSP_Uart_Transmit)
+    [Anonymous Symbol]                       0x08001994   Section        0  n32wb452_it.o(.text.BusFault_Handler)
+    [Anonymous Symbol]                       0x08001998   Section        0  bsp_i2c.o(.text.CommTimeOut_CallBack)
+    [Anonymous Symbol]                       0x080019f8   Section        0  n32wb452_dma.o(.text.DMA_DeInit)
+    [Anonymous Symbol]                       0x08001c3c   Section        0  n32wb452_dma.o(.text.DMA_EnableChannel)
+    [Anonymous Symbol]                       0x08001c6c   Section        0  n32wb452_dma.o(.text.DMA_GetFlagStatus)
+    [Anonymous Symbol]                       0x08001ca4   Section        0  n32wb452_dma.o(.text.DMA_Init)
+    [Anonymous Symbol]                       0x08001d10   Section        0  n32wb452_dma.o(.text.DMA_StructInit)
+    [Anonymous Symbol]                       0x08001d48   Section        0  n32wb452_it.o(.text.DebugMon_Handler)
+    [Anonymous Symbol]                       0x08001d4c   Section        0  main.o(.text.Delay)
+    [Anonymous Symbol]                       0x08001d68   Section        0  n32wb452_gpio.o(.text.GPIO_ConfigPinRemap)
+    [Anonymous Symbol]                       0x08002144   Section        0  n32wb452_gpio.o(.text.GPIO_InitPeripheral)
+    [Anonymous Symbol]                       0x080022cc   Section        0  n32wb452_gpio.o(.text.GPIO_InitStruct)
+    [Anonymous Symbol]                       0x080022e8   Section        0  n32wb452_gpio.o(.text.GPIO_ReadOutputDataBit)
+    [Anonymous Symbol]                       0x0800231c   Section        0  n32wb452_gpio.o(.text.GPIO_ResetBits)
+    [Anonymous Symbol]                       0x08002330   Section        0  n32wb452_gpio.o(.text.GPIO_WriteBit)
+    [Anonymous Symbol]                       0x0800235c   Section        0  n32wb452_it.o(.text.HardFault_Handler)
+    [Anonymous Symbol]                       0x08002360   Section        0  n32wb452_i2c.o(.text.I2C_CheckEvent)
+    [Anonymous Symbol]                       0x080023b4   Section        0  n32wb452_i2c.o(.text.I2C_ConfigAck)
+    [Anonymous Symbol]                       0x080023e0   Section        0  n32wb452_i2c.o(.text.I2C_ConfigInt)
+    [Anonymous Symbol]                       0x08002414   Section        0  n32wb452_i2c.o(.text.I2C_DeInit)
+    [Anonymous Symbol]                       0x080024c0   Section        0  n32wb452_i2c.o(.text.I2C_Enable)
+    [Anonymous Symbol]                       0x080024ec   Section        0  n32wb452_i2c.o(.text.I2C_EnableDMA)
+    [Anonymous Symbol]                       0x08002518   Section        0  n32wb452_i2c.o(.text.I2C_EnableDmaLastSend)
+    [Anonymous Symbol]                       0x08002544   Section        0  n32wb452_i2c.o(.text.I2C_GenerateStart)
+    [Anonymous Symbol]                       0x08002570   Section        0  n32wb452_i2c.o(.text.I2C_GenerateStop)
+    [Anonymous Symbol]                       0x0800259c   Section        0  n32wb452_i2c.o(.text.I2C_GetFlag)
+    [Anonymous Symbol]                       0x08002600   Section        0  n32wb452_i2c.o(.text.I2C_Init)
+    [Anonymous Symbol]                       0x08002804   Section        0  n32wb452_i2c.o(.text.I2C_InitStruct)
+    [Anonymous Symbol]                       0x08002834   Section        0  main.o(.text.I2C_Polling_Test)
+    [Anonymous Symbol]                       0x080028b0   Section        0  n32wb452_i2c.o(.text.I2C_RecvData)
+    [Anonymous Symbol]                       0x080028c0   Section        0  n32wb452_i2c.o(.text.I2C_SendAddr7bit)
+    [Anonymous Symbol]                       0x080028fc   Section        0  n32wb452_i2c.o(.text.I2C_SendData)
+    [Anonymous Symbol]                       0x08002910   Section        0  n32wb452_it.o(.text.MemManage_Handler)
+    [Anonymous Symbol]                       0x08002914   Section        0  n32wb452_it.o(.text.NMI_Handler)
+    [Anonymous Symbol]                       0x08002918   Section        0  misc.o(.text.NVIC_Init)
+    [Anonymous Symbol]                       0x080029c4   Section        0  misc.o(.text.NVIC_PriorityGroupConfig)
+    [Anonymous Symbol]                       0x080029e0   Section        0  n32wb452_rcc.o(.text.RCC_ConfigSysclk)
+    [Anonymous Symbol]                       0x08002a0c   Section        0  n32wb452_rcc.o(.text.RCC_EnableAPB1PeriphClk)
+    [Anonymous Symbol]                       0x08002a44   Section        0  n32wb452_rcc.o(.text.RCC_EnableAPB1PeriphReset)
+    [Anonymous Symbol]                       0x08002a7c   Section        0  n32wb452_rcc.o(.text.RCC_EnableAPB2PeriphClk)
+    [Anonymous Symbol]                       0x08002ab4   Section        0  n32wb452_rcc.o(.text.RCC_EnableAPB2PeriphReset)
+    [Anonymous Symbol]                       0x08002aec   Section        0  n32wb452_rcc.o(.text.RCC_GetClocksFreqValue)
+    [Anonymous Symbol]                       0x08002cb0   Section        0  n32wb452_rcc.o(.text.RCC_GetSysclkSrc)
+    [Anonymous Symbol]                       0x08002cc0   Section        0  n32wb452_it.o(.text.SVC_Handler)
+    SetSysClock                              0x08002cc5   Thumb Code   366  system_n32wb452.o(.text.SetSysClock)
+    [Anonymous Symbol]                       0x08002cc4   Section        0  system_n32wb452.o(.text.SetSysClock)
+    SetVDDDBKTrim                            0x08002e35   Thumb Code   152  system_n32wb452.o(.text.SetVDDDBKTrim)
+    [Anonymous Symbol]                       0x08002e34   Section        0  system_n32wb452.o(.text.SetVDDDBKTrim)
+    [Anonymous Symbol]                       0x08002ecc   Section        0  n32wb452_it.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x08002ed0   Section        0  system_n32wb452.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x08002ff8   Section        0  bsp_uart.o(.text.USART2_IRQHandler)
+    [Anonymous Symbol]                       0x08003008   Section        0  bsp_uart.o(.text.USART3_IRQHandler)
+    [Anonymous Symbol]                       0x08003018   Section        0  n32wb452_usart.o(.text.USART_ClrFlag)
+    [Anonymous Symbol]                       0x0800303c   Section        0  n32wb452_usart.o(.text.USART_ConfigInt)
+    [Anonymous Symbol]                       0x080030d0   Section        0  n32wb452_usart.o(.text.USART_DeInit)
+    [Anonymous Symbol]                       0x080031f0   Section        0  n32wb452_usart.o(.text.USART_Enable)
+    [Anonymous Symbol]                       0x0800321c   Section        0  n32wb452_usart.o(.text.USART_GetFlagStatus)
+    [Anonymous Symbol]                       0x08003260   Section        0  n32wb452_usart.o(.text.USART_GetIntStatus)
+    [Anonymous Symbol]                       0x08003310   Section        0  n32wb452_usart.o(.text.USART_Init)
+    [Anonymous Symbol]                       0x08003460   Section        0  n32wb452_usart.o(.text.USART_ReceiveData)
+    [Anonymous Symbol]                       0x08003470   Section        0  n32wb452_usart.o(.text.USART_SendData)
+    [Anonymous Symbol]                       0x08003488   Section        0  n32wb452_usart.o(.text.USART_StructInit)
+    [Anonymous Symbol]                       0x080034b0   Section        0  n32wb452_it.o(.text.UsageFault_Handler)
+    bsp_i2c_polingInit                       0x080034b5   Thumb Code   350  bsp_i2c.o(.text.bsp_i2c_polingInit)
+    [Anonymous Symbol]                       0x080034b4   Section        0  bsp_i2c.o(.text.bsp_i2c_polingInit)
+    bsp_uart_InterruptInit                   0x08003615   Thumb Code   496  bsp_uart.o(.text.bsp_uart_InterruptInit)
+    [Anonymous Symbol]                       0x08003614   Section        0  bsp_uart.o(.text.bsp_uart_InterruptInit)
+    bsp_uart_error                           0x08003805   Thumb Code   210  bsp_uart.o(.text.bsp_uart_error)
+    [Anonymous Symbol]                       0x08003804   Section        0  bsp_uart.o(.text.bsp_uart_error)
+    bsp_uart_polingInit                      0x080038d9   Thumb Code   384  bsp_uart.o(.text.bsp_uart_polingInit)
+    [Anonymous Symbol]                       0x080038d8   Section        0  bsp_uart.o(.text.bsp_uart_polingInit)
+    [Anonymous Symbol]                       0x08003a58   Section        0  bsp_uart.o(.text.fputc)
+    get_uart_state                           0x08003a89   Thumb Code   110  bsp_uart.o(.text.get_uart_state)
+    [Anonymous Symbol]                       0x08003a88   Section        0  bsp_uart.o(.text.get_uart_state)
+    [Anonymous Symbol]                       0x08003af8   Section        0  main.o(.text.main)
+    i.__0printf                              0x08003bc0   Section        0  printfa.o(i.__0printf)
+    i.__scatterload_copy                     0x08003be0   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08003bee   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08003bf0   Section       14  handlers.o(i.__scatterload_zeroinit)
+    _fp_digits                               0x08003c01   Thumb Code   366  printfa.o(i._fp_digits)
+    i._fp_digits                             0x08003c00   Section        0  printfa.o(i._fp_digits)
+    _printf_core                             0x08003d85   Thumb Code  1744  printfa.o(i._printf_core)
+    i._printf_core                           0x08003d84   Section        0  printfa.o(i._printf_core)
+    _printf_post_padding                     0x08004461   Thumb Code    36  printfa.o(i._printf_post_padding)
+    i._printf_post_padding                   0x08004460   Section        0  printfa.o(i._printf_post_padding)
+    _printf_pre_padding                      0x08004485   Thumb Code    46  printfa.o(i._printf_pre_padding)
+    i._printf_pre_padding                    0x08004484   Section        0  printfa.o(i._printf_pre_padding)
+    s_AdcHclkPresTable                       0x080044b2   Data          16  n32wb452_rcc.o(.rodata.s_AdcHclkPresTable)
+    [Anonymous Symbol]                       0x080044b2   Section        0  n32wb452_rcc.o(.rodata.s_AdcHclkPresTable)
+    s_AdcPllClkPresTable                     0x080044c2   Data          32  n32wb452_rcc.o(.rodata.s_AdcPllClkPresTable)
+    [Anonymous Symbol]                       0x080044c2   Section        0  n32wb452_rcc.o(.rodata.s_AdcPllClkPresTable)
+    s_ApbAhbPresTable                        0x080044e2   Data          16  n32wb452_rcc.o(.rodata.s_ApbAhbPresTable)
+    [Anonymous Symbol]                       0x080044e2   Section        0  n32wb452_rcc.o(.rodata.s_ApbAhbPresTable)
+    .L.str.1                                 0x080044f2   Data          12  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x080044f2   Section        0  main.o(.rodata.str1.1)
+    .L.str                                   0x080044fe   Data          14  main.o(.rodata.str1.1)
+    .L.str.1                                 0x0800450c   Data          19  bsp_i2c.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x0800450c   Section        0  bsp_i2c.o(.rodata.str1.1)
+    .L.str.2                                 0x0800451f   Data          29  bsp_i2c.o(.rodata.str1.1)
+    .L.str                                   0x0800453b   Data           1  bsp_i2c.o(.rodata.str1.1)
     .data                                    0x20000000   Section        4  stdout.o(.data)
-    UARTTimeout                              0x20000020   Data           4  bsp_uart.o(.bss.UARTTimeout)
-    [Anonymous Symbol]                       0x20000020   Section        0  bsp_uart.o(.bss.UARTTimeout)
-    uart_states                              0x20000040   Data          72  bsp_uart.o(.bss.uart_states)
-    [Anonymous Symbol]                       0x20000040   Section        0  bsp_uart.o(.bss.uart_states)
-    STACK                                    0x20000088   Section     5120  startup_n32wb452.o(STACK)
+    i2c_reg_addr                             0x20000008   Data           1  bsp_i2c.o(.data.i2c_reg_addr)
+    [Anonymous Symbol]                       0x20000008   Section        0  bsp_i2c.o(.data.i2c_reg_addr)
+    Comm_Flag                                0x20000010   Data           1  bsp_i2c.o(.bss.Comm_Flag)
+    [Anonymous Symbol]                       0x20000010   Section        0  bsp_i2c.o(.bss.Comm_Flag)
+    I2CTimeout                               0x20000014   Data           4  bsp_i2c.o(.bss.I2CTimeout)
+    [Anonymous Symbol]                       0x20000014   Section        0  bsp_i2c.o(.bss.I2CTimeout)
+    UARTTimeout                              0x20000018   Data           4  bsp_uart.o(.bss.UARTTimeout)
+    [Anonymous Symbol]                       0x20000018   Section        0  bsp_uart.o(.bss.UARTTimeout)
+    i2c_current_device                       0x20000020   Data           4  bsp_i2c.o(.bss.i2c_current_device)
+    [Anonymous Symbol]                       0x20000020   Section        0  bsp_i2c.o(.bss.i2c_current_device)
+    i2c_direction                            0x2000002c   Data           1  bsp_i2c.o(.bss.i2c_direction)
+    [Anonymous Symbol]                       0x2000002c   Section        0  bsp_i2c.o(.bss.i2c_direction)
+    i2c_rx_buffer                            0x20000030   Data           4  bsp_i2c.o(.bss.i2c_rx_buffer)
+    [Anonymous Symbol]                       0x20000030   Section        0  bsp_i2c.o(.bss.i2c_rx_buffer)
+    i2c_rx_size                              0x20000034   Data           2  bsp_i2c.o(.bss.i2c_rx_size)
+    [Anonymous Symbol]                       0x20000034   Section        0  bsp_i2c.o(.bss.i2c_rx_size)
+    i2c_tx_buffer                            0x20000038   Data           4  bsp_i2c.o(.bss.i2c_tx_buffer)
+    [Anonymous Symbol]                       0x20000038   Section        0  bsp_i2c.o(.bss.i2c_tx_buffer)
+    i2c_tx_size                              0x2000003c   Data           2  bsp_i2c.o(.bss.i2c_tx_size)
+    [Anonymous Symbol]                       0x2000003c   Section        0  bsp_i2c.o(.bss.i2c_tx_size)
+    uart_states                              0x2000004c   Data          72  bsp_uart.o(.bss.uart_states)
+    [Anonymous Symbol]                       0x2000004c   Section        0  bsp_uart.o(.bss.uart_states)
+    STACK                                    0x20000098   Section     5120  startup_n32wb452.o(STACK)
 
     Global Symbols
 
@@ -2451,89 +2472,126 @@ Image Symbol Table
     USB_HP_CAN1_TX_IRQHandler                0x080001c7   Thumb Code     0  startup_n32wb452.o(.text)
     USB_LP_CAN1_RX0_IRQHandler               0x080001c7   Thumb Code     0  startup_n32wb452.o(.text)
     WWDG_IRQHandler                          0x080001c7   Thumb Code     0  startup_n32wb452.o(.text)
-    __aeabi_uidiv                            0x080001d1   Thumb Code     0  uidiv.o(.text)
-    __aeabi_uidivmod                         0x080001d1   Thumb Code    44  uidiv.o(.text)
-    __aeabi_uldivmod                         0x080001fd   Thumb Code    98  uldiv.o(.text)
-    __I$use$fp                               0x0800025f   Thumb Code     0  iusefp.o(.text)
-    __aeabi_dadd                             0x0800025f   Thumb Code   322  dadd.o(.text)
-    __aeabi_dsub                             0x080003a1   Thumb Code     6  dadd.o(.text)
-    __aeabi_drsub                            0x080003a7   Thumb Code     6  dadd.o(.text)
-    __aeabi_dmul                             0x080003ad   Thumb Code   228  dmul.o(.text)
-    __aeabi_ddiv                             0x08000491   Thumb Code   222  ddiv.o(.text)
-    __aeabi_d2ulz                            0x0800056f   Thumb Code    48  dfixul.o(.text)
-    __aeabi_cdrcmple                         0x080005a1   Thumb Code    48  cdrcmple.o(.text)
-    __scatterload                            0x080005d1   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x080005d1   Thumb Code     0  init.o(.text)
-    __aeabi_llsl                             0x080005f5   Thumb Code    30  llshl.o(.text)
-    _ll_shift_l                              0x080005f5   Thumb Code     0  llshl.o(.text)
-    __aeabi_llsr                             0x08000613   Thumb Code    32  llushr.o(.text)
-    _ll_ushift_r                             0x08000613   Thumb Code     0  llushr.o(.text)
-    __aeabi_lasr                             0x08000633   Thumb Code    36  llsshr.o(.text)
-    _ll_sshift_r                             0x08000633   Thumb Code     0  llsshr.o(.text)
-    _double_round                            0x08000657   Thumb Code    30  depilogue.o(.text)
-    _double_epilogue                         0x08000675   Thumb Code   156  depilogue.o(.text)
-    BSP_GPIO_Init                            0x08000711   Thumb Code   202  bsp_gpio.o(.text.BSP_GPIO_Init)
-    BSP_GPIO_TogglePin                       0x080007dd   Thumb Code    48  bsp_gpio.o(.text.BSP_GPIO_TogglePin)
-    BSP_GPIO_WritePin                        0x0800080d   Thumb Code    32  bsp_gpio.o(.text.BSP_GPIO_WritePin)
-    BSP_UART_Init                            0x0800082d   Thumb Code   140  bsp_uart.o(.text.BSP_UART_Init)
-    BSP_Uart_Transmit                        0x080008b9   Thumb Code   210  bsp_uart.o(.text.BSP_Uart_Transmit)
-    BSP_Uart_Transmit_IT                     0x0800098d   Thumb Code   140  bsp_uart.o(.text.BSP_Uart_Transmit_IT)
-    BusFault_Handler                         0x08000a19   Thumb Code     4  n32wb452_it.o(.text.BusFault_Handler)
-    DebugMon_Handler                         0x08000a1d   Thumb Code     2  n32wb452_it.o(.text.DebugMon_Handler)
-    Delay                                    0x08000a21   Thumb Code    26  main.o(.text.Delay)
-    GPIO_ConfigPinRemap                      0x08000a3d   Thumb Code   986  n32wb452_gpio.o(.text.GPIO_ConfigPinRemap)
-    GPIO_InitPeripheral                      0x08000e19   Thumb Code   390  n32wb452_gpio.o(.text.GPIO_InitPeripheral)
-    GPIO_InitStruct                          0x08000fa1   Thumb Code    28  n32wb452_gpio.o(.text.GPIO_InitStruct)
-    GPIO_ReadOutputDataBit                   0x08000fbd   Thumb Code    52  n32wb452_gpio.o(.text.GPIO_ReadOutputDataBit)
-    GPIO_ResetBits                           0x08000ff1   Thumb Code    20  n32wb452_gpio.o(.text.GPIO_ResetBits)
-    GPIO_WriteBit                            0x08001005   Thumb Code    44  n32wb452_gpio.o(.text.GPIO_WriteBit)
-    HardFault_Handler                        0x08001031   Thumb Code     4  n32wb452_it.o(.text.HardFault_Handler)
-    MemManage_Handler                        0x08001035   Thumb Code     4  n32wb452_it.o(.text.MemManage_Handler)
-    NMI_Handler                              0x08001039   Thumb Code     2  n32wb452_it.o(.text.NMI_Handler)
-    NVIC_Init                                0x0800103d   Thumb Code   170  misc.o(.text.NVIC_Init)
-    NVIC_PriorityGroupConfig                 0x080010e9   Thumb Code    28  misc.o(.text.NVIC_PriorityGroupConfig)
-    RCC_ConfigSysclk                         0x08001105   Thumb Code    44  n32wb452_rcc.o(.text.RCC_ConfigSysclk)
-    RCC_EnableAPB1PeriphClk                  0x08001131   Thumb Code    56  n32wb452_rcc.o(.text.RCC_EnableAPB1PeriphClk)
-    RCC_EnableAPB1PeriphReset                0x08001169   Thumb Code    56  n32wb452_rcc.o(.text.RCC_EnableAPB1PeriphReset)
-    RCC_EnableAPB2PeriphClk                  0x080011a1   Thumb Code    56  n32wb452_rcc.o(.text.RCC_EnableAPB2PeriphClk)
-    RCC_EnableAPB2PeriphReset                0x080011d9   Thumb Code    56  n32wb452_rcc.o(.text.RCC_EnableAPB2PeriphReset)
-    RCC_GetClocksFreqValue                   0x08001211   Thumb Code   452  n32wb452_rcc.o(.text.RCC_GetClocksFreqValue)
-    RCC_GetSysclkSrc                         0x080013d5   Thumb Code    16  n32wb452_rcc.o(.text.RCC_GetSysclkSrc)
-    SVC_Handler                              0x080013e5   Thumb Code     2  n32wb452_it.o(.text.SVC_Handler)
-    SysTick_Handler                          0x080015f1   Thumb Code     2  n32wb452_it.o(.text.SysTick_Handler)
-    SystemInit                               0x080015f5   Thumb Code   296  system_n32wb452.o(.text.SystemInit)
-    USART2_IRQHandler                        0x0800171d   Thumb Code   390  bsp_uart.o(.text.USART2_IRQHandler)
-    USART3_IRQHandler                        0x080018a5   Thumb Code   390  bsp_uart.o(.text.USART3_IRQHandler)
-    USART_ClrFlag                            0x08001a2d   Thumb Code    36  n32wb452_usart.o(.text.USART_ClrFlag)
-    USART_ConfigInt                          0x08001a51   Thumb Code   146  n32wb452_usart.o(.text.USART_ConfigInt)
-    USART_DeInit                             0x08001ae5   Thumb Code   288  n32wb452_usart.o(.text.USART_DeInit)
-    USART_Enable                             0x08001c05   Thumb Code    44  n32wb452_usart.o(.text.USART_Enable)
-    USART_GetFlagStatus                      0x08001c31   Thumb Code    68  n32wb452_usart.o(.text.USART_GetFlagStatus)
-    USART_GetIntStatus                       0x08001c75   Thumb Code   176  n32wb452_usart.o(.text.USART_GetIntStatus)
-    USART_Init                               0x08001d25   Thumb Code   334  n32wb452_usart.o(.text.USART_Init)
-    USART_ReceiveData                        0x08001e75   Thumb Code    16  n32wb452_usart.o(.text.USART_ReceiveData)
-    USART_SendData                           0x08001e85   Thumb Code    24  n32wb452_usart.o(.text.USART_SendData)
-    USART_StructInit                         0x08001e9d   Thumb Code    40  n32wb452_usart.o(.text.USART_StructInit)
-    UsageFault_Handler                       0x08001ec5   Thumb Code     4  n32wb452_it.o(.text.UsageFault_Handler)
-    fputc                                    0x0800230d   Thumb Code    48  bsp_uart.o(.text.fputc)
-    main                                     0x080023ad   Thumb Code   276  main.o(.text.main)
-    __0printf                                0x080024c1   Thumb Code    22  printfa.o(i.__0printf)
-    __1printf                                0x080024c1   Thumb Code     0  printfa.o(i.__0printf)
-    __2printf                                0x080024c1   Thumb Code     0  printfa.o(i.__0printf)
-    __c89printf                              0x080024c1   Thumb Code     0  printfa.o(i.__0printf)
-    printf                                   0x080024c1   Thumb Code     0  printfa.o(i.__0printf)
-    __scatterload_copy                       0x080024e1   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x080024ef   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x080024f1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    Region$$Table$$Base                      0x08002e00   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08002e20   Number         0  anon$$obj.o(Region$$Table)
+    __aeabi_memset                           0x080001d1   Thumb Code    14  memseta.o(.text)
+    __aeabi_memset4                          0x080001d1   Thumb Code     0  memseta.o(.text)
+    __aeabi_memset8                          0x080001d1   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr                           0x080001df   Thumb Code     4  memseta.o(.text)
+    __aeabi_memclr4                          0x080001df   Thumb Code     0  memseta.o(.text)
+    __aeabi_memclr8                          0x080001df   Thumb Code     0  memseta.o(.text)
+    _memset$wrapper                          0x080001e3   Thumb Code    18  memseta.o(.text)
+    __aeabi_uidiv                            0x080001f5   Thumb Code     0  uidiv.o(.text)
+    __aeabi_uidivmod                         0x080001f5   Thumb Code    44  uidiv.o(.text)
+    __aeabi_uldivmod                         0x08000221   Thumb Code    98  uldiv.o(.text)
+    __I$use$fp                               0x08000283   Thumb Code     0  iusefp.o(.text)
+    __aeabi_dadd                             0x08000283   Thumb Code   322  dadd.o(.text)
+    __aeabi_dsub                             0x080003c5   Thumb Code     6  dadd.o(.text)
+    __aeabi_drsub                            0x080003cb   Thumb Code     6  dadd.o(.text)
+    __aeabi_dmul                             0x080003d1   Thumb Code   228  dmul.o(.text)
+    __aeabi_ddiv                             0x080004b5   Thumb Code   222  ddiv.o(.text)
+    __aeabi_d2ulz                            0x08000593   Thumb Code    48  dfixul.o(.text)
+    __aeabi_cdrcmple                         0x080005c5   Thumb Code    48  cdrcmple.o(.text)
+    __scatterload                            0x080005f5   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x080005f5   Thumb Code     0  init.o(.text)
+    __aeabi_llsl                             0x08000619   Thumb Code    30  llshl.o(.text)
+    _ll_shift_l                              0x08000619   Thumb Code     0  llshl.o(.text)
+    __aeabi_llsr                             0x08000637   Thumb Code    32  llushr.o(.text)
+    _ll_ushift_r                             0x08000637   Thumb Code     0  llushr.o(.text)
+    __aeabi_lasr                             0x08000657   Thumb Code    36  llsshr.o(.text)
+    _ll_sshift_r                             0x08000657   Thumb Code     0  llsshr.o(.text)
+    _double_round                            0x0800067b   Thumb Code    30  depilogue.o(.text)
+    _double_epilogue                         0x08000699   Thumb Code   156  depilogue.o(.text)
+    BSP_GPIO_Init                            0x08000735   Thumb Code   202  bsp_gpio.o(.text.BSP_GPIO_Init)
+    BSP_GPIO_TogglePin                       0x08000801   Thumb Code    48  bsp_gpio.o(.text.BSP_GPIO_TogglePin)
+    BSP_GPIO_WritePin                        0x08000831   Thumb Code    32  bsp_gpio.o(.text.BSP_GPIO_WritePin)
+    BSP_I2C_Init                             0x08000851   Thumb Code    82  bsp_i2c.o(.text.BSP_I2C_Init)
+    BSP_I2C_Master_Receive                   0x080008a5   Thumb Code   118  bsp_i2c.o(.text.BSP_I2C_Master_Receive)
+    BSP_I2C_Master_Receive_DMA               0x0800091d   Thumb Code   576  bsp_i2c.o(.text.BSP_I2C_Master_Receive_DMA)
+    BSP_I2C_Master_Receive_IT                0x08000b5d   Thumb Code   110  bsp_i2c.o(.text.BSP_I2C_Master_Receive_IT)
+    BSP_I2C_Master_Receive_Polling           0x08000bcd   Thumb Code  1154  bsp_i2c.o(.text.BSP_I2C_Master_Receive_Polling)
+    BSP_I2C_Master_Transmit                  0x08001051   Thumb Code   118  bsp_i2c.o(.text.BSP_I2C_Master_Transmit)
+    BSP_I2C_Master_Transmit_DMA              0x080010c9   Thumb Code   452  bsp_i2c.o(.text.BSP_I2C_Master_Transmit_DMA)
+    BSP_I2C_Master_Transmit_IT               0x0800128d   Thumb Code   114  bsp_i2c.o(.text.BSP_I2C_Master_Transmit_IT)
+    BSP_I2C_Master_Transmit_Polling          0x08001301   Thumb Code   658  bsp_i2c.o(.text.BSP_I2C_Master_Transmit_Polling)
+    BSP_I2C_ScanDevices                      0x08001595   Thumb Code   250  bsp_i2c.o(.text.BSP_I2C_ScanDevices)
+    BSP_UART_Init                            0x0800182d   Thumb Code   148  bsp_uart.o(.text.BSP_UART_Init)
+    BSP_Uart_Transmit                        0x080018c1   Thumb Code   210  bsp_uart.o(.text.BSP_Uart_Transmit)
+    BusFault_Handler                         0x08001995   Thumb Code     4  n32wb452_it.o(.text.BusFault_Handler)
+    CommTimeOut_CallBack                     0x08001999   Thumb Code    96  bsp_i2c.o(.text.CommTimeOut_CallBack)
+    DMA_DeInit                               0x080019f9   Thumb Code   580  n32wb452_dma.o(.text.DMA_DeInit)
+    DMA_EnableChannel                        0x08001c3d   Thumb Code    46  n32wb452_dma.o(.text.DMA_EnableChannel)
+    DMA_GetFlagStatus                        0x08001c6d   Thumb Code    54  n32wb452_dma.o(.text.DMA_GetFlagStatus)
+    DMA_Init                                 0x08001ca5   Thumb Code   108  n32wb452_dma.o(.text.DMA_Init)
+    DMA_StructInit                           0x08001d11   Thumb Code    54  n32wb452_dma.o(.text.DMA_StructInit)
+    DebugMon_Handler                         0x08001d49   Thumb Code     2  n32wb452_it.o(.text.DebugMon_Handler)
+    Delay                                    0x08001d4d   Thumb Code    26  main.o(.text.Delay)
+    GPIO_ConfigPinRemap                      0x08001d69   Thumb Code   986  n32wb452_gpio.o(.text.GPIO_ConfigPinRemap)
+    GPIO_InitPeripheral                      0x08002145   Thumb Code   390  n32wb452_gpio.o(.text.GPIO_InitPeripheral)
+    GPIO_InitStruct                          0x080022cd   Thumb Code    28  n32wb452_gpio.o(.text.GPIO_InitStruct)
+    GPIO_ReadOutputDataBit                   0x080022e9   Thumb Code    52  n32wb452_gpio.o(.text.GPIO_ReadOutputDataBit)
+    GPIO_ResetBits                           0x0800231d   Thumb Code    20  n32wb452_gpio.o(.text.GPIO_ResetBits)
+    GPIO_WriteBit                            0x08002331   Thumb Code    44  n32wb452_gpio.o(.text.GPIO_WriteBit)
+    HardFault_Handler                        0x0800235d   Thumb Code     4  n32wb452_it.o(.text.HardFault_Handler)
+    I2C_CheckEvent                           0x08002361   Thumb Code    84  n32wb452_i2c.o(.text.I2C_CheckEvent)
+    I2C_ConfigAck                            0x080023b5   Thumb Code    44  n32wb452_i2c.o(.text.I2C_ConfigAck)
+    I2C_ConfigInt                            0x080023e1   Thumb Code    52  n32wb452_i2c.o(.text.I2C_ConfigInt)
+    I2C_DeInit                               0x08002415   Thumb Code   170  n32wb452_i2c.o(.text.I2C_DeInit)
+    I2C_Enable                               0x080024c1   Thumb Code    44  n32wb452_i2c.o(.text.I2C_Enable)
+    I2C_EnableDMA                            0x080024ed   Thumb Code    44  n32wb452_i2c.o(.text.I2C_EnableDMA)
+    I2C_EnableDmaLastSend                    0x08002519   Thumb Code    44  n32wb452_i2c.o(.text.I2C_EnableDmaLastSend)
+    I2C_GenerateStart                        0x08002545   Thumb Code    44  n32wb452_i2c.o(.text.I2C_GenerateStart)
+    I2C_GenerateStop                         0x08002571   Thumb Code    44  n32wb452_i2c.o(.text.I2C_GenerateStop)
+    I2C_GetFlag                              0x0800259d   Thumb Code    98  n32wb452_i2c.o(.text.I2C_GetFlag)
+    I2C_Init                                 0x08002601   Thumb Code   516  n32wb452_i2c.o(.text.I2C_Init)
+    I2C_InitStruct                           0x08002805   Thumb Code    46  n32wb452_i2c.o(.text.I2C_InitStruct)
+    I2C_Polling_Test                         0x08002835   Thumb Code   122  main.o(.text.I2C_Polling_Test)
+    I2C_RecvData                             0x080028b1   Thumb Code    14  n32wb452_i2c.o(.text.I2C_RecvData)
+    I2C_SendAddr7bit                         0x080028c1   Thumb Code    60  n32wb452_i2c.o(.text.I2C_SendAddr7bit)
+    I2C_SendData                             0x080028fd   Thumb Code    20  n32wb452_i2c.o(.text.I2C_SendData)
+    MemManage_Handler                        0x08002911   Thumb Code     4  n32wb452_it.o(.text.MemManage_Handler)
+    NMI_Handler                              0x08002915   Thumb Code     2  n32wb452_it.o(.text.NMI_Handler)
+    NVIC_Init                                0x08002919   Thumb Code   170  misc.o(.text.NVIC_Init)
+    NVIC_PriorityGroupConfig                 0x080029c5   Thumb Code    28  misc.o(.text.NVIC_PriorityGroupConfig)
+    RCC_ConfigSysclk                         0x080029e1   Thumb Code    44  n32wb452_rcc.o(.text.RCC_ConfigSysclk)
+    RCC_EnableAPB1PeriphClk                  0x08002a0d   Thumb Code    56  n32wb452_rcc.o(.text.RCC_EnableAPB1PeriphClk)
+    RCC_EnableAPB1PeriphReset                0x08002a45   Thumb Code    56  n32wb452_rcc.o(.text.RCC_EnableAPB1PeriphReset)
+    RCC_EnableAPB2PeriphClk                  0x08002a7d   Thumb Code    56  n32wb452_rcc.o(.text.RCC_EnableAPB2PeriphClk)
+    RCC_EnableAPB2PeriphReset                0x08002ab5   Thumb Code    56  n32wb452_rcc.o(.text.RCC_EnableAPB2PeriphReset)
+    RCC_GetClocksFreqValue                   0x08002aed   Thumb Code   452  n32wb452_rcc.o(.text.RCC_GetClocksFreqValue)
+    RCC_GetSysclkSrc                         0x08002cb1   Thumb Code    16  n32wb452_rcc.o(.text.RCC_GetSysclkSrc)
+    SVC_Handler                              0x08002cc1   Thumb Code     2  n32wb452_it.o(.text.SVC_Handler)
+    SysTick_Handler                          0x08002ecd   Thumb Code     2  n32wb452_it.o(.text.SysTick_Handler)
+    SystemInit                               0x08002ed1   Thumb Code   296  system_n32wb452.o(.text.SystemInit)
+    USART2_IRQHandler                        0x08002ff9   Thumb Code    16  bsp_uart.o(.text.USART2_IRQHandler)
+    USART3_IRQHandler                        0x08003009   Thumb Code    16  bsp_uart.o(.text.USART3_IRQHandler)
+    USART_ClrFlag                            0x08003019   Thumb Code    36  n32wb452_usart.o(.text.USART_ClrFlag)
+    USART_ConfigInt                          0x0800303d   Thumb Code   146  n32wb452_usart.o(.text.USART_ConfigInt)
+    USART_DeInit                             0x080030d1   Thumb Code   288  n32wb452_usart.o(.text.USART_DeInit)
+    USART_Enable                             0x080031f1   Thumb Code    44  n32wb452_usart.o(.text.USART_Enable)
+    USART_GetFlagStatus                      0x0800321d   Thumb Code    68  n32wb452_usart.o(.text.USART_GetFlagStatus)
+    USART_GetIntStatus                       0x08003261   Thumb Code   176  n32wb452_usart.o(.text.USART_GetIntStatus)
+    USART_Init                               0x08003311   Thumb Code   334  n32wb452_usart.o(.text.USART_Init)
+    USART_ReceiveData                        0x08003461   Thumb Code    16  n32wb452_usart.o(.text.USART_ReceiveData)
+    USART_SendData                           0x08003471   Thumb Code    24  n32wb452_usart.o(.text.USART_SendData)
+    USART_StructInit                         0x08003489   Thumb Code    40  n32wb452_usart.o(.text.USART_StructInit)
+    UsageFault_Handler                       0x080034b1   Thumb Code     4  n32wb452_it.o(.text.UsageFault_Handler)
+    fputc                                    0x08003a59   Thumb Code    48  bsp_uart.o(.text.fputc)
+    main                                     0x08003af9   Thumb Code   198  main.o(.text.main)
+    __0printf                                0x08003bc1   Thumb Code    22  printfa.o(i.__0printf)
+    __1printf                                0x08003bc1   Thumb Code     0  printfa.o(i.__0printf)
+    __2printf                                0x08003bc1   Thumb Code     0  printfa.o(i.__0printf)
+    __c89printf                              0x08003bc1   Thumb Code     0  printfa.o(i.__0printf)
+    printf                                   0x08003bc1   Thumb Code     0  printfa.o(i.__0printf)
+    __scatterload_copy                       0x08003be1   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08003bef   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08003bf1   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    Region$$Table$$Base                      0x0800453c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800455c   Number         0  anon$$obj.o(Region$$Table)
     __stdout                                 0x20000000   Data           4  stdout.o(.data)
     SystemCoreClock                          0x20000004   Data           4  system_n32wb452.o(.data.SystemCoreClock)
-    tx_buffer                                0x20000008   Data          20  main.o(.data.tx_buffer)
-    debug_uart_device                        0x20000024   Data           4  bsp_uart.o(.bss.debug_uart_device)
-    uart2_device                             0x20000028   Data          12  main.o(.bss.uart2_device)
-    uart3_device                             0x20000034   Data          12  main.o(.bss.uart3_device)
-    __initial_sp                             0x20001488   Data           0  startup_n32wb452.o(STACK)
+    debug_uart_device                        0x2000001c   Data           4  bsp_uart.o(.bss.debug_uart_device)
+    i2c_device                               0x20000024   Data           8  main.o(.bss.i2c_device)
+    uart3_device                             0x20000040   Data          12  main.o(.bss.uart3_device)
+    __initial_sp                             0x20001498   Data           0  startup_n32wb452.o(STACK)
 
 
 
@@ -2543,136 +2601,199 @@ Memory Map of the image
 
   Image Entry point : 0x08000199
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002e40, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00004570, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002e20, Max: 0x00080000, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x08000000   0x08000000   0x00000198   Data   RO         1415    RESET               startup_n32wb452.o
-    0x08000198   0x08000198   0x00000000   Code   RO         1422  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000198   0x08000198   0x00000004   Code   RO         1455    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x0800019c   0x0800019c   0x00000004   Code   RO         1458    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080001a0   0x080001a0   0x00000000   Code   RO         1460    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080001a0   0x080001a0   0x00000000   Code   RO         1462    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080001a0   0x080001a0   0x00000008   Code   RO         1463    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080001a8   0x080001a8   0x00000000   Code   RO         1465    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x080001a8   0x080001a8   0x00000000   Code   RO         1467    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x080001a8   0x080001a8   0x00000004   Code   RO         1456    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x080001ac   0x080001ac   0x00000024   Code   RO         1416    .text               startup_n32wb452.o
-    0x080001d0   0x080001d0   0x0000002c   Code   RO         1479    .text               mc_w.l(uidiv.o)
-    0x080001fc   0x080001fc   0x00000062   Code   RO         1481    .text               mc_w.l(uldiv.o)
-    0x0800025e   0x0800025e   0x00000000   Code   RO         1483    .text               mc_w.l(iusefp.o)
-    0x0800025e   0x0800025e   0x0000014e   Code   RO         1484    .text               mf_w.l(dadd.o)
-    0x080003ac   0x080003ac   0x000000e4   Code   RO         1486    .text               mf_w.l(dmul.o)
-    0x08000490   0x08000490   0x000000de   Code   RO         1488    .text               mf_w.l(ddiv.o)
-    0x0800056e   0x0800056e   0x00000030   Code   RO         1490    .text               mf_w.l(dfixul.o)
-    0x0800059e   0x0800059e   0x00000002   PAD
-    0x080005a0   0x080005a0   0x00000030   Code   RO         1492    .text               mf_w.l(cdrcmple.o)
-    0x080005d0   0x080005d0   0x00000024   Code   RO         1494    .text               mc_w.l(init.o)
-    0x080005f4   0x080005f4   0x0000001e   Code   RO         1496    .text               mc_w.l(llshl.o)
-    0x08000612   0x08000612   0x00000020   Code   RO         1498    .text               mc_w.l(llushr.o)
-    0x08000632   0x08000632   0x00000024   Code   RO         1500    .text               mc_w.l(llsshr.o)
-    0x08000656   0x08000656   0x000000ba   Code   RO         1502    .text               mf_w.l(depilogue.o)
-    0x08000710   0x08000710   0x000000ca   Code   RO           91    .text.BSP_GPIO_Init  bsp_gpio.o
-    0x080007da   0x080007da   0x00000002   PAD
-    0x080007dc   0x080007dc   0x00000030   Code   RO           99    .text.BSP_GPIO_TogglePin  bsp_gpio.o
-    0x0800080c   0x0800080c   0x00000020   Code   RO           97    .text.BSP_GPIO_WritePin  bsp_gpio.o
-    0x0800082c   0x0800082c   0x0000008c   Code   RO          108    .text.BSP_UART_Init  bsp_uart.o
-    0x080008b8   0x080008b8   0x000000d2   Code   RO          116    .text.BSP_Uart_Transmit  bsp_uart.o
-    0x0800098a   0x0800098a   0x00000002   PAD
-    0x0800098c   0x0800098c   0x0000008c   Code   RO          120    .text.BSP_Uart_Transmit_IT  bsp_uart.o
-    0x08000a18   0x08000a18   0x00000004   Code   RO           29    .text.BusFault_Handler  n32wb452_it.o
-    0x08000a1c   0x08000a1c   0x00000002   Code   RO           35    .text.DebugMon_Handler  n32wb452_it.o
-    0x08000a1e   0x08000a1e   0x00000002   PAD
-    0x08000a20   0x08000a20   0x0000001a   Code   RO            2    .text.Delay         main.o
-    0x08000a3a   0x08000a3a   0x00000002   PAD
-    0x08000a3c   0x08000a3c   0x000003da   Code   RO          612    .text.GPIO_ConfigPinRemap  n32wb452_gpio.o
-    0x08000e16   0x08000e16   0x00000002   PAD
-    0x08000e18   0x08000e18   0x00000186   Code   RO          584    .text.GPIO_InitPeripheral  n32wb452_gpio.o
-    0x08000f9e   0x08000f9e   0x00000002   PAD
-    0x08000fa0   0x08000fa0   0x0000001c   Code   RO          586    .text.GPIO_InitStruct  n32wb452_gpio.o
-    0x08000fbc   0x08000fbc   0x00000034   Code   RO          592    .text.GPIO_ReadOutputDataBit  n32wb452_gpio.o
-    0x08000ff0   0x08000ff0   0x00000014   Code   RO          600    .text.GPIO_ResetBits  n32wb452_gpio.o
-    0x08001004   0x08001004   0x0000002c   Code   RO          602    .text.GPIO_WriteBit  n32wb452_gpio.o
-    0x08001030   0x08001030   0x00000004   Code   RO           25    .text.HardFault_Handler  n32wb452_it.o
-    0x08001034   0x08001034   0x00000004   Code   RO           27    .text.MemManage_Handler  n32wb452_it.o
-    0x08001038   0x08001038   0x00000002   Code   RO           23    .text.NMI_Handler   n32wb452_it.o
-    0x0800103a   0x0800103a   0x00000002   PAD
-    0x0800103c   0x0800103c   0x000000aa   Code   RO          156    .text.NVIC_Init     misc.o
-    0x080010e6   0x080010e6   0x00000002   PAD
-    0x080010e8   0x080010e8   0x0000001c   Code   RO          154    .text.NVIC_PriorityGroupConfig  misc.o
-    0x08001104   0x08001104   0x0000002c   Code   RO          760    .text.RCC_ConfigSysclk  n32wb452_rcc.o
-    0x08001130   0x08001130   0x00000038   Code   RO          802    .text.RCC_EnableAPB1PeriphClk  n32wb452_rcc.o
-    0x08001168   0x08001168   0x00000038   Code   RO          808    .text.RCC_EnableAPB1PeriphReset  n32wb452_rcc.o
-    0x080011a0   0x080011a0   0x00000038   Code   RO          800    .text.RCC_EnableAPB2PeriphClk  n32wb452_rcc.o
-    0x080011d8   0x080011d8   0x00000038   Code   RO          806    .text.RCC_EnableAPB2PeriphReset  n32wb452_rcc.o
-    0x08001210   0x08001210   0x000001c4   Code   RO          796    .text.RCC_GetClocksFreqValue  n32wb452_rcc.o
-    0x080013d4   0x080013d4   0x00000010   Code   RO          762    .text.RCC_GetSysclkSrc  n32wb452_rcc.o
-    0x080013e4   0x080013e4   0x00000002   Code   RO           33    .text.SVC_Handler   n32wb452_it.o
-    0x080013e6   0x080013e6   0x00000002   PAD
-    0x080013e8   0x080013e8   0x0000016e   Code   RO         1399    .text.SetSysClock   system_n32wb452.o
-    0x08001556   0x08001556   0x00000002   PAD
-    0x08001558   0x08001558   0x00000098   Code   RO         1401    .text.SetVDDDBKTrim  system_n32wb452.o
-    0x080015f0   0x080015f0   0x00000002   Code   RO           37    .text.SysTick_Handler  n32wb452_it.o
-    0x080015f2   0x080015f2   0x00000002   PAD
-    0x080015f4   0x080015f4   0x00000128   Code   RO         1397    .text.SystemInit    system_n32wb452.o
-    0x0800171c   0x0800171c   0x00000186   Code   RO          124    .text.USART2_IRQHandler  bsp_uart.o
-    0x080018a2   0x080018a2   0x00000002   PAD
-    0x080018a4   0x080018a4   0x00000186   Code   RO          128    .text.USART3_IRQHandler  bsp_uart.o
-    0x08001a2a   0x08001a2a   0x00000002   PAD
-    0x08001a2c   0x08001a2c   0x00000024   Code   RO         1361    .text.USART_ClrFlag  n32wb452_usart.o
-    0x08001a50   0x08001a50   0x00000092   Code   RO         1325    .text.USART_ConfigInt  n32wb452_usart.o
-    0x08001ae2   0x08001ae2   0x00000002   PAD
-    0x08001ae4   0x08001ae4   0x00000120   Code   RO         1313    .text.USART_DeInit  n32wb452_usart.o
-    0x08001c04   0x08001c04   0x0000002c   Code   RO         1323    .text.USART_Enable  n32wb452_usart.o
-    0x08001c30   0x08001c30   0x00000044   Code   RO         1359    .text.USART_GetFlagStatus  n32wb452_usart.o
-    0x08001c74   0x08001c74   0x000000b0   Code   RO         1363    .text.USART_GetIntStatus  n32wb452_usart.o
-    0x08001d24   0x08001d24   0x0000014e   Code   RO         1315    .text.USART_Init    n32wb452_usart.o
-    0x08001e72   0x08001e72   0x00000002   PAD
-    0x08001e74   0x08001e74   0x00000010   Code   RO         1341    .text.USART_ReceiveData  n32wb452_usart.o
-    0x08001e84   0x08001e84   0x00000018   Code   RO         1339    .text.USART_SendData  n32wb452_usart.o
-    0x08001e9c   0x08001e9c   0x00000028   Code   RO         1317    .text.USART_StructInit  n32wb452_usart.o
-    0x08001ec4   0x08001ec4   0x00000004   Code   RO           31    .text.UsageFault_Handler  n32wb452_it.o
-    0x08001ec8   0x08001ec8   0x000001f0   Code   RO          114    .text.bsp_uart_InterruptInit  bsp_uart.o
-    0x080020b8   0x080020b8   0x000000d2   Code   RO          126    .text.bsp_uart_error  bsp_uart.o
-    0x0800218a   0x0800218a   0x00000002   PAD
-    0x0800218c   0x0800218c   0x00000180   Code   RO          112    .text.bsp_uart_polingInit  bsp_uart.o
-    0x0800230c   0x0800230c   0x00000030   Code   RO          136    .text.fputc         bsp_uart.o
-    0x0800233c   0x0800233c   0x0000006e   Code   RO          110    .text.get_uart_state  bsp_uart.o
-    0x080023aa   0x080023aa   0x00000002   PAD
-    0x080023ac   0x080023ac   0x00000114   Code   RO            6    .text.main          main.o
-    0x080024c0   0x080024c0   0x00000020   Code   RO         1428    i.__0printf         mc_w.l(printfa.o)
-    0x080024e0   0x080024e0   0x0000000e   Code   RO         1506    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080024ee   0x080024ee   0x00000002   Code   RO         1507    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080024f0   0x080024f0   0x0000000e   Code   RO         1508    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x080024fe   0x080024fe   0x00000002   PAD
-    0x08002500   0x08002500   0x00000184   Code   RO         1435    i._fp_digits        mc_w.l(printfa.o)
-    0x08002684   0x08002684   0x000006dc   Code   RO         1436    i._printf_core      mc_w.l(printfa.o)
-    0x08002d60   0x08002d60   0x00000024   Code   RO         1437    i._printf_post_padding  mc_w.l(printfa.o)
-    0x08002d84   0x08002d84   0x0000002e   Code   RO         1438    i._printf_pre_padding  mc_w.l(printfa.o)
-    0x08002db2   0x08002db2   0x00000010   Data   RO          835    .rodata.s_AdcHclkPresTable  n32wb452_rcc.o
-    0x08002dc2   0x08002dc2   0x00000020   Data   RO          836    .rodata.s_AdcPllClkPresTable  n32wb452_rcc.o
-    0x08002de2   0x08002de2   0x00000010   Data   RO          834    .rodata.s_ApbAhbPresTable  n32wb452_rcc.o
-    0x08002df2   0x08002df2   0x0000000c   Data   RO           13    .rodata.str1.1      main.o
-    0x08002dfe   0x08002dfe   0x00000002   PAD
-    0x08002e00   0x08002e00   0x00000020   Data   RO         1505    Region$$Table       anon$$obj.o
-
-
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002e20, Size: 0x00001488, Max: 0x00024000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000455c, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08002e20   0x00000004   Data   RW         1469    .data               mc_w.l(stdout.o)
-    0x20000004   0x08002e24   0x00000004   Data   RW         1405    .data.SystemCoreClock  system_n32wb452.o
-    0x20000008   0x08002e28   0x00000014   Data   RW            8    .data.tx_buffer     main.o
-    0x2000001c   0x08002e3c   0x00000004   PAD
-    0x20000020        -       0x00000004   Zero   RW          143    .bss.UARTTimeout    bsp_uart.o
-    0x20000024        -       0x00000004   Zero   RW          142    .bss.debug_uart_device  bsp_uart.o
-    0x20000028        -       0x0000000c   Zero   RW           11    .bss.uart2_device   main.o
-    0x20000034        -       0x0000000c   Zero   RW           12    .bss.uart3_device   main.o
-    0x20000040        -       0x00000048   Zero   RW          146    .bss.uart_states    bsp_uart.o
-    0x20000088        -       0x00001400   Zero   RW         1413    STACK               startup_n32wb452.o
+    0x08000000   0x08000000   0x00000198   Data   RO         1419    RESET               startup_n32wb452.o
+    0x08000198   0x08000198   0x00000000   Code   RO         1426  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000198   0x08000198   0x00000004   Code   RO         1459    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x0800019c   0x0800019c   0x00000004   Code   RO         1462    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080001a0   0x080001a0   0x00000000   Code   RO         1464    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080001a0   0x080001a0   0x00000000   Code   RO         1466    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080001a0   0x080001a0   0x00000008   Code   RO         1467    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080001a8   0x080001a8   0x00000000   Code   RO         1469    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x080001a8   0x080001a8   0x00000000   Code   RO         1471    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x080001a8   0x080001a8   0x00000004   Code   RO         1460    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x080001ac   0x080001ac   0x00000024   Code   RO         1420    .text               startup_n32wb452.o
+    0x080001d0   0x080001d0   0x00000024   Code   RO         1429    .text               mc_w.l(memseta.o)
+    0x080001f4   0x080001f4   0x0000002c   Code   RO         1483    .text               mc_w.l(uidiv.o)
+    0x08000220   0x08000220   0x00000062   Code   RO         1485    .text               mc_w.l(uldiv.o)
+    0x08000282   0x08000282   0x00000000   Code   RO         1487    .text               mc_w.l(iusefp.o)
+    0x08000282   0x08000282   0x0000014e   Code   RO         1488    .text               mf_w.l(dadd.o)
+    0x080003d0   0x080003d0   0x000000e4   Code   RO         1490    .text               mf_w.l(dmul.o)
+    0x080004b4   0x080004b4   0x000000de   Code   RO         1492    .text               mf_w.l(ddiv.o)
+    0x08000592   0x08000592   0x00000030   Code   RO         1494    .text               mf_w.l(dfixul.o)
+    0x080005c2   0x080005c2   0x00000002   PAD
+    0x080005c4   0x080005c4   0x00000030   Code   RO         1496    .text               mf_w.l(cdrcmple.o)
+    0x080005f4   0x080005f4   0x00000024   Code   RO         1498    .text               mc_w.l(init.o)
+    0x08000618   0x08000618   0x0000001e   Code   RO         1500    .text               mc_w.l(llshl.o)
+    0x08000636   0x08000636   0x00000020   Code   RO         1502    .text               mc_w.l(llushr.o)
+    0x08000656   0x08000656   0x00000024   Code   RO         1504    .text               mc_w.l(llsshr.o)
+    0x0800067a   0x0800067a   0x000000ba   Code   RO         1506    .text               mf_w.l(depilogue.o)
+    0x08000734   0x08000734   0x000000ca   Code   RO           91    .text.BSP_GPIO_Init  bsp_gpio.o
+    0x080007fe   0x080007fe   0x00000002   PAD
+    0x08000800   0x08000800   0x00000030   Code   RO           99    .text.BSP_GPIO_TogglePin  bsp_gpio.o
+    0x08000830   0x08000830   0x00000020   Code   RO           97    .text.BSP_GPIO_WritePin  bsp_gpio.o
+    0x08000850   0x08000850   0x00000052   Code   RO           48    .text.BSP_I2C_Init  bsp_i2c.o
+    0x080008a2   0x080008a2   0x00000002   PAD
+    0x080008a4   0x080008a4   0x00000076   Code   RO           60    .text.BSP_I2C_Master_Receive  bsp_i2c.o
+    0x0800091a   0x0800091a   0x00000002   PAD
+    0x0800091c   0x0800091c   0x00000240   Code   RO           66    .text.BSP_I2C_Master_Receive_DMA  bsp_i2c.o
+    0x08000b5c   0x08000b5c   0x0000006e   Code   RO           64    .text.BSP_I2C_Master_Receive_IT  bsp_i2c.o
+    0x08000bca   0x08000bca   0x00000002   PAD
+    0x08000bcc   0x08000bcc   0x00000482   Code   RO           62    .text.BSP_I2C_Master_Receive_Polling  bsp_i2c.o
+    0x0800104e   0x0800104e   0x00000002   PAD
+    0x08001050   0x08001050   0x00000076   Code   RO           52    .text.BSP_I2C_Master_Transmit  bsp_i2c.o
+    0x080010c6   0x080010c6   0x00000002   PAD
+    0x080010c8   0x080010c8   0x000001c4   Code   RO           58    .text.BSP_I2C_Master_Transmit_DMA  bsp_i2c.o
+    0x0800128c   0x0800128c   0x00000072   Code   RO           56    .text.BSP_I2C_Master_Transmit_IT  bsp_i2c.o
+    0x080012fe   0x080012fe   0x00000002   PAD
+    0x08001300   0x08001300   0x00000292   Code   RO           54    .text.BSP_I2C_Master_Transmit_Polling  bsp_i2c.o
+    0x08001592   0x08001592   0x00000002   PAD
+    0x08001594   0x08001594   0x000000fa   Code   RO           72    .text.BSP_I2C_ScanDevices  bsp_i2c.o
+    0x0800168e   0x0800168e   0x00000002   PAD
+    0x08001690   0x08001690   0x0000019c   Code   RO          126    .text.BSP_UART_IRQHandler  bsp_uart.o
+    0x0800182c   0x0800182c   0x00000094   Code   RO          108    .text.BSP_UART_Init  bsp_uart.o
+    0x080018c0   0x080018c0   0x000000d2   Code   RO          116    .text.BSP_Uart_Transmit  bsp_uart.o
+    0x08001992   0x08001992   0x00000002   PAD
+    0x08001994   0x08001994   0x00000004   Code   RO           29    .text.BusFault_Handler  n32wb452_it.o
+    0x08001998   0x08001998   0x00000060   Code   RO           68    .text.CommTimeOut_CallBack  bsp_i2c.o
+    0x080019f8   0x080019f8   0x00000244   Code   RO          448    .text.DMA_DeInit    n32wb452_dma.o
+    0x08001c3c   0x08001c3c   0x0000002e   Code   RO          454    .text.DMA_EnableChannel  n32wb452_dma.o
+    0x08001c6a   0x08001c6a   0x00000002   PAD
+    0x08001c6c   0x08001c6c   0x00000036   Code   RO          462    .text.DMA_GetFlagStatus  n32wb452_dma.o
+    0x08001ca2   0x08001ca2   0x00000002   PAD
+    0x08001ca4   0x08001ca4   0x0000006c   Code   RO          450    .text.DMA_Init      n32wb452_dma.o
+    0x08001d10   0x08001d10   0x00000036   Code   RO          452    .text.DMA_StructInit  n32wb452_dma.o
+    0x08001d46   0x08001d46   0x00000002   PAD
+    0x08001d48   0x08001d48   0x00000002   Code   RO           35    .text.DebugMon_Handler  n32wb452_it.o
+    0x08001d4a   0x08001d4a   0x00000002   PAD
+    0x08001d4c   0x08001d4c   0x0000001a   Code   RO            2    .text.Delay         main.o
+    0x08001d66   0x08001d66   0x00000002   PAD
+    0x08001d68   0x08001d68   0x000003da   Code   RO          616    .text.GPIO_ConfigPinRemap  n32wb452_gpio.o
+    0x08002142   0x08002142   0x00000002   PAD
+    0x08002144   0x08002144   0x00000186   Code   RO          588    .text.GPIO_InitPeripheral  n32wb452_gpio.o
+    0x080022ca   0x080022ca   0x00000002   PAD
+    0x080022cc   0x080022cc   0x0000001c   Code   RO          590    .text.GPIO_InitStruct  n32wb452_gpio.o
+    0x080022e8   0x080022e8   0x00000034   Code   RO          596    .text.GPIO_ReadOutputDataBit  n32wb452_gpio.o
+    0x0800231c   0x0800231c   0x00000014   Code   RO          604    .text.GPIO_ResetBits  n32wb452_gpio.o
+    0x08002330   0x08002330   0x0000002c   Code   RO          606    .text.GPIO_WriteBit  n32wb452_gpio.o
+    0x0800235c   0x0800235c   0x00000004   Code   RO           25    .text.HardFault_Handler  n32wb452_it.o
+    0x08002360   0x08002360   0x00000054   Code   RO          681    .text.I2C_CheckEvent  n32wb452_i2c.o
+    0x080023b4   0x080023b4   0x0000002c   Code   RO          643    .text.I2C_ConfigAck  n32wb452_i2c.o
+    0x080023e0   0x080023e0   0x00000034   Code   RO          651    .text.I2C_ConfigInt  n32wb452_i2c.o
+    0x08002414   0x08002414   0x000000aa   Code   RO          627    .text.I2C_DeInit    n32wb452_i2c.o
+    0x080024be   0x080024be   0x00000002   PAD
+    0x080024c0   0x080024c0   0x0000002c   Code   RO          633    .text.I2C_Enable    n32wb452_i2c.o
+    0x080024ec   0x080024ec   0x0000002c   Code   RO          635    .text.I2C_EnableDMA  n32wb452_i2c.o
+    0x08002518   0x08002518   0x0000002c   Code   RO          637    .text.I2C_EnableDmaLastSend  n32wb452_i2c.o
+    0x08002544   0x08002544   0x0000002c   Code   RO          639    .text.I2C_GenerateStart  n32wb452_i2c.o
+    0x08002570   0x08002570   0x0000002c   Code   RO          641    .text.I2C_GenerateStop  n32wb452_i2c.o
+    0x0800259c   0x0800259c   0x00000062   Code   RO          685    .text.I2C_GetFlag   n32wb452_i2c.o
+    0x080025fe   0x080025fe   0x00000002   PAD
+    0x08002600   0x08002600   0x00000204   Code   RO          629    .text.I2C_Init      n32wb452_i2c.o
+    0x08002804   0x08002804   0x0000002e   Code   RO          631    .text.I2C_InitStruct  n32wb452_i2c.o
+    0x08002832   0x08002832   0x00000002   PAD
+    0x08002834   0x08002834   0x0000007a   Code   RO            4    .text.I2C_Polling_Test  main.o
+    0x080028ae   0x080028ae   0x00000002   PAD
+    0x080028b0   0x080028b0   0x0000000e   Code   RO          655    .text.I2C_RecvData  n32wb452_i2c.o
+    0x080028be   0x080028be   0x00000002   PAD
+    0x080028c0   0x080028c0   0x0000003c   Code   RO          657    .text.I2C_SendAddr7bit  n32wb452_i2c.o
+    0x080028fc   0x080028fc   0x00000014   Code   RO          653    .text.I2C_SendData  n32wb452_i2c.o
+    0x08002910   0x08002910   0x00000004   Code   RO           27    .text.MemManage_Handler  n32wb452_it.o
+    0x08002914   0x08002914   0x00000002   Code   RO           23    .text.NMI_Handler   n32wb452_it.o
+    0x08002916   0x08002916   0x00000002   PAD
+    0x08002918   0x08002918   0x000000aa   Code   RO          160    .text.NVIC_Init     misc.o
+    0x080029c2   0x080029c2   0x00000002   PAD
+    0x080029c4   0x080029c4   0x0000001c   Code   RO          158    .text.NVIC_PriorityGroupConfig  misc.o
+    0x080029e0   0x080029e0   0x0000002c   Code   RO          764    .text.RCC_ConfigSysclk  n32wb452_rcc.o
+    0x08002a0c   0x08002a0c   0x00000038   Code   RO          806    .text.RCC_EnableAPB1PeriphClk  n32wb452_rcc.o
+    0x08002a44   0x08002a44   0x00000038   Code   RO          812    .text.RCC_EnableAPB1PeriphReset  n32wb452_rcc.o
+    0x08002a7c   0x08002a7c   0x00000038   Code   RO          804    .text.RCC_EnableAPB2PeriphClk  n32wb452_rcc.o
+    0x08002ab4   0x08002ab4   0x00000038   Code   RO          810    .text.RCC_EnableAPB2PeriphReset  n32wb452_rcc.o
+    0x08002aec   0x08002aec   0x000001c4   Code   RO          800    .text.RCC_GetClocksFreqValue  n32wb452_rcc.o
+    0x08002cb0   0x08002cb0   0x00000010   Code   RO          766    .text.RCC_GetSysclkSrc  n32wb452_rcc.o
+    0x08002cc0   0x08002cc0   0x00000002   Code   RO           33    .text.SVC_Handler   n32wb452_it.o
+    0x08002cc2   0x08002cc2   0x00000002   PAD
+    0x08002cc4   0x08002cc4   0x0000016e   Code   RO         1403    .text.SetSysClock   system_n32wb452.o
+    0x08002e32   0x08002e32   0x00000002   PAD
+    0x08002e34   0x08002e34   0x00000098   Code   RO         1405    .text.SetVDDDBKTrim  system_n32wb452.o
+    0x08002ecc   0x08002ecc   0x00000002   Code   RO           37    .text.SysTick_Handler  n32wb452_it.o
+    0x08002ece   0x08002ece   0x00000002   PAD
+    0x08002ed0   0x08002ed0   0x00000128   Code   RO         1401    .text.SystemInit    system_n32wb452.o
+    0x08002ff8   0x08002ff8   0x00000010   Code   RO          124    .text.USART2_IRQHandler  bsp_uart.o
+    0x08003008   0x08003008   0x00000010   Code   RO          128    .text.USART3_IRQHandler  bsp_uart.o
+    0x08003018   0x08003018   0x00000024   Code   RO         1365    .text.USART_ClrFlag  n32wb452_usart.o
+    0x0800303c   0x0800303c   0x00000092   Code   RO         1329    .text.USART_ConfigInt  n32wb452_usart.o
+    0x080030ce   0x080030ce   0x00000002   PAD
+    0x080030d0   0x080030d0   0x00000120   Code   RO         1317    .text.USART_DeInit  n32wb452_usart.o
+    0x080031f0   0x080031f0   0x0000002c   Code   RO         1327    .text.USART_Enable  n32wb452_usart.o
+    0x0800321c   0x0800321c   0x00000044   Code   RO         1363    .text.USART_GetFlagStatus  n32wb452_usart.o
+    0x08003260   0x08003260   0x000000b0   Code   RO         1367    .text.USART_GetIntStatus  n32wb452_usart.o
+    0x08003310   0x08003310   0x0000014e   Code   RO         1319    .text.USART_Init    n32wb452_usart.o
+    0x0800345e   0x0800345e   0x00000002   PAD
+    0x08003460   0x08003460   0x00000010   Code   RO         1345    .text.USART_ReceiveData  n32wb452_usart.o
+    0x08003470   0x08003470   0x00000018   Code   RO         1343    .text.USART_SendData  n32wb452_usart.o
+    0x08003488   0x08003488   0x00000028   Code   RO         1321    .text.USART_StructInit  n32wb452_usart.o
+    0x080034b0   0x080034b0   0x00000004   Code   RO           31    .text.UsageFault_Handler  n32wb452_it.o
+    0x080034b4   0x080034b4   0x0000015e   Code   RO           50    .text.bsp_i2c_polingInit  bsp_i2c.o
+    0x08003612   0x08003612   0x00000002   PAD
+    0x08003614   0x08003614   0x000001f0   Code   RO          114    .text.bsp_uart_InterruptInit  bsp_uart.o
+    0x08003804   0x08003804   0x000000d2   Code   RO          146    .text.bsp_uart_error  bsp_uart.o
+    0x080038d6   0x080038d6   0x00000002   PAD
+    0x080038d8   0x080038d8   0x00000180   Code   RO          112    .text.bsp_uart_polingInit  bsp_uart.o
+    0x08003a58   0x08003a58   0x00000030   Code   RO          140    .text.fputc         bsp_uart.o
+    0x08003a88   0x08003a88   0x0000006e   Code   RO          110    .text.get_uart_state  bsp_uart.o
+    0x08003af6   0x08003af6   0x00000002   PAD
+    0x08003af8   0x08003af8   0x000000c6   Code   RO            6    .text.main          main.o
+    0x08003bbe   0x08003bbe   0x00000002   PAD
+    0x08003bc0   0x08003bc0   0x00000020   Code   RO         1432    i.__0printf         mc_w.l(printfa.o)
+    0x08003be0   0x08003be0   0x0000000e   Code   RO         1510    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08003bee   0x08003bee   0x00000002   Code   RO         1511    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08003bf0   0x08003bf0   0x0000000e   Code   RO         1512    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08003bfe   0x08003bfe   0x00000002   PAD
+    0x08003c00   0x08003c00   0x00000184   Code   RO         1439    i._fp_digits        mc_w.l(printfa.o)
+    0x08003d84   0x08003d84   0x000006dc   Code   RO         1440    i._printf_core      mc_w.l(printfa.o)
+    0x08004460   0x08004460   0x00000024   Code   RO         1441    i._printf_post_padding  mc_w.l(printfa.o)
+    0x08004484   0x08004484   0x0000002e   Code   RO         1442    i._printf_pre_padding  mc_w.l(printfa.o)
+    0x080044b2   0x080044b2   0x00000010   Data   RO          839    .rodata.s_AdcHclkPresTable  n32wb452_rcc.o
+    0x080044c2   0x080044c2   0x00000020   Data   RO          840    .rodata.s_AdcPllClkPresTable  n32wb452_rcc.o
+    0x080044e2   0x080044e2   0x00000010   Data   RO          838    .rodata.s_ApbAhbPresTable  n32wb452_rcc.o
+    0x080044f2   0x080044f2   0x0000001a   Data   RO           11    .rodata.str1.1      main.o
+    0x0800450c   0x0800450c   0x00000030   Data   RO           83    .rodata.str1.1      bsp_i2c.o
+    0x0800453c   0x0800453c   0x00000020   Data   RO         1509    Region$$Table       anon$$obj.o
+
+
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08004560, Size: 0x00001498, Max: 0x00024000, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   0x08004560   0x00000004   Data   RW         1473    .data               mc_w.l(stdout.o)
+    0x20000004   0x08004564   0x00000004   Data   RW         1409    .data.SystemCoreClock  system_n32wb452.o
+    0x20000008   0x08004568   0x00000001   Data   RW           79    .data.i2c_reg_addr  bsp_i2c.o
+    0x20000009   0x08004569   0x00000007   PAD
+    0x20000010        -       0x00000001   Zero   RW           75    .bss.Comm_Flag      bsp_i2c.o
+    0x20000011   0x08004569   0x00000003   PAD
+    0x20000014        -       0x00000004   Zero   RW           74    .bss.I2CTimeout     bsp_i2c.o
+    0x20000018        -       0x00000004   Zero   RW          149    .bss.UARTTimeout    bsp_uart.o
+    0x2000001c        -       0x00000004   Zero   RW          148    .bss.debug_uart_device  bsp_uart.o
+    0x20000020        -       0x00000004   Zero   RW           76    .bss.i2c_current_device  bsp_i2c.o
+    0x20000024        -       0x00000008   Zero   RW           10    .bss.i2c_device     main.o
+    0x2000002c        -       0x00000001   Zero   RW           80    .bss.i2c_direction  bsp_i2c.o
+    0x2000002d   0x08004569   0x00000003   PAD
+    0x20000030        -       0x00000004   Zero   RW           81    .bss.i2c_rx_buffer  bsp_i2c.o
+    0x20000034        -       0x00000002   Zero   RW           82    .bss.i2c_rx_size    bsp_i2c.o
+    0x20000036   0x08004569   0x00000002   PAD
+    0x20000038        -       0x00000004   Zero   RW           77    .bss.i2c_tx_buffer  bsp_i2c.o
+    0x2000003c        -       0x00000002   Zero   RW           78    .bss.i2c_tx_size    bsp_i2c.o
+    0x2000003e   0x08004569   0x00000002   PAD
+    0x20000040        -       0x0000000c   Zero   RW           12    .bss.uart3_device   main.o
+    0x2000004c        -       0x00000048   Zero   RW          150    .bss.uart_states    bsp_uart.o
+    0x20000094   0x08004569   0x00000004   PAD
+    0x20000098        -       0x00001400   Zero   RW         1417    STACK               startup_n32wb452.o
 
 
 ==============================================================================
@@ -2683,10 +2804,13 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        282          0          0          0          0       2487   bsp_gpio.o
-      2518          0          0          0         80       9987   bsp_uart.o
-       302          0         12         20         24       2915   main.o
+      4078         24         48          1         22       9750   bsp_i2c.o
+      2050          0          0          0         80      10258   bsp_uart.o
+       346          0         26          0         20       2938   main.o
        198          0          0          0          0       3041   misc.o
+       842          0          0          0          0       4036   n32wb452_dma.o
       1520          0          0          0          0       6164   n32wb452_gpio.o
+      1324          0          0          0          0       7721   n32wb452_i2c.o
         24          0          0          0          0       1034   n32wb452_it.o
        736          0         64          0          0      10156   n32wb452_rcc.o
       1172          0          0          0          0       6955   n32wb452_usart.o
@@ -2694,9 +2818,9 @@ Image component sizes
        814          0          0          4          0       3333   system_n32wb452.o
 
     ----------------------------------------------------------------------
-      7636          8        518         24       5228      46988   Object Totals
+     13488         32        578          8       5260      68789   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        34          0          2          0          4          0   (incl. Padding)
+        66          0          0          3         18          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2716,6 +2840,7 @@ Image component sizes
         30          0          0          0          0         68   llshl.o
         36          0          0          0          0         68   llsshr.o
         32          0          0          0          0         68   llushr.o
+        36          0          0          0          0        108   memseta.o
       2258         90          0          0          0        452   printfa.o
          0          0          0          4          0          0   stdout.o
         44          0          0          0          0         80   uidiv.o
@@ -2728,18 +2853,18 @@ Image component sizes
        228          0          0          0          0         96   dmul.o
 
     ----------------------------------------------------------------------
-      3654        106          0          4          0       1552   Library Totals
+      3690        106          0          4          0       1660   Library Totals
          4          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-      2584        106          0          4          0        896   mc_w.l
+      2620        106          0          4          0       1004   mc_w.l
       1066          0          0          0          0        656   mf_w.l
 
     ----------------------------------------------------------------------
-      3654        106          0          4          0       1552   Library Totals
+      3690        106          0          4          0       1660   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -2748,15 +2873,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     11290        114        518         28       5228      47804   Grand Totals
-     11290        114        518         28       5228      47804   ELF Image Totals
-     11290        114        518         28          0          0   ROM Totals
+     17178        138        578         12       5260      69601   Grand Totals
+     17178        138        578         12       5260      69601   ELF Image Totals
+     17178        138        578         12          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                11808 (  11.53kB)
-    Total RW  Size (RW Data + ZI Data)              5256 (   5.13kB)
-    Total ROM Size (Code + RO Data + RW Data)      11836 (  11.56kB)
+    Total RO  Size (Code + RO Data)                17756 (  17.34kB)
+    Total RW  Size (RW Data + ZI Data)              5272 (   5.15kB)
+    Total ROM Size (Code + RO Data + RW Data)      17768 (  17.35kB)
 
 ==============================================================================
 
