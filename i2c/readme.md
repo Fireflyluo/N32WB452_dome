@@ -7,28 +7,7 @@
 
 这是一个简单的I2C示例程序，展示N32WB452的基本硬件i2c操作。
 
-## 目录结构
 
-```
-.
-├── Application             # 应用程序代码
-│   ├── Inc                 # 头文件
-│   │   ├── main.h
-│   │   └── n32wb452_it.h
-│   └── Src                 # 源文件
-│       ├── main.c
-│       └── n32wb452_it.c
-├── BSP                     # 硬件抽象层
-|   ├── Device_REG          # 设备寄存器
-│   └── MCU_Peripheral      # 硬件抽象层
-│   │   ├─  Src
-│   │   |   └── bsp_i2c.c
-│   │   └── Inc  
-├── Libraries               # 芯片标准外设库和协议栈
-└── Project                 # 工程配置文件
-    ├── MDK-ARM             # Keil MDK工程配置
-    └── eide                # EIDE工程配置
-```
 
 ## 主要特性
 

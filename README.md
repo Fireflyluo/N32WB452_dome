@@ -33,10 +33,13 @@
 ## 工程结构示例
 ```
 ├── Application                     # 应用层 (业务逻辑、任务调度、UI交互)
-│   └── Sensor_Factory              # 工厂模式接口实现 (可选，若与业务强相关可放这里)
+│   
 ├── BSP                             # 板级支持包 (硬件直接操作层)
 │   ├── MCU_Peripheral              # 片上外设驱动 (GPIO/SPI/I2C等初始化与读写)
-│   └── Sensor_Driver               # 传感器裸寄存器驱动 (xxxx_reg.c)
+│   |   ├── bsp_i2c.c               # I2C初始化与读写
+│   |   ├── bsp_uart.c              # UART初始化与读写
+│   │   └── bsp_gpio.c              # GPIO初始化与读写
+│   └── Device_REG                  # 设备寄存器操作
 │       ├── lcd_reg.c               # LCD寄存器级操作
 │       └── icm42688_reg.c          # IMU寄存器级操作
 ├── Drivers                         # 设备驱动层 (硬件抽象接口)
@@ -60,9 +63,9 @@
 ├── Project                         # 工程文件 (IDE相关)
 │   ├── eide                        # EIDE工程
 │   └── MDK-ARM                     # Keil工程
-└── Include                         # 全局头文件 (替代Public)
+└── Include                         # 全局头文件 
     ├── config.h                    # 项目配置
-    ├── types.h                     # 自定义数据类型
+    ├── ioconfig.h                  # 引脚配置
     └── sensor_defines.h            # 传感器通用参数定义
 
 ```
@@ -102,6 +105,7 @@
 
 - [x] LED控制（GPIO）
 - [x] I2C通信示例
+- [x] 串口通信示例
 
 ## 待实现功能
 
@@ -123,6 +127,14 @@
 - **2025-10-7**: 初始版本提交
   - 添加LED控制示例
   - 修改工程结构和文档描述
+- **2025-10-15**: @i2c 功能提交
+  - 添加bsp_i2c驱动
+  - 修改工程结构和文档描述
+  - 添加i2c轮询模式
+- **2025-10-23**: @uart 功能提交
+  - 添加bsp_uart驱动
+  - 修改工程结构和文档描述
+  - 添加uart轮询和中断模式
 
 ## 联系方式
 

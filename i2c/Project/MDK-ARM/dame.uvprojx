@@ -382,6 +382,16 @@
       </TargetOption>
       <Groups>
         <Group>
+          <GroupName>Include</GroupName>
+          <Files>
+            <File>
+              <FileName>ioconfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\Include\ioconfig.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Application</GroupName>
           <Files>
             <File>
@@ -393,11 +403,6 @@
               <FileName>main.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\Application\Inc\main.h</FilePath>
-            </File>
-            <File>
-              <FileName>ioconfig.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\Application\Inc\ioconfig.h</FilePath>
             </File>
             <File>
               <FileName>n32wb452_it.c</FileName>
