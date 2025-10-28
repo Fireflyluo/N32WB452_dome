@@ -41,7 +41,7 @@
 │   │   └── bsp_gpio.c              # GPIO初始化与读写
 │   └── Device_REG                  # 设备寄存器操作
 │       ├── lcd_reg.c               # LCD寄存器级操作
-│       └── icm42688_reg.c          # IMU寄存器级操作
+│       └── icm42688                # IMU寄存器级操作
 ├── Drivers                         # 设备驱动层 (硬件抽象接口)
 │   ├── Sensor                      # 传感器标准化接口 
 │   │   ├── lcd.c                   # LCD的init/read/write接口
@@ -106,6 +106,7 @@
 - [x] LED控制（GPIO）
 - [x] I2C通信示例
 - [x] 串口通信示例
+- [x] Icm42688陀螺仪驱动
 
 ## 待实现功能
 
@@ -120,7 +121,7 @@
 每个工程的详细使用说明请查看对应目录下的README文件：
 
 - [N32wb452_Project说明](N32wb452_Project/readme.md)
-
+- [i2c说明](i2c/readme.md)
 
 ## 更新日志
 
@@ -135,6 +136,8 @@
   - 添加bsp_uart驱动
   - 修改工程结构和文档描述
   - 添加uart轮询和中断模式
+- **2025-10-28**: @icm42688 驱动提交
+  - 添加icm42688陀螺仪驱动
 
 ## 联系方式
 
