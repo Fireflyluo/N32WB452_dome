@@ -107,7 +107,6 @@ void I2C_Polling_Test(void)
     if (result == 0)
     {
         printf("I2C success!\n");
-
     }
     else
     {

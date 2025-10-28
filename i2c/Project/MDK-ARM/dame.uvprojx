@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>N32WB452, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\CMSIS\core;..\..\Libraries\CMSIS\device;..\..\Libraries\CMSIS\device\startup;..\..\Libraries\n32wb452_algo_lib\inc;..\..\Libraries\n32wb452_ble_driver\inc;..\..\Libraries\n32wb452_std_periph_driver\inc;..\..\Libraries\n32wb452_usbfs_driver\inc;..\..\Application\Inc;..\..\BSP\Device_REG;..\..\BSP\MCU_Peripheral\Inc;..\..\Drivers;..\..\Include</IncludePath>
+              <IncludePath>..\..\Libraries\CMSIS\core;..\..\Libraries\CMSIS\device;..\..\Libraries\CMSIS\device\startup;..\..\Libraries\n32wb452_algo_lib\inc;..\..\Libraries\n32wb452_ble_driver\inc;..\..\Libraries\n32wb452_std_periph_driver\inc;..\..\Libraries\n32wb452_usbfs_driver\inc;..\..\Application\Inc;..\..\BSP\Device_REG;..\..\BSP\MCU_Peripheral\Inc;..\..\Drivers;..\..\Include;..\..\BSP\Device_REG\ICM42688P</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -453,6 +453,23 @@
         </Group>
         <Group>
           <GroupName>BSP/Device_REG</GroupName>
+          <Files>
+            <File>
+              <FileName>icm42688_reg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\Device_REG\ICM42688P\icm42688_reg.h</FilePath>
+            </File>
+            <File>
+              <FileName>icm42688p.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\Device_REG\ICM42688P\icm42688p.c</FilePath>
+            </File>
+            <File>
+              <FileName>icm42688p.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\Device_REG\ICM42688P\icm42688p.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Drivers</GroupName>
