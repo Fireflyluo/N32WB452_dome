@@ -47,7 +47,7 @@ static void bsp_i2c_polingInit(I2C_Module *i2c_base);
 void BSP_I2C_Init(BSP_I2C_Device *device, I2C_Module *i2c_base, uint8_t device_addr, BSP_I2C_CommMode mode)
 {
     device->i2c_base = i2c_base;
-    device->device_addr = device_addr;
+    device->device_addr = device_addr << 1;
     device->comm_mode = mode;
 
     // 根据不同模式进行相应初始化
@@ -451,17 +451,11 @@ int BSP_I2C_Master_Receive_Polling(BSP_I2C_Device *device, uint8_t reg_addr, uin
     /*--- 阶段6: 数据接收处理 ---*/
     if (size == 1)
     {
-        // 接收1个字节
-        I2C_ConfigAck(device->i2c_base, DISABLE); // 禁用应答
-        if (Comm_Flag == C_READY)
-        {
-            Comm_Flag = C_STOP_BIT;
-            I2C_GenerateStop(device->i2c_base, ENABLE);
-        }
+        // 修复单字节接收：严格按照官方例程
+        I2C_ConfigAck(device->i2c_base, DISABLE);
 
         I2CTimeout = I2CT_LONG_TIMEOUT;
-        // 等待接收数据非空中断标志
-        while (!I2C_GetFlag(device->i2c_base, I2C_EVT_MASTER_DATA_RECVD_FLAG))
+        while (!I2C_CheckEvent(device->i2c_base, I2C_EVT_MASTER_DATA_RECVD_FLAG))
         {
             if ((I2CTimeout--) == 0)
             {
@@ -469,10 +463,14 @@ int BSP_I2C_Master_Receive_Polling(BSP_I2C_Device *device, uint8_t reg_addr, uin
                 goto error_cleanup;
             }
         }
-        *recvBufferPtr++ = I2C_RecvData(device->i2c_base);
+        *recvBufferPtr = I2C_RecvData(device->i2c_base);
+
+        // 不能过早终止I2C通信，导致数据接收标志无法置位
+        I2C_GenerateStop(device->i2c_base, ENABLE);
     }
     else if (size == 2)
     {
+
         // 双字节优化模式 (RM 15.4.8)
         I2C_ConfigAck(device->i2c_base, ENABLE); // 第一个字节ACK
         // 接收第一个字节
@@ -489,7 +487,6 @@ int BSP_I2C_Master_Receive_Polling(BSP_I2C_Device *device, uint8_t reg_addr, uin
 
         // 准备接收最后一个字节
         I2C_ConfigAck(device->i2c_base, DISABLE); // 最后一个字节NACK
-        I2C_GenerateStop(device->i2c_base, ENABLE);
 
         // 接收第二个字节
         I2CTimeout = I2CT_LONG_TIMEOUT;
@@ -502,6 +499,7 @@ int BSP_I2C_Master_Receive_Polling(BSP_I2C_Device *device, uint8_t reg_addr, uin
             }
         }
         *recvBufferPtr = I2C_RecvData(device->i2c_base);
+        I2C_GenerateStop(device->i2c_base, ENABLE);
     }
     else
     {

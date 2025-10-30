@@ -67,6 +67,7 @@
 #include "bsp_uart.h"
 #include "bsp_gpio.h"
 
+#include "imu_driver.h"
 BSP_I2C_Device i2c_device;
 // 定义UART设备实例
 BSP_UART_Device uart2_device;
@@ -74,7 +75,6 @@ BSP_UART_Device uart3_device;
 // 接收缓冲区
 uint8_t rx_buffer[128];
 uint8_t tx_buffer[20] = "hello UART!\r\n";
-
 
 /**
  * @brief I2C 轮询模式测试函数
@@ -90,7 +90,7 @@ void I2C_Polling_Test(void)
     int result;
 
     // 初始化 I2C 设备为轮询模式
-    BSP_I2C_Init(&i2c_device, I2C1, 0xD2, BSP_I2C_MODE_POLLING); // 设备地址为 0x69 << 1
+    BSP_I2C_Init(&i2c_device, I2C1, 0x69, BSP_I2C_MODE_POLLING); // 设备地址为 0x69
 
     result = BSP_I2C_Master_Receive(&i2c_device, 0x75, read_data, 4);
     if (result == 0)
@@ -102,9 +102,8 @@ void I2C_Polling_Test(void)
         printf("I2C error!\n");
     }
     // 扫描I2C总线上的设备
-    BSP_I2C_ScanDevices(&i2c_device, found_devices, 120);
+//    BSP_I2C_ScanDevices(&i2c_device, found_devices, 120);
 }
-
 
 /**
  * @brief  主程序入口
@@ -114,8 +113,8 @@ void I2C_Polling_Test(void)
 int main(void)
 {
     /* SystemInit()函数已在启动文件startup_n32wb452.s中调用 */
-    BSP_SysTick_Init(SystemCoreClock/1000);
-    
+    BSP_SysTick_Init(SystemCoreClock / 1000);
+
     BSP_GPIO_Init();
     BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_SET);
     CIRCUIT_SWITCH_UART3_ON();
@@ -127,12 +126,13 @@ int main(void)
 
     I2C_Polling_Test();
 
+    BSP_I2C_Init(&i2c_device, I2C1, 0x69, BSP_I2C_MODE_POLLING); // 设备地址为 0x69
+    imu_init();
     while (1)
     {
 
         BSP_GPIO_TogglePin(G_LED_GPIO, G_LED_PIN);
         BSP_GPIO_TogglePin(R_LED_GPIO, R_LED_PIN);
-
 
         BSP_Delay(1000);
         BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_RESET);

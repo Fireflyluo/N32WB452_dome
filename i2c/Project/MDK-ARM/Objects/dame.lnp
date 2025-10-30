@@ -1,11 +1,12 @@
 --cpu=Cortex-M4.fp.sp
 ".\objects\main.o"
 ".\objects\n32wb452_it.o"
+".\objects\bsp_sys.o"
 ".\objects\bsp_i2c.o"
 ".\objects\bsp_gpio.o"
 ".\objects\bsp_uart.o"
-".\objects\bsp_sys.o"
 ".\objects\icm42688p.o"
+".\objects\imu_driver.o"
 ".\objects\misc.o"
 ".\objects\n32wb452_adc.o"
 ".\objects\n32wb452_bkp.o"

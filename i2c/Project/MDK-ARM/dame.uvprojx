@@ -420,6 +420,16 @@
           <GroupName>BSP/MCU_Peripheral</GroupName>
           <Files>
             <File>
+              <FileName>bsp_sys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\MCU_Peripheral\Src\bsp_sys.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_sys.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\MCU_Peripheral\Inc\bsp_sys.h</FilePath>
+            </File>
+            <File>
               <FileName>bsp_i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\BSP\MCU_Peripheral\Src\bsp_i2c.c</FilePath>
@@ -449,16 +459,6 @@
               <FileType>5</FileType>
               <FilePath>..\..\BSP\MCU_Peripheral\Inc\bsp_uart.h</FilePath>
             </File>
-            <File>
-              <FileName>bsp_sys.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\BSP\MCU_Peripheral\Src\bsp_sys.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_sys.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\BSP\MCU_Peripheral\Inc\bsp_sys.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -483,6 +483,18 @@
         </Group>
         <Group>
           <GroupName>Drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>imu_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Drivers\imu_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>imu_driver.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\Drivers\imu_driver.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Middleware</GroupName>

@@ -260,9 +260,13 @@ icm42688_err_t icm42688_init(icm42688_device_t *dev,
     dev->current_bank = ICM42688_BANK0; // 默认Bank0
 
     /* 验证设备ID */
+    uint8_t read_data[2] = {0};
     uint8_t whoami;
     icm42688_err_t ret = icm42688_read_reg_internal(dev, ICM42688_REG_WHO_AM_I,
-                                                    &whoami, 1);
+                                                    read_data, 2);
+    whoami = read_data[0];                                                    
+//    icm42688_err_t ret = icm42688_read_reg_internal(dev, ICM42688_REG_WHO_AM_I,
+//                                                    &whoami, 1);
     if (ret != ICM42688_OK)
     {
         return ret;
