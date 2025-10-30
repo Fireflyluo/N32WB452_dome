@@ -99,10 +99,11 @@ void DebugMon_Handler(void)
 
 /**
  * @brief  This function handles SysTick Handler.
+ * 已在bsp_sys.c中实现
  */
-void SysTick_Handler(void)
-{
-}
+//void SysTick_Handler(void)
+//{
+//}
 
 /**
  * @brief  This function handles DMA interrupt request defined in main.h .

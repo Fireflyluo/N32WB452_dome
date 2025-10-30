@@ -62,6 +62,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#include "bsp_sys.h"
 #include "bsp_i2c.h"
 #include "bsp_uart.h"
 #include "bsp_gpio.h"
@@ -74,18 +75,6 @@ BSP_UART_Device uart3_device;
 uint8_t rx_buffer[128];
 uint8_t tx_buffer[20] = "hello UART!\r\n";
 
-/**
- * @brief  延时函数
- *
- * 通过空循环实现简单的软件延时
- *
- * @param count 延时循环计数，数值越大延时越长
- */
-void Delay(uint32_t count)
-{
-    for (; count > 0; count--)
-        ;
-}
 
 /**
  * @brief I2C 轮询模式测试函数
@@ -116,23 +105,6 @@ void I2C_Polling_Test(void)
     BSP_I2C_ScanDevices(&i2c_device, found_devices, 120);
 }
 
-/**
- * @brief 断言失败处理函数
- *
- * 当启用断言检查且断言条件不满足时，会调用此函数
- *
- * @param expr 失败的断言表达式
- * @param file 发生失败的源文件名
- * @param line 发生失败的行号
- */
-#ifdef USE_FULL_ASSERT
-void assert_failed(const uint8_t *expr, const uint8_t *file, uint32_t line)
-{
-    while (1)
-    {
-    }
-}
-#endif // USE_FULL_ASSERT
 
 /**
  * @brief  主程序入口
@@ -142,7 +114,8 @@ void assert_failed(const uint8_t *expr, const uint8_t *file, uint32_t line)
 int main(void)
 {
     /* SystemInit()函数已在启动文件startup_n32wb452.s中调用 */
-
+    BSP_SysTick_Init(SystemCoreClock/1000);
+    
     BSP_GPIO_Init();
     BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_SET);
     CIRCUIT_SWITCH_UART3_ON();
@@ -160,19 +133,14 @@ int main(void)
         BSP_GPIO_TogglePin(G_LED_GPIO, G_LED_PIN);
         BSP_GPIO_TogglePin(R_LED_GPIO, R_LED_PIN);
 
-        /* 插入延时 */
-        Delay(0x28FFFF);
 
+        BSP_Delay(1000);
         BSP_GPIO_WritePin(R_LED_GPIO, R_LED_PIN, GPIO_PIN_RESET);
-        /* 插入延时 */
-        Delay(0x28FFFF);
-
-        /* 点亮Led3 */
+        BSP_Delay(1000);
         BSP_GPIO_WritePin(G_LED_GPIO, G_LED_PIN, GPIO_PIN_SET);
-        /* 插入延时 */
-        Delay(0x28FFFF);
+        BSP_Delay(1000);
         BSP_GPIO_WritePin(G_LED_GPIO, G_LED_PIN, GPIO_PIN_RESET);
-        Delay(0x28FFFF);
+        BSP_Delay(1000);
     }
 }
 /**

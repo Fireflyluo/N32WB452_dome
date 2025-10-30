@@ -1,7 +1,9 @@
-./objects/main.o: ..\..\Application\Src\main.c \
-  ..\..\Application\Inc\main.h ..\..\Libraries\CMSIS\device\n32wb452.h \
-  ..\..\Libraries\CMSIS\core\core_cm4.h \
+./objects/bsp_sys.o: ..\..\BSP\MCU_Peripheral\Src\bsp_sys.c \
+  ..\..\BSP\MCU_Peripheral\Inc\bsp_sys.h \
   D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
+  ..\..\Libraries\CMSIS\device\n32wb452.h \
+  ..\..\Libraries\CMSIS\core\core_cm4.h \
   ..\..\Libraries\CMSIS\core\cmsis_version.h \
   ..\..\Libraries\CMSIS\core\cmsis_compiler.h \
   ..\..\Libraries\CMSIS\core\cmsis_armclang.h \
@@ -9,7 +11,6 @@
   D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
   ..\..\Libraries\CMSIS\core\mpu_armv7.h \
   ..\..\Libraries\CMSIS\device\system_n32wb452.h \
-  D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   ..\..\Libraries\CMSIS\device\n32wb452_conf.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_adc.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_bkp.h \
@@ -32,10 +33,4 @@
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_usart.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_wwdg.h \
   ..\..\Libraries\n32wb452_std_periph_driver\inc\n32wb452_tsc.h \
-  ..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h \
-  ..\..\Include\ioconfig.h \
-  D:\APP\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  ..\..\BSP\MCU_Peripheral\Inc\bsp_sys.h \
-  ..\..\BSP\MCU_Peripheral\Inc\bsp_i2c.h \
-  ..\..\BSP\MCU_Peripheral\Inc\bsp_uart.h \
-  ..\..\BSP\MCU_Peripheral\Inc\bsp_gpio.h
+  ..\..\Libraries\n32wb452_std_periph_driver\inc\misc.h

@@ -449,6 +449,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\BSP\MCU_Peripheral\Inc\bsp_uart.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_sys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\BSP\MCU_Peripheral\Src\bsp_sys.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_sys.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\BSP\MCU_Peripheral\Inc\bsp_sys.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
