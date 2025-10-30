@@ -451,7 +451,7 @@ int BSP_I2C_Master_Receive_Polling(BSP_I2C_Device *device, uint8_t reg_addr, uin
     /*--- 阶段6: 数据接收处理 ---*/
     if (size == 1)
     {
-        // 修复单字节接收：严格按照官方例程
+  
         I2C_ConfigAck(device->i2c_base, DISABLE);
 
         I2CTimeout = I2CT_LONG_TIMEOUT;
