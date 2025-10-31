@@ -97,8 +97,6 @@ extern "C"
 
 /* Bank 0 电源管理寄存器 */
 #define ICM42688_REG_PWR_MGMT0 0x4E
-// #define ICM42688_REG_PWR_MGMT1 0x4F // 注：文档中未详细描述
-// #define ICM42688_REG_PWR_MGMT2 0x50 // 注：文档中未详细描述
 
 /* Bank 0 陀螺仪配置寄存器 */
 #define ICM42688_REG_GYRO_CONFIG0 0x4F
@@ -234,30 +232,90 @@ extern "C"
     /* ========================================================================== */
     /**
      * @brief 设备配置寄存器 (Bank 0, Addr 0x11)
+     * @note  DEVICE_CONFIG 寄存器用于配置设备的基本操作模式
      */
     typedef union
     {
         struct
         {
-            uint8_t SOFT_RESET : 1; // [0] 软件复位
+            uint8_t SOFT_RESET : 1; // [0] 软复位配置 0: 正常（默认） 1: 写⼊ 1 后启用复位，需要 1ms 延迟使软复位生效
             uint8_t RESERVED0 : 3;  // [3:1] 保留
-            uint8_t ACCEL_MODE : 2; // [5:4] 加速度计模式
-            uint8_t GYRO_MODE : 2;  // [7:6] 陀螺仪模式
+            uint8_t SPI_MODE : 1;   // [4] SPI模式选择 0: 模式0和模式3（默认） 1: 模式1和模式2
+            uint8_t RESERVED1 : 3;  // [7:5] 保留
         } bits;
         uint8_t reg;
     } icm42688_reg_device_config_t;
 
     /**
-     * @brief 电源管理寄存器0 (Bank 0, Addr 0x4E)
+     * @brief 中断控制寄存器 (Bank 0, Addr 0x14)
+     * @note  INT_CONFIG 寄存器用于配置设备的基本操作模式
      */
     typedef union
     {
         struct
         {
-            uint8_t TEMP_DIS : 1;   // [0] 温度传感器禁用
-            uint8_t IDLE : 1;       // [1] 空闲模式
-            uint8_t GYRO_MODE : 2;  // [3:2] 陀螺仪模式
-            uint8_t ACCEL_MODE : 2; // [5:4] 加速度计模式
+            uint8_t INT1_POLARITY : 1;      // [0] INT1 中断极性 0: 低电平有效 1: 高电平有效
+            uint8_t INT1_DRIVE_CIRCUIT : 1; // [1] 驱动方式 0: 开漏  1: 推挽
+            uint8_t INT1_MODE : 1;          // [2] INT1 中断模式 0: 脉冲 1: 锁存
+            uint8_t INT2_POLARITY : 1;      // [3] INT1 中断极性 0: 低电平有效 1: 高电平有效
+            uint8_t INT2_DRIVE_CIRCUIT : 1; // [4] 驱动方式 0: 开漏  1: 推挽
+            uint8_t INT2_MODE : 1;          // [5] INT1 中断模式 0: 脉冲 1: 锁存
+            uint8_t RESERVED : 2;           // [7:6] 保留
+        } bits;
+        uint8_t reg;
+    } icm42688_reg_int_config_t;
+
+    /**
+     * @brief 接口配置寄存器0 (Bank 0, Addr 0x4C)
+     * @note  INTF_CONFIG0 寄存器用于配置设备基本操作模式
+     */
+    typedef union
+    {
+        struct
+        {
+            uint8_t UI_SIFS_CFG : 2;            // [1:0] 用户接口配置 0x: 保留 10 : 禁⽤ SPI 11 : 禁⽤ I2C
+            uint8_t RESERVED : 2;               // [3:2] 保留
+            uint8_t SENSOR_DATA_ENDIAN : 1;     // [4] 传感器数据字节序 0: 小端模式（默认） 1: 大端模式
+            uint8_t FIFO_COUNT_ENDIAN : 1;      // [5] FIFO计数字节序 0: 小端模式（默认） 1: 大端模式
+            uint8_t FIFO_COUNT_REC : 1;         // [6] FIFO计数 0: FIFO 计数以字节报告 1: FIFO 计数以记录报告
+                                                // 1 记录 = 16 字节头+陀螺仪+加速度计 + 温度传感器数据 + 时间戳，
+                                                // 或 8 字节头 + 陀螺仪 / 加速度计 + 温度传感器数据，
+                                                // 或 20 字节头 + 陀螺仪 + 加速度计 + 温度传感器数据 + 时间戳 + 20 位扩展数据
+            uint8_t FIFO_HOLD_LAST_DATA_EN : 1; // [7] 该位选择⽆效样本的处理⽅式
+        } bits;
+        uint8_t reg;
+    } icm42688_reg_intf_config0_t;
+
+    /**
+     * @brief 接口配置寄存器1 (Bank 0, Addr 0x4D)
+     * @note  INTF_CONFIG1 寄存器用于配置设备基本操作模式
+     */
+    typedef union
+    {
+        struct
+        {
+            uint8_t CLKSEL : 2;           // [0:1] 时钟选择 00: 始终选择内部 RC 振荡器
+                                          // 01: 在可⽤时选择 PLL，否则选择 RC振荡器（默认）
+                                          // 10 : 保留
+                                          // 11 : 禁⽤所有时钟
+            uint8_t RTC_MOD : 1;          // [2] RTC 模式0: ⽆需输⼊ 1: RTC 输⼊启⽤
+            uint8_t ACCEL_LP_CLK_SEL : 1; // [3] 加速度计低功耗时钟选择 0: RC 振荡器 1: PLL
+            uint8_t RESERVED : 5;         // [7:4] 保留
+        } bits;
+        uint8_t reg;
+    } icm42688_reg_intf_config1_t;
+    /**
+     * @brief 电源管理寄存器0 (Bank 0, Addr 0x4E)
+     * @note  PWR_MGMT0 寄存器用于配置设备基本操作模式
+     */
+    typedef union
+    {
+        struct
+        {
+            uint8_t ACCEL_MODE : 2; // [1:0] 加速度计模式 00: 关闭模式（默认） 01: 关闭加速度计 10: 低功耗模式 11: 低噪声模式
+            uint8_t GYRO_MODE : 2;  // [3:2] 陀螺仪模式   00: 关闭模式（默认） 01: 陀螺仪待机 10: 保留 11: 低噪声模式
+            uint8_t IDLE : 1;       // [4] 空闲模式 如果此位设置为 1，即使加速度计和陀螺仪关闭，RC 振荡器也会供电。
+            uint8_t TEMP_DIS : 1;   // [5] 温度传感器禁用 0: 温度传感器启⽤（默认） 1: 温度传感器禁⽤
             uint8_t RESERVED : 2;   // [7:6] 保留
         } bits;
         uint8_t reg;
@@ -265,28 +323,31 @@ extern "C"
 
     /**
      * @brief 陀螺仪配置寄存器0 (Bank 0, Addr 0x4F)
+     * @note  GYRO_CONFIG0 用于配置陀螺仪输出数据速率和满量程选择
      */
     typedef union
     {
         struct
         {
-            uint8_t GYRO_ODR : 4;       // [3:0] 陀螺仪输出数据速率
-            uint8_t GYRO_UI_FS_SEL : 3; // [6:4] 陀螺仪满量程选择
-            uint8_t RESERVED : 1;       // [7] 保留
+            uint8_t GYRO_ODR : 4;    // [3:0] 陀螺仪输出数据速率 参数枚举：icm42688_odr_t
+            uint8_t RESERVED : 1;    // [4] 保留
+            uint8_t GYRO_FS_SEL : 3; // [7:5] 陀螺仪满量程选择 参数枚举：icm42688_gyro_fs_t
         } bits;
         uint8_t reg;
     } icm42688_reg_gyro_config0_t;
 
     /**
      * @brief 加速度计配置寄存器0 (Bank 0, Addr 0x50)
+     * @note  ACCEL_CONFIG0 用于配置加速度计输出数据速率和满量程选择
      */
     typedef union
     {
         struct
         {
-            uint8_t ACCEL_ODR : 4;       // [3:0] 加速度计输出数据速率
-            uint8_t ACCEL_UI_FS_SEL : 3; // [6:4] 加速度计满量程选择
-            uint8_t RESERVED : 1;        // [7] 保留
+            uint8_t ACCEL_ODR : 4;    // [3:0] 加速度计输出数据速率 参数枚举：icm42688_odr_t
+            uint8_t RESERVED : 1;     // [4] 保留
+            uint8_t ACCEL_FS_SEL : 3; // [7:5] 加速度计满量程选择  参数枚举：icm42688_accel_fs_t
+
         } bits;
         uint8_t reg;
     } icm42688_reg_accel_config0_t;
@@ -298,139 +359,178 @@ extern "C"
     {
         struct
         {
-            uint8_t GYRO_UI_FILT_ORD : 2; // [1:0] 陀螺仪UI滤波器阶数
-            uint8_t GYRO_UI_FILT_BW : 3;  // [4:2] 陀螺仪UI滤波器带宽
-            uint8_t RESERVED : 3;         // [7:5] 保留位
+            uint8_t GYRO_DEC2_M2_ORD : 2; // [1:0] 陀螺仪降采样2阶数 00,01,11: 保留 10: 3阶
+            uint8_t GYRO_UI_FILT_ORD : 2; // [3:2] 陀螺仪UI滤波器阶数 参数枚举：icm42688_filter_order_t
+            uint8_t RESERVED : 1;         // [4] 保留位
+            uint8_t TEMP_FILT_BW : 3;     // [7:5] 温度滤波器带宽
         } bits;
         uint8_t reg;
     } icm42688_reg_gyro_config1_t;
     /**
      * @brief 加速度计配置寄存器1 (Bank 0, Addr 0x53)
-     * @note 用于配置加速度计UI滤波器参数
+     * @note ACCEL_CONFIG1 用于配置加速度计UI滤波器参数
      */
     typedef union
     {
         struct
         {
-            uint8_t ACCEL_UI_FILT_ORD : 2; // [1:0] 加速度计UI滤波器阶数
-            uint8_t ACCEL_UI_FILT_BW : 3;  // [4:2] 加速度计UI滤波器带宽
-            uint8_t RESERVED : 3;          // [7:5] 保留位
+            uint8_t RESERVED0 : 1;         // [0] 保留位
+            uint8_t ACCEL_DEC2_M2_ORD : 2; // [1:0] 加速度计降采样2阶数
+            uint8_t ACCEL_UI_FILT_ORD : 2; // [4:3] 加速度计UI滤波器阶数
+            uint8_t RESERVED1 : 3;         // [7:5] 保留位
         } bits;
         uint8_t reg;
     } icm42688_reg_accel_config1_t;
     /**
      * @brief 时间戳配置寄存器 (Bank 0, Addr 0x54)
-     * @note 用于配置时间戳功能和时钟源选择
+     * @note TMST_CONFIG 用于配置时间戳功能和时钟源选择
      */
     typedef union
     {
         struct
         {
-            uint8_t TMST_EN : 1;     // [0] 时间戳使能位
-            uint8_t TMST_SOURCE : 2; // [2:1] 时间戳源选择
-            uint8_t RESERVED : 5;    // [7:3] 保留位
+            uint8_t TMST_EN : 1;         // [0] 时间戳使能位 0: 时间戳寄存器禁⽤ 1: 时间戳寄存器启用(默认)
+            uint8_t TMST_FSYNC_EN : 1;   // [1] 时间戳寄存器 FSYNC 启⽤（默认值）。
+                                         // ⽤⼾需要选择 FIFO_TMST_FSYNC_EN，以便将时间戳值传递到FIFO。
+            uint8_t TMST_DELTA_EN : 1;   // [2] 时间戳增量启⽤：
+                                         // 当设置为 1 时，时间戳字段包含⾃上次 ODR 发⽣以来的时间测量值。
+            uint8_t TMST_RES : 1;        // [3] 时间戳分辨率：
+                                         // 设置为 0（默认值），时间戳分辨率为 1 微秒。设置为 1 时，分辨率为 16 微秒
+            uint8_t TMST_TO_REGS_EN : 1; // [4] 时间戳写入寄存器使能
+                                         // 0: TMST_VALUE[19:0] 始终读取返回 0； 1:TMST_VALUE [19:0] 读取返回时间戳值
+            uint8_t RESERVED : 3;        // [7:5] 保留
         } bits;
         uint8_t reg;
     } icm42688_reg_tmst_config_t;
 
     /**
-     * @brief FIFO配置寄存器1 (Bank 0, Addr 0x5F)
+     * @brief APEX配置寄存器1 (Bank 0, Addr 0x56)
+     * @note APEX_CONFIG0 用于配置APEX活动检测功能
      */
     typedef union
     {
         struct
         {
-            uint8_t FIFO_MODE : 1;     // [0] FIFO模式
-            uint8_t FIFO_ACCEL_EN : 1; // [1] 加速度计FIFO使能
-            uint8_t FIFO_GYRO_EN : 1;  // [2] 陀螺仪FIFO使能
-            uint8_t FIFO_TEMP_EN : 1;  // [3] 温度FIFO使能
-            uint8_t RESERVED : 4;      // [7:4] 保留
+            uint8_t DMP_ODR : 1;        // [1:0] DMP ODR使能 00: 25Hz  01: 保留 10: 50Hz 11: 保留
+            uint8_t RESERVED0 : 4;      // [2] 保留
+            uint8_t R2W_EN : 1;         // 0 : 抬起唤醒/休眠未启⽤ 1 : 抬起唤醒/休眠已启⽤
+            uint8_t TILT_ENABLE : 1;    // 0: 倾斜检测未启⽤ 1: 倾斜检测已启⽤
+            uint8_t PED_ENABLE : 1;     // 0: 计步器未启⽤ 1: 计步器已启⽤
+            uint8_t TAP_ENABLE : 1;     // 0: 轻敲检测未启⽤ 1: 轻敲检测已启⽤
+            uint8_t DMP_POWER_SAVE : 1; // 0: 休眠未启⽤ 1: 休眠已启⽤
+        } bits;
+        uint8_t reg;
+    } icm42688_reg_apex_config0_t;
+
+    /**
+     * @brief FIFO配置寄存器1 (Bank 0, Addr 0x5F)
+     * @note FIFO_CONFIG1 用于配置FIFO操作模式
+     */
+    typedef union
+    {
+        struct
+        {
+            uint8_t FIFO_ACCEL_EN : 1;          // [0] 启⽤加速度计数据包发送⾄ FIFO
+            uint8_t FIFO_GYRO_EN : 1;           // [1] 启⽤陀螺仪数据包发送⾄ FIFO
+            uint8_t FIFO_TEMP_EN : 1;           // [2] 启⽤温度数据包发送⾄ FIFO
+            uint8_t FIFO_TMST_FSYNC_EN : 1;     // [3] 启⽤时间戳/FSYNC 数据包发送⾄ FIFO
+            uint8_t FIFO_HIRES_EN : 1;          // [4]  启⽤高分辨率模式
+            uint8_t FIFO_WM_GT_TH : 1;          // [5]  FIFO 水位阈值中断使能
+            uint8_t FIFO_RESUME_PARTIAL_RD : 1; // [6] 0: 禁⽤部分 FIFO 读取，需要重新读取整个 FIFO
+                                                //     1: FIFO 读取可以是部分的，并从上次读取的位置继续
+            uint8_t RESERVED : 1;               // [7] 保留
         } bits;
         uint8_t reg;
     } icm42688_reg_fifo_config1_t;
 
     /**
      * @brief 中断配置寄存器0 (Bank 0, Addr 0x63)
+     * @note INT_CONFIG0 用于配置中断锁存模式和中断清除选项
      */
     typedef union
     {
         struct
         {
-            uint8_t INT1_MODE : 1;     // [0] INT1引脚模式
-            uint8_t INT1_DRIVE : 1;    // [1] INT1驱动电路
-            uint8_t INT1_POLARITY : 1; // [2] INT1极性
-            uint8_t INT2_MODE : 1;     // [3] INT2引脚模式
-            uint8_t INT2_DRIVE : 1;    // [4] INT2驱动电路
-            uint8_t INT2_POLARITY : 1; // [5] INT2极性
-            uint8_t RESERVED : 2;      // [7:6] 保留
+            uint8_t FIFO_FULL_INT_CLEAR : 2; // [0] FIFO 满中断清除选项（锁存模式）
+            uint8_t FIFO_THS_INT_CLEAR : 2;  // [1] FIFO 阈值中断清除选项（锁存模式）
+            uint8_t UI_DRDY_INT_CLEAR : 2;   // [2] 数据准备好中断清除选项（锁存模式）
+            uint8_t RESERVED : 2;            // [7:6] 保留
         } bits;
         uint8_t reg;
     } icm42688_reg_int_config0_t;
 
     /**
      * @brief 中断配置寄存器1 (Bank 0, Addr 0x64)
+     * @note INT_CONFIG1 用于配置中断脉冲持续时间和异步复位
      */
     typedef union
     {
         struct
         {
-            uint8_t INT_TPULSE_DURATION : 4; // [3:0] 中断脉冲持续时间
-            uint8_t INT_ASYNC_RESET : 1;     // [4] 异步复位
-            uint8_t RESERVED : 3;            // [7:5] 保留
+            uint8_t RESERVED : 4;              // [3:0] 保留
+            uint8_t INT_ASYNC_RESET : 1;       // [4] 异步中断复位使能 ⽤⼾应将设置从默认的 1 更改为 0，以正确操作 INT1 和 INT2 引脚
+            uint8_t INT_TDEASSERT_DISABLE : 1; // [5] 中断去使能持续时间
+            uint8_t INT_TPULSE_DURATION : 1;   // [6] 中断脉冲持续时间
+            uint8_t RESERVED1 : 1;             // [7] 保留
         } bits;
         uint8_t reg;
     } icm42688_reg_int_config1_t;
+
     /**
-     * @brief 自检配置寄存器 (Bank 0, Addr 0x70)
-     * @note 用于控制陀螺仪和加速度计的自检功能
+     * @brief 中断配置寄存器0 (Bank 0, Addr 0x65)
+     * @note INT_SOURCE0
      */
     typedef union
     {
         struct
         {
-            uint8_t GYRO_SELF_TEST_EN : 1;  // [0] 陀螺仪自检使能
-            uint8_t ACCEL_SELF_TEST_EN : 1; // [1] 加速度计自检使能
-            uint8_t RESERVED : 6;           // [7:2] 保留位
+            uint8_t UI_AGC_RDY_INT1_EN : 1; // [0]  UI AGC 就绪数据就绪中断（INT1）
+            uint8_t FIFO_FULL_INT1_EN : 1;  // [1] FIFO 满中断未（INT1）
+            uint8_t FIFO_THS_INT1_EN : 1;   // [2] FIFO 阈值中断（INT1）
+            uint8_t UI_DRDY_INT1_E : 1;     // [3] 数据准备好中断（INT1）
+            uint8_t RESET_DONE_INT1_EN : 1; // [4] 重置完成中断（INT1）
+            uint8_t PLL_RDY_INT1_EN : 1;    // [5] PLL 就绪中断
+            uint8_t UI_FSYNC_INT1_EN : 1;   // [6] UI FSYNC 中断
+            uint8_t RESERVED : 1;           // [7] 保留
+
+        } bits;
+        uint8_t reg;
+    } icm42688_reg_int_source0_t;
+
+    /**
+     * @brief 自检配置寄存器 (Bank 0, Addr 0x70)
+     * @note SELF_TEST_CONFIG 用于控制陀螺仪和加速度计的自检功能
+     */
+    typedef union
+    {
+        struct
+        {
+            uint8_t EN_GX_ST : 1;       // [0] 陀螺仪自检使能
+            uint8_t EN_GY_ST : 1;       // [1] 陀螺仪自检使能
+            uint8_t EN_GZ_ST : 1;       // [2] 陀螺仪自检使能
+            uint8_t EN_AX_ST : 1;       // [3] 加速度计自检使能
+            uint8_t EN_AY_ST : 1;       // [4] 加速度计自检使能
+            uint8_t EN_AZ_ST : 1;       // [5] 加速度计自检使能
+            uint8_t ACCEL_ST_POWER : 1; // [6] 加速度计自检使能
+            uint8_t RESERVED : 1;       // [7] 保留位
         } bits;
         uint8_t reg;
     } icm42688_reg_self_test_config_t;
-    /**
-     * @brief 接口配置寄存器0 (Bank 0, Addr 0x4C)
-     */
-    typedef union
-    {
-        struct
-        {
-            uint8_t FIFO_HOLD_LAST_DATA_EN : 1; // [7] FIFO保持最后数据使能
-            uint8_t RESERVED : 7;               // [6:0] 保留
-        } bits;
-        uint8_t reg;
-    } icm42688_reg_intf_config0_t;
 
-    /**
-     * @brief 接口配置寄存器1 (Bank 0, Addr 0x4D)
-     */
-    typedef union
-    {
-        struct
-        {
-            uint8_t RTC_MODE : 1; // [2] RTC模式
-            uint8_t RESERVED : 7; // [7:3][1:0] 保留
-        } bits;
-        uint8_t reg;
-    } icm42688_reg_intf_config1_t;
     /* ========================================================================== */
     /*                          传感器参数配置枚举                               */
     /* ========================================================================== */
 
     /**
      * @brief 传感器模式配置
+     * 加速度计模式 00: 关闭模式（默认） 01: 加速度计待机 10: 低功耗模式 11: 低噪声模式
      */
     typedef enum
     {
         ICM42688_MODE_OFF = 0,       // 关闭模式
-        ICM42688_MODE_LOW_NOISE = 1, // 低噪声模式
+        ICM42688_MODE_STANDBY = 1,   // 待机模式
         ICM42688_MODE_LOW_POWER = 2, // 低功耗模式
+        ICM42688_MODE_LOW_NOISE = 3, // 低噪声模式
     } icm42688_sensor_mode_t;
 
     /**
@@ -532,15 +632,6 @@ extern "C"
         ICM42688_INT_LEVEL = 0, // 电平模式
         ICM42688_INT_PULSE = 1, // 脉冲模式
     } icm42688_int_mode_t;
-
-    /**
-     * @brief FIFO模式配置
-     */
-    typedef enum
-    {
-        ICM42688_FIFO_MODE_STREAM = 0,   // 流模式
-        ICM42688_FIFO_MODE_SNAPSHOT = 1, // 快照模式
-    } icm42688_fifo_mode_t;
 
     /**
      * @brief APEX功能配置

@@ -263,24 +263,25 @@ Section Cross References
     icm42688p.o(.text.icm42688_check_connection) refers to icm42688p.o(.text.icm42688_read_reg_internal) for icm42688_read_reg_internal
     icm42688p.o(.ARM.exidx.text.icm42688_check_connection) refers to icm42688p.o(.text.icm42688_check_connection) for [Anonymous Symbol]
     icm42688p.o(.text.icm42688_config_sensor) refers to memcpya.o(.text) for __aeabi_memcpy
-    icm42688p.o(.text.icm42688_config_sensor) refers to icm42688p.o(.text.icm42688_config_gyro_internal) for icm42688_config_gyro_internal
     icm42688p.o(.text.icm42688_config_sensor) refers to icm42688p.o(.text.icm42688_config_accel_internal) for icm42688_config_accel_internal
+    icm42688p.o(.text.icm42688_config_sensor) refers to icm42688p.o(.text.icm42688_config_gyro_internal) for icm42688_config_gyro_internal
     icm42688p.o(.text.icm42688_config_sensor) refers to icm42688p.o(.text.icm42688_config_fifo_internal) for icm42688_config_fifo_internal
     icm42688p.o(.text.icm42688_config_sensor) refers to icm42688p.o(.text.icm42688_config_interrupt_internal) for icm42688_config_interrupt_internal
+    icm42688p.o(.text.icm42688_config_sensor) refers to icm42688p.o(.text.icm42688_write_reg_internal) for icm42688_write_reg_internal
     icm42688p.o(.ARM.exidx.text.icm42688_config_sensor) refers to icm42688p.o(.text.icm42688_config_sensor) for [Anonymous Symbol]
-    icm42688p.o(.text.icm42688_config_gyro_internal) refers to icm42688p.o(.text.icm42688_write_reg_internal) for icm42688_write_reg_internal
-    icm42688p.o(.text.icm42688_config_gyro_internal) refers to icm42688p.o(.text.icm42688_read_reg_internal) for icm42688_read_reg_internal
-    icm42688p.o(.ARM.exidx.text.icm42688_config_gyro_internal) refers to icm42688p.o(.text.icm42688_config_gyro_internal) for [Anonymous Symbol]
     icm42688p.o(.text.icm42688_config_accel_internal) refers to icm42688p.o(.text.icm42688_write_reg_internal) for icm42688_write_reg_internal
-    icm42688p.o(.text.icm42688_config_accel_internal) refers to icm42688p.o(.text.icm42688_read_reg_internal) for icm42688_read_reg_internal
     icm42688p.o(.ARM.exidx.text.icm42688_config_accel_internal) refers to icm42688p.o(.text.icm42688_config_accel_internal) for [Anonymous Symbol]
+    icm42688p.o(.text.icm42688_config_gyro_internal) refers to icm42688p.o(.text.icm42688_write_reg_internal) for icm42688_write_reg_internal
+    icm42688p.o(.ARM.exidx.text.icm42688_config_gyro_internal) refers to icm42688p.o(.text.icm42688_config_gyro_internal) for [Anonymous Symbol]
     icm42688p.o(.text.icm42688_config_fifo_internal) refers to icm42688p.o(.text.icm42688_write_reg_internal) for icm42688_write_reg_internal
     icm42688p.o(.ARM.exidx.text.icm42688_config_fifo_internal) refers to icm42688p.o(.text.icm42688_config_fifo_internal) for [Anonymous Symbol]
     icm42688p.o(.text.icm42688_config_interrupt_internal) refers to icm42688p.o(.text.icm42688_write_reg_internal) for icm42688_write_reg_internal
+    icm42688p.o(.text.icm42688_config_interrupt_internal) refers to icm42688p.o(.text.icm42688_read_reg_internal) for icm42688_read_reg_internal
     icm42688p.o(.ARM.exidx.text.icm42688_config_interrupt_internal) refers to icm42688p.o(.text.icm42688_config_interrupt_internal) for [Anonymous Symbol]
     icm42688p.o(.text.icm42688_read_raw_data) refers to icm42688p.o(.text.icm42688_write_reg_internal) for icm42688_write_reg_internal
     icm42688p.o(.text.icm42688_read_raw_data) refers to icm42688p.o(.text.icm42688_read_reg_internal) for icm42688_read_reg_internal
     icm42688p.o(.ARM.exidx.text.icm42688_read_raw_data) refers to icm42688p.o(.text.icm42688_read_raw_data) for [Anonymous Symbol]
+    icm42688p.o(.text.icm42688_read_sensor_data) refers to icm42688p.o(.text.icm42688_read_reg_internal) for icm42688_read_reg_internal
     icm42688p.o(.text.icm42688_read_sensor_data) refers to icm42688p.o(.text.icm42688_read_raw_data) for icm42688_read_raw_data
     icm42688p.o(.text.icm42688_read_sensor_data) refers to icm42688p.o(.text.icm42688_convert_accel_raw_to_ms2) for icm42688_convert_accel_raw_to_ms2
     icm42688p.o(.text.icm42688_read_sensor_data) refers to icm42688p.o(.text.icm42688_convert_gyro_raw_to_rads) for icm42688_convert_gyro_raw_to_rads
@@ -383,6 +384,10 @@ Section Cross References
     imu_driver.o(.ARM.exidx.text.delay_ms) refers to imu_driver.o(.text.delay_ms) for [Anonymous Symbol]
     imu_driver.o(.text.get_tick) refers to bsp_sys.o(.text.BSP_GetTick) for BSP_GetTick
     imu_driver.o(.ARM.exidx.text.get_tick) refers to imu_driver.o(.text.get_tick) for [Anonymous Symbol]
+    imu_driver.o(.text.imu_init2) refers to imu_driver.o(.text.i2c_read_reg) for i2c_read_reg
+    imu_driver.o(.text.imu_init2) refers to imu_driver.o(.text.i2c_write_reg) for i2c_write_reg
+    imu_driver.o(.text.imu_init2) refers to bsp_sys.o(.text.BSP_Delay) for BSP_Delay
+    imu_driver.o(.ARM.exidx.text.imu_init2) refers to imu_driver.o(.text.imu_init2) for [Anonymous Symbol]
     imu_driver.o(.rodata..L__const.imu_init.comm_config) refers to imu_driver.o(.text.i2c_write_reg) for i2c_write_reg
     imu_driver.o(.rodata..L__const.imu_init.comm_config) refers to imu_driver.o(.text.i2c_read_reg) for i2c_read_reg
     imu_driver.o(.rodata..L__const.imu_init.comm_config) refers to imu_driver.o(.text.delay_ms) for delay_ms
@@ -1243,8 +1248,8 @@ Removing Unused input sections from the image.
     Removing icm42688p.o(.text.icm42688_check_connection), (98 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_check_connection), (8 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_config_sensor), (8 bytes).
-    Removing icm42688p.o(.ARM.exidx.text.icm42688_config_gyro_internal), (8 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_config_accel_internal), (8 bytes).
+    Removing icm42688p.o(.ARM.exidx.text.icm42688_config_gyro_internal), (8 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_config_fifo_internal), (8 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_config_interrupt_internal), (8 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_read_raw_data), (8 bytes).
@@ -1252,13 +1257,13 @@ Removing Unused input sections from the image.
     Removing icm42688p.o(.ARM.exidx.text.icm42688_convert_accel_raw_to_ms2), (8 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_convert_gyro_raw_to_rads), (8 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_convert_temp_raw_to_celsius), (8 bytes).
-    Removing icm42688p.o(.text.icm42688_get_fifo_packet_count), (302 bytes).
+    Removing icm42688p.o(.text.icm42688_get_fifo_packet_count), (290 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_get_fifo_packet_count), (8 bytes).
-    Removing icm42688p.o(.text.icm42688_read_fifo), (800 bytes).
+    Removing icm42688p.o(.text.icm42688_read_fifo), (778 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_read_fifo), (8 bytes).
     Removing icm42688p.o(.text.icm42688_flush_fifo), (218 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_flush_fifo), (8 bytes).
-    Removing icm42688p.o(.text.icm42688_config_interrupt_pin), (340 bytes).
+    Removing icm42688p.o(.text.icm42688_config_interrupt_pin), (198 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_config_interrupt_pin), (8 bytes).
     Removing icm42688p.o(.text.icm42688_enable_interrupt_source), (218 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_enable_interrupt_source), (8 bytes).
@@ -1283,13 +1288,13 @@ Removing Unused input sections from the image.
     Removing icm42688p.o(.ARM.exidx.text.icm42688_get_error_string), (8 bytes).
     Removing icm42688p.o(.text.icm42688_enter_low_power_mode), (162 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_enter_low_power_mode), (8 bytes).
-    Removing icm42688p.o(.text.icm42688_wakeup), (204 bytes).
+    Removing icm42688p.o(.text.icm42688_wakeup), (200 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_wakeup), (8 bytes).
-    Removing icm42688p.o(.text.icm42688_config_external_clock), (238 bytes).
+    Removing icm42688p.o(.text.icm42688_config_external_clock), (240 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_config_external_clock), (8 bytes).
     Removing icm42688p.o(.text.icm42688_config_gyro_filter), (188 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_config_gyro_filter), (8 bytes).
-    Removing icm42688p.o(.text.icm42688_config_accel_filter), (188 bytes).
+    Removing icm42688p.o(.text.icm42688_config_accel_filter), (190 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_config_accel_filter), (8 bytes).
     Removing icm42688p.o(.text.icm42688_read_timestamp), (164 bytes).
     Removing icm42688p.o(.ARM.exidx.text.icm42688_read_timestamp), (8 bytes).
@@ -1300,12 +1305,16 @@ Removing Unused input sections from the image.
     Removing icm42688p.o(.rodata..L__const.icm42688_self_test.self_test_config), (1 bytes).
     Removing icm42688p.o(.rodata..L__const.icm42688_set_user_offset.bank_sel), (1 bytes).
     Removing icm42688p.o(.rodata..L__const.icm42688_config_external_clock.bank_sel), (1 bytes).
+    Removing icm42688p.o(.rodata..L__const.icm42688_config_interrupt_internal.int_config), (1 bytes).
+    Removing icm42688p.o(.rodata..L__const.icm42688_config_interrupt_internal.int_source0), (1 bytes).
     Removing imu_driver.o(.text), (0 bytes).
     Removing imu_driver.o(.ARM.exidx.text.imu_init), (8 bytes).
     Removing imu_driver.o(.ARM.exidx.text.i2c_write_reg), (8 bytes).
     Removing imu_driver.o(.ARM.exidx.text.i2c_read_reg), (8 bytes).
     Removing imu_driver.o(.ARM.exidx.text.delay_ms), (8 bytes).
     Removing imu_driver.o(.ARM.exidx.text.get_tick), (8 bytes).
+    Removing imu_driver.o(.text.imu_init2), (374 bytes).
+    Removing imu_driver.o(.ARM.exidx.text.imu_init2), (8 bytes).
     Removing misc.o(.text), (0 bytes).
     Removing misc.o(.ARM.exidx.text.NVIC_PriorityGroupConfig), (8 bytes).
     Removing misc.o(.ARM.exidx.text.NVIC_Init), (8 bytes).
@@ -2372,7 +2381,7 @@ Removing Unused input sections from the image.
     Removing system_n32wb452.o(.rodata.AHBPrescTable), (16 bytes).
     Removing startup_n32wb452.o(HEAP), (2048 bytes).
 
-1227 unused section(s) (total 52896 bytes) removed from the image.
+1231 unused section(s) (total 53104 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2591,80 +2600,80 @@ Image Symbol Table
     [Anonymous Symbol]                       0x08003b24   Section        0  imu_driver.o(.text.i2c_read_reg)
     i2c_write_reg                            0x08003b5d   Thumb Code    54  imu_driver.o(.text.i2c_write_reg)
     [Anonymous Symbol]                       0x08003b5c   Section        0  imu_driver.o(.text.i2c_write_reg)
-    icm42688_config_accel_internal           0x08003b95   Thumb Code   224  icm42688p.o(.text.icm42688_config_accel_internal)
+    icm42688_config_accel_internal           0x08003b95   Thumb Code   154  icm42688p.o(.text.icm42688_config_accel_internal)
     [Anonymous Symbol]                       0x08003b94   Section        0  icm42688p.o(.text.icm42688_config_accel_internal)
-    icm42688_config_fifo_internal            0x08003c75   Thumb Code   330  icm42688p.o(.text.icm42688_config_fifo_internal)
-    [Anonymous Symbol]                       0x08003c74   Section        0  icm42688p.o(.text.icm42688_config_fifo_internal)
-    icm42688_config_gyro_internal            0x08003dc1   Thumb Code   224  icm42688p.o(.text.icm42688_config_gyro_internal)
-    [Anonymous Symbol]                       0x08003dc0   Section        0  icm42688p.o(.text.icm42688_config_gyro_internal)
-    icm42688_config_interrupt_internal       0x08003ea1   Thumb Code   306  icm42688p.o(.text.icm42688_config_interrupt_internal)
-    [Anonymous Symbol]                       0x08003ea0   Section        0  icm42688p.o(.text.icm42688_config_interrupt_internal)
-    [Anonymous Symbol]                       0x08003fd4   Section        0  icm42688p.o(.text.icm42688_config_sensor)
-    icm42688_convert_accel_raw_to_ms2        0x080040ad   Thumb Code    72  icm42688p.o(.text.icm42688_convert_accel_raw_to_ms2)
-    [Anonymous Symbol]                       0x080040ac   Section        0  icm42688p.o(.text.icm42688_convert_accel_raw_to_ms2)
-    icm42688_convert_gyro_raw_to_rads        0x080040f5   Thumb Code    72  icm42688p.o(.text.icm42688_convert_gyro_raw_to_rads)
-    [Anonymous Symbol]                       0x080040f4   Section        0  icm42688p.o(.text.icm42688_convert_gyro_raw_to_rads)
-    icm42688_convert_temp_raw_to_celsius     0x0800413d   Thumb Code    44  icm42688p.o(.text.icm42688_convert_temp_raw_to_celsius)
-    [Anonymous Symbol]                       0x0800413c   Section        0  icm42688p.o(.text.icm42688_convert_temp_raw_to_celsius)
-    [Anonymous Symbol]                       0x08004168   Section        0  icm42688p.o(.text.icm42688_get_error_string)
-    [Anonymous Symbol]                       0x080041fc   Section        0  icm42688p.o(.text.icm42688_init)
-    [Anonymous Symbol]                       0x0800435c   Section        0  icm42688p.o(.text.icm42688_read_raw_data)
-    icm42688_read_reg_internal               0x08004471   Thumb Code   132  icm42688p.o(.text.icm42688_read_reg_internal)
-    [Anonymous Symbol]                       0x08004470   Section        0  icm42688p.o(.text.icm42688_read_reg_internal)
-    [Anonymous Symbol]                       0x080044f4   Section        0  icm42688p.o(.text.icm42688_read_sensor_data)
-    icm42688_write_reg_internal              0x080045e9   Thumb Code   132  icm42688p.o(.text.icm42688_write_reg_internal)
-    [Anonymous Symbol]                       0x080045e8   Section        0  icm42688p.o(.text.icm42688_write_reg_internal)
-    [Anonymous Symbol]                       0x0800466c   Section        0  imu_driver.o(.text.imu_init)
-    [Anonymous Symbol]                       0x08004810   Section        0  main.o(.text.main)
-    i.__0printf                              0x0800490c   Section        0  printfa.o(i.__0printf)
-    i.__scatterload_copy                     0x0800492c   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x0800493a   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x0800493c   Section       14  handlers.o(i.__scatterload_zeroinit)
-    _fp_digits                               0x0800494d   Thumb Code   366  printfa.o(i._fp_digits)
-    i._fp_digits                             0x0800494c   Section        0  printfa.o(i._fp_digits)
-    _printf_core                             0x08004ad1   Thumb Code  1744  printfa.o(i._printf_core)
-    i._printf_core                           0x08004ad0   Section        0  printfa.o(i._printf_core)
-    _printf_post_padding                     0x080051ad   Thumb Code    36  printfa.o(i._printf_post_padding)
-    i._printf_post_padding                   0x080051ac   Section        0  printfa.o(i._printf_post_padding)
-    _printf_pre_padding                      0x080051d1   Thumb Code    46  printfa.o(i._printf_pre_padding)
-    i._printf_pre_padding                    0x080051d0   Section        0  printfa.o(i._printf_pre_padding)
-    .L__const.imu_init.comm_config           0x08005200   Data          20  imu_driver.o(.rodata..L__const.imu_init.comm_config)
-    .L__const.imu_init.config                0x08005214   Data          34  imu_driver.o(.rodata..L__const.imu_init.config)
-    accel_sensitivity_lut                    0x08005238   Data          16  icm42688p.o(.rodata.accel_sensitivity_lut)
-    [Anonymous Symbol]                       0x08005238   Section        0  icm42688p.o(.rodata.accel_sensitivity_lut)
-    gyro_sensitivity_lut                     0x08005248   Data          32  icm42688p.o(.rodata.gyro_sensitivity_lut)
-    [Anonymous Symbol]                       0x08005248   Section        0  icm42688p.o(.rodata.gyro_sensitivity_lut)
-    s_AdcHclkPresTable                       0x08005268   Data          16  n32wb452_rcc.o(.rodata.s_AdcHclkPresTable)
-    [Anonymous Symbol]                       0x08005268   Section        0  n32wb452_rcc.o(.rodata.s_AdcHclkPresTable)
-    s_AdcPllClkPresTable                     0x08005278   Data          32  n32wb452_rcc.o(.rodata.s_AdcPllClkPresTable)
-    [Anonymous Symbol]                       0x08005278   Section        0  n32wb452_rcc.o(.rodata.s_AdcPllClkPresTable)
-    s_ApbAhbPresTable                        0x08005298   Data          16  n32wb452_rcc.o(.rodata.s_ApbAhbPresTable)
-    [Anonymous Symbol]                       0x08005298   Section        0  n32wb452_rcc.o(.rodata.s_ApbAhbPresTable)
-    .L.str.1                                 0x080052a8   Data          12  main.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x080052a8   Section        0  main.o(.rodata.str1.1)
-    .L.str                                   0x080052b4   Data          14  main.o(.rodata.str1.1)
-    .L.str                                   0x080052c2   Data         121  icm42688p.o(.rodata.str1.1)
-    .L.str.12                                0x080052c2   Data          17  icm42688p.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x080052c2   Section        0  icm42688p.o(.rodata.str1.1)
-    .L.str.13                                0x080052d3   Data          23  icm42688p.o(.rodata.str1.1)
-    .L.str.6                                 0x080052ea   Data          21  icm42688p.o(.rodata.str1.1)
-    .L.str.9                                 0x080052ff   Data          18  icm42688p.o(.rodata.str1.1)
-    .L.str.7                                 0x08005311   Data          20  icm42688p.o(.rodata.str1.1)
-    .L.str.14                                0x08005325   Data          14  icm42688p.o(.rodata.str1.1)
-    .L.str.10                                0x08005333   Data          18  icm42688p.o(.rodata.str1.1)
-    .L.str.1                                 0x0800533b   Data           4  icm42688p.o(.rodata.str1.1)
-    .L.str.2                                 0x0800533f   Data           3  icm42688p.o(.rodata.str1.1)
-    .L.str.3                                 0x08005342   Data           4  icm42688p.o(.rodata.str1.1)
-    .L.str.11                                0x08005345   Data          14  icm42688p.o(.rodata.str1.1)
-    .L.str.4                                 0x08005346   Data          10  icm42688p.o(.rodata.str1.1)
-    .L.str.5                                 0x08005350   Data          10  icm42688p.o(.rodata.str1.1)
-    .L.str.8                                 0x08005353   Data          17  icm42688p.o(.rodata.str1.1)
-    .L.str.4                                 0x08005364   Data          19  imu_driver.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x08005364   Section        0  imu_driver.o(.rodata.str1.1)
-    .L.str.3                                 0x08005377   Data          42  imu_driver.o(.rodata.str1.1)
-    .L.str.2                                 0x080053a1   Data          42  imu_driver.o(.rodata.str1.1)
-    .L.str                                   0x080053cb   Data          29  imu_driver.o(.rodata.str1.1)
-    .L.str.1                                 0x080053e8   Data          27  imu_driver.o(.rodata.str1.1)
+    icm42688_config_fifo_internal            0x08003c31   Thumb Code   312  icm42688p.o(.text.icm42688_config_fifo_internal)
+    [Anonymous Symbol]                       0x08003c30   Section        0  icm42688p.o(.text.icm42688_config_fifo_internal)
+    icm42688_config_gyro_internal            0x08003d69   Thumb Code   154  icm42688p.o(.text.icm42688_config_gyro_internal)
+    [Anonymous Symbol]                       0x08003d68   Section        0  icm42688p.o(.text.icm42688_config_gyro_internal)
+    icm42688_config_interrupt_internal       0x08003e05   Thumb Code   288  icm42688p.o(.text.icm42688_config_interrupt_internal)
+    [Anonymous Symbol]                       0x08003e04   Section        0  icm42688p.o(.text.icm42688_config_interrupt_internal)
+    [Anonymous Symbol]                       0x08003f24   Section        0  icm42688p.o(.text.icm42688_config_sensor)
+    icm42688_convert_accel_raw_to_ms2        0x0800409d   Thumb Code    72  icm42688p.o(.text.icm42688_convert_accel_raw_to_ms2)
+    [Anonymous Symbol]                       0x0800409c   Section        0  icm42688p.o(.text.icm42688_convert_accel_raw_to_ms2)
+    icm42688_convert_gyro_raw_to_rads        0x080040e5   Thumb Code    72  icm42688p.o(.text.icm42688_convert_gyro_raw_to_rads)
+    [Anonymous Symbol]                       0x080040e4   Section        0  icm42688p.o(.text.icm42688_convert_gyro_raw_to_rads)
+    icm42688_convert_temp_raw_to_celsius     0x0800412d   Thumb Code    44  icm42688p.o(.text.icm42688_convert_temp_raw_to_celsius)
+    [Anonymous Symbol]                       0x0800412c   Section        0  icm42688p.o(.text.icm42688_convert_temp_raw_to_celsius)
+    [Anonymous Symbol]                       0x08004158   Section        0  icm42688p.o(.text.icm42688_get_error_string)
+    [Anonymous Symbol]                       0x080041ec   Section        0  icm42688p.o(.text.icm42688_init)
+    [Anonymous Symbol]                       0x0800436c   Section        0  icm42688p.o(.text.icm42688_read_raw_data)
+    icm42688_read_reg_internal               0x0800447d   Thumb Code   132  icm42688p.o(.text.icm42688_read_reg_internal)
+    [Anonymous Symbol]                       0x0800447c   Section        0  icm42688p.o(.text.icm42688_read_reg_internal)
+    [Anonymous Symbol]                       0x08004500   Section        0  icm42688p.o(.text.icm42688_read_sensor_data)
+    icm42688_write_reg_internal              0x08004605   Thumb Code   132  icm42688p.o(.text.icm42688_write_reg_internal)
+    [Anonymous Symbol]                       0x08004604   Section        0  icm42688p.o(.text.icm42688_write_reg_internal)
+    [Anonymous Symbol]                       0x08004688   Section        0  imu_driver.o(.text.imu_init)
+    [Anonymous Symbol]                       0x0800482c   Section        0  main.o(.text.main)
+    i.__0printf                              0x08004928   Section        0  printfa.o(i.__0printf)
+    i.__scatterload_copy                     0x08004948   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08004956   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08004958   Section       14  handlers.o(i.__scatterload_zeroinit)
+    _fp_digits                               0x08004969   Thumb Code   366  printfa.o(i._fp_digits)
+    i._fp_digits                             0x08004968   Section        0  printfa.o(i._fp_digits)
+    _printf_core                             0x08004aed   Thumb Code  1744  printfa.o(i._printf_core)
+    i._printf_core                           0x08004aec   Section        0  printfa.o(i._printf_core)
+    _printf_post_padding                     0x080051c9   Thumb Code    36  printfa.o(i._printf_post_padding)
+    i._printf_post_padding                   0x080051c8   Section        0  printfa.o(i._printf_post_padding)
+    _printf_pre_padding                      0x080051ed   Thumb Code    46  printfa.o(i._printf_pre_padding)
+    i._printf_pre_padding                    0x080051ec   Section        0  printfa.o(i._printf_pre_padding)
+    .L__const.imu_init.comm_config           0x0800521c   Data          20  imu_driver.o(.rodata..L__const.imu_init.comm_config)
+    .L__const.imu_init.config                0x08005230   Data          18  imu_driver.o(.rodata..L__const.imu_init.config)
+    accel_sensitivity_lut                    0x08005244   Data          16  icm42688p.o(.rodata.accel_sensitivity_lut)
+    [Anonymous Symbol]                       0x08005244   Section        0  icm42688p.o(.rodata.accel_sensitivity_lut)
+    gyro_sensitivity_lut                     0x08005254   Data          32  icm42688p.o(.rodata.gyro_sensitivity_lut)
+    [Anonymous Symbol]                       0x08005254   Section        0  icm42688p.o(.rodata.gyro_sensitivity_lut)
+    s_AdcHclkPresTable                       0x08005274   Data          16  n32wb452_rcc.o(.rodata.s_AdcHclkPresTable)
+    [Anonymous Symbol]                       0x08005274   Section        0  n32wb452_rcc.o(.rodata.s_AdcHclkPresTable)
+    s_AdcPllClkPresTable                     0x08005284   Data          32  n32wb452_rcc.o(.rodata.s_AdcPllClkPresTable)
+    [Anonymous Symbol]                       0x08005284   Section        0  n32wb452_rcc.o(.rodata.s_AdcPllClkPresTable)
+    s_ApbAhbPresTable                        0x080052a4   Data          16  n32wb452_rcc.o(.rodata.s_ApbAhbPresTable)
+    [Anonymous Symbol]                       0x080052a4   Section        0  n32wb452_rcc.o(.rodata.s_ApbAhbPresTable)
+    .L.str.1                                 0x080052b4   Data          12  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x080052b4   Section        0  main.o(.rodata.str1.1)
+    .L.str                                   0x080052c0   Data          14  main.o(.rodata.str1.1)
+    .L.str                                   0x080052ce   Data         121  icm42688p.o(.rodata.str1.1)
+    .L.str.12                                0x080052ce   Data          17  icm42688p.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x080052ce   Section        0  icm42688p.o(.rodata.str1.1)
+    .L.str.13                                0x080052df   Data          23  icm42688p.o(.rodata.str1.1)
+    .L.str.6                                 0x080052f6   Data          21  icm42688p.o(.rodata.str1.1)
+    .L.str.9                                 0x0800530b   Data          18  icm42688p.o(.rodata.str1.1)
+    .L.str.7                                 0x0800531d   Data          20  icm42688p.o(.rodata.str1.1)
+    .L.str.14                                0x08005331   Data          14  icm42688p.o(.rodata.str1.1)
+    .L.str.10                                0x0800533f   Data          18  icm42688p.o(.rodata.str1.1)
+    .L.str.1                                 0x08005347   Data           4  icm42688p.o(.rodata.str1.1)
+    .L.str.2                                 0x0800534b   Data           3  icm42688p.o(.rodata.str1.1)
+    .L.str.3                                 0x0800534e   Data           4  icm42688p.o(.rodata.str1.1)
+    .L.str.11                                0x08005351   Data          14  icm42688p.o(.rodata.str1.1)
+    .L.str.4                                 0x08005352   Data          10  icm42688p.o(.rodata.str1.1)
+    .L.str.5                                 0x0800535c   Data          10  icm42688p.o(.rodata.str1.1)
+    .L.str.8                                 0x0800535f   Data          17  icm42688p.o(.rodata.str1.1)
+    .L.str.4                                 0x08005370   Data          20  imu_driver.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x08005370   Section        0  imu_driver.o(.rodata.str1.1)
+    .L.str.3                                 0x08005384   Data          43  imu_driver.o(.rodata.str1.1)
+    .L.str.2                                 0x080053af   Data          43  imu_driver.o(.rodata.str1.1)
+    .L.str                                   0x080053da   Data          29  imu_driver.o(.rodata.str1.1)
+    .L.str.1                                 0x080053f7   Data          27  imu_driver.o(.rodata.str1.1)
     .data                                    0x20000000   Section        4  stdout.o(.data)
     i2c_reg_addr                             0x20000008   Data           1  bsp_i2c.o(.data.i2c_reg_addr)
     [Anonymous Symbol]                       0x20000008   Section        0  bsp_i2c.o(.data.i2c_reg_addr)
@@ -2902,23 +2911,23 @@ Image Symbol Table
     USART_StructInit                         0x08003459   Thumb Code    40  n32wb452_usart.o(.text.USART_StructInit)
     UsageFault_Handler                       0x08003481   Thumb Code     4  n32wb452_it.o(.text.UsageFault_Handler)
     fputc                                    0x08003a7d   Thumb Code    48  bsp_uart.o(.text.fputc)
-    icm42688_config_sensor                   0x08003fd5   Thumb Code   214  icm42688p.o(.text.icm42688_config_sensor)
-    icm42688_get_error_string                0x08004169   Thumb Code   148  icm42688p.o(.text.icm42688_get_error_string)
-    icm42688_init                            0x080041fd   Thumb Code   352  icm42688p.o(.text.icm42688_init)
-    icm42688_read_raw_data                   0x0800435d   Thumb Code   274  icm42688p.o(.text.icm42688_read_raw_data)
-    icm42688_read_sensor_data                0x080044f5   Thumb Code   244  icm42688p.o(.text.icm42688_read_sensor_data)
-    imu_init                                 0x0800466d   Thumb Code   420  imu_driver.o(.text.imu_init)
-    main                                     0x08004811   Thumb Code   250  main.o(.text.main)
-    __0printf                                0x0800490d   Thumb Code    22  printfa.o(i.__0printf)
-    __1printf                                0x0800490d   Thumb Code     0  printfa.o(i.__0printf)
-    __2printf                                0x0800490d   Thumb Code     0  printfa.o(i.__0printf)
-    __c89printf                              0x0800490d   Thumb Code     0  printfa.o(i.__0printf)
-    printf                                   0x0800490d   Thumb Code     0  printfa.o(i.__0printf)
-    __scatterload_copy                       0x0800492d   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x0800493b   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x0800493d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    Region$$Table$$Base                      0x08005404   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08005424   Number         0  anon$$obj.o(Region$$Table)
+    icm42688_config_sensor                   0x08003f25   Thumb Code   374  icm42688p.o(.text.icm42688_config_sensor)
+    icm42688_get_error_string                0x08004159   Thumb Code   148  icm42688p.o(.text.icm42688_get_error_string)
+    icm42688_init                            0x080041ed   Thumb Code   384  icm42688p.o(.text.icm42688_init)
+    icm42688_read_raw_data                   0x0800436d   Thumb Code   270  icm42688p.o(.text.icm42688_read_raw_data)
+    icm42688_read_sensor_data                0x08004501   Thumb Code   258  icm42688p.o(.text.icm42688_read_sensor_data)
+    imu_init                                 0x08004689   Thumb Code   420  imu_driver.o(.text.imu_init)
+    main                                     0x0800482d   Thumb Code   250  main.o(.text.main)
+    __0printf                                0x08004929   Thumb Code    22  printfa.o(i.__0printf)
+    __1printf                                0x08004929   Thumb Code     0  printfa.o(i.__0printf)
+    __2printf                                0x08004929   Thumb Code     0  printfa.o(i.__0printf)
+    __c89printf                              0x08004929   Thumb Code     0  printfa.o(i.__0printf)
+    printf                                   0x08004929   Thumb Code     0  printfa.o(i.__0printf)
+    __scatterload_copy                       0x08004949   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08004957   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08004959   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    Region$$Table$$Base                      0x08005414   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08005434   Number         0  anon$$obj.o(Region$$Table)
     __stdout                                 0x20000000   Data           4  stdout.o(.data)
     SystemCoreClock                          0x20000004   Data           4  system_n32wb452.o(.data.SystemCoreClock)
     debug_uart_device                        0x2000001c   Data           4  bsp_uart.o(.bss.debug_uart_device)
@@ -2934,39 +2943,39 @@ Memory Map of the image
 
   Image Entry point : 0x08000199
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00005438, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00005448, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00005424, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00005434, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x08000000   0x00000198   Data   RO         1553    RESET               startup_n32wb452.o
-    0x08000198   0x08000198   0x00000000   Code   RO         1560  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000198   0x08000198   0x00000004   Code   RO         1603    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x0800019c   0x0800019c   0x00000004   Code   RO         1606    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080001a0   0x080001a0   0x00000000   Code   RO         1608    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080001a0   0x080001a0   0x00000000   Code   RO         1610    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080001a0   0x080001a0   0x00000008   Code   RO         1611    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080001a8   0x080001a8   0x00000000   Code   RO         1613    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x080001a8   0x080001a8   0x00000000   Code   RO         1615    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x080001a8   0x080001a8   0x00000004   Code   RO         1604    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x080001ac   0x080001ac   0x00000024   Code   RO         1554    .text               startup_n32wb452.o
-    0x080001d0   0x080001d0   0x00000024   Code   RO         1567    .text               mc_w.l(memcpya.o)
-    0x080001f4   0x080001f4   0x00000024   Code   RO         1569    .text               mc_w.l(memseta.o)
-    0x08000218   0x08000218   0x00000026   Code   RO         1601    .text               mf_w.l(f2d.o)
-    0x0800023e   0x0800023e   0x0000002c   Code   RO         1627    .text               mc_w.l(uidiv.o)
-    0x0800026a   0x0800026a   0x00000062   Code   RO         1629    .text               mc_w.l(uldiv.o)
-    0x080002cc   0x080002cc   0x00000000   Code   RO         1631    .text               mc_w.l(iusefp.o)
-    0x080002cc   0x080002cc   0x0000014e   Code   RO         1632    .text               mf_w.l(dadd.o)
-    0x0800041a   0x0800041a   0x000000e4   Code   RO         1634    .text               mf_w.l(dmul.o)
-    0x080004fe   0x080004fe   0x000000de   Code   RO         1636    .text               mf_w.l(ddiv.o)
-    0x080005dc   0x080005dc   0x00000030   Code   RO         1638    .text               mf_w.l(dfixul.o)
-    0x0800060c   0x0800060c   0x00000030   Code   RO         1640    .text               mf_w.l(cdrcmple.o)
-    0x0800063c   0x0800063c   0x00000024   Code   RO         1642    .text               mc_w.l(init.o)
-    0x08000660   0x08000660   0x0000001e   Code   RO         1644    .text               mc_w.l(llshl.o)
-    0x0800067e   0x0800067e   0x00000020   Code   RO         1646    .text               mc_w.l(llushr.o)
-    0x0800069e   0x0800069e   0x00000024   Code   RO         1648    .text               mc_w.l(llsshr.o)
-    0x080006c2   0x080006c2   0x000000ba   Code   RO         1650    .text               mf_w.l(depilogue.o)
+    0x08000000   0x08000000   0x00000198   Data   RO         1557    RESET               startup_n32wb452.o
+    0x08000198   0x08000198   0x00000000   Code   RO         1564  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000198   0x08000198   0x00000004   Code   RO         1607    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x0800019c   0x0800019c   0x00000004   Code   RO         1610    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080001a0   0x080001a0   0x00000000   Code   RO         1612    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080001a0   0x080001a0   0x00000000   Code   RO         1614    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080001a0   0x080001a0   0x00000008   Code   RO         1615    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080001a8   0x080001a8   0x00000000   Code   RO         1617    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x080001a8   0x080001a8   0x00000000   Code   RO         1619    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x080001a8   0x080001a8   0x00000004   Code   RO         1608    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x080001ac   0x080001ac   0x00000024   Code   RO         1558    .text               startup_n32wb452.o
+    0x080001d0   0x080001d0   0x00000024   Code   RO         1571    .text               mc_w.l(memcpya.o)
+    0x080001f4   0x080001f4   0x00000024   Code   RO         1573    .text               mc_w.l(memseta.o)
+    0x08000218   0x08000218   0x00000026   Code   RO         1605    .text               mf_w.l(f2d.o)
+    0x0800023e   0x0800023e   0x0000002c   Code   RO         1631    .text               mc_w.l(uidiv.o)
+    0x0800026a   0x0800026a   0x00000062   Code   RO         1633    .text               mc_w.l(uldiv.o)
+    0x080002cc   0x080002cc   0x00000000   Code   RO         1635    .text               mc_w.l(iusefp.o)
+    0x080002cc   0x080002cc   0x0000014e   Code   RO         1636    .text               mf_w.l(dadd.o)
+    0x0800041a   0x0800041a   0x000000e4   Code   RO         1638    .text               mf_w.l(dmul.o)
+    0x080004fe   0x080004fe   0x000000de   Code   RO         1640    .text               mf_w.l(ddiv.o)
+    0x080005dc   0x080005dc   0x00000030   Code   RO         1642    .text               mf_w.l(dfixul.o)
+    0x0800060c   0x0800060c   0x00000030   Code   RO         1644    .text               mf_w.l(cdrcmple.o)
+    0x0800063c   0x0800063c   0x00000024   Code   RO         1646    .text               mc_w.l(init.o)
+    0x08000660   0x08000660   0x0000001e   Code   RO         1648    .text               mc_w.l(llshl.o)
+    0x0800067e   0x0800067e   0x00000020   Code   RO         1650    .text               mc_w.l(llushr.o)
+    0x0800069e   0x0800069e   0x00000024   Code   RO         1652    .text               mc_w.l(llsshr.o)
+    0x080006c2   0x080006c2   0x000000ba   Code   RO         1654    .text               mf_w.l(depilogue.o)
     0x0800077c   0x0800077c   0x0000004a   Code   RO           52    .text.BSP_Delay     bsp_sys.o
     0x080007c6   0x080007c6   0x00000002   PAD
     0x080007c8   0x080007c8   0x000000ca   Code   RO          114    .text.BSP_GPIO_Init  bsp_gpio.o
@@ -2996,80 +3005,80 @@ Memory Map of the image
     0x08001982   0x08001982   0x00000002   PAD
     0x08001984   0x08001984   0x00000004   Code   RO           27    .text.BusFault_Handler  n32wb452_it.o
     0x08001988   0x08001988   0x00000060   Code   RO           91    .text.CommTimeOut_CallBack  bsp_i2c.o
-    0x080019e8   0x080019e8   0x00000244   Code   RO          582    .text.DMA_DeInit    n32wb452_dma.o
-    0x08001c2c   0x08001c2c   0x0000002e   Code   RO          588    .text.DMA_EnableChannel  n32wb452_dma.o
+    0x080019e8   0x080019e8   0x00000244   Code   RO          586    .text.DMA_DeInit    n32wb452_dma.o
+    0x08001c2c   0x08001c2c   0x0000002e   Code   RO          592    .text.DMA_EnableChannel  n32wb452_dma.o
     0x08001c5a   0x08001c5a   0x00000002   PAD
-    0x08001c5c   0x08001c5c   0x00000036   Code   RO          596    .text.DMA_GetFlagStatus  n32wb452_dma.o
+    0x08001c5c   0x08001c5c   0x00000036   Code   RO          600    .text.DMA_GetFlagStatus  n32wb452_dma.o
     0x08001c92   0x08001c92   0x00000002   PAD
-    0x08001c94   0x08001c94   0x0000006c   Code   RO          584    .text.DMA_Init      n32wb452_dma.o
-    0x08001d00   0x08001d00   0x00000036   Code   RO          586    .text.DMA_StructInit  n32wb452_dma.o
+    0x08001c94   0x08001c94   0x0000006c   Code   RO          588    .text.DMA_Init      n32wb452_dma.o
+    0x08001d00   0x08001d00   0x00000036   Code   RO          590    .text.DMA_StructInit  n32wb452_dma.o
     0x08001d36   0x08001d36   0x00000002   PAD
     0x08001d38   0x08001d38   0x00000002   Code   RO           33    .text.DebugMon_Handler  n32wb452_it.o
     0x08001d3a   0x08001d3a   0x00000002   PAD
-    0x08001d3c   0x08001d3c   0x000003da   Code   RO          750    .text.GPIO_ConfigPinRemap  n32wb452_gpio.o
+    0x08001d3c   0x08001d3c   0x000003da   Code   RO          754    .text.GPIO_ConfigPinRemap  n32wb452_gpio.o
     0x08002116   0x08002116   0x00000002   PAD
-    0x08002118   0x08002118   0x00000186   Code   RO          722    .text.GPIO_InitPeripheral  n32wb452_gpio.o
+    0x08002118   0x08002118   0x00000186   Code   RO          726    .text.GPIO_InitPeripheral  n32wb452_gpio.o
     0x0800229e   0x0800229e   0x00000002   PAD
-    0x080022a0   0x080022a0   0x0000001c   Code   RO          724    .text.GPIO_InitStruct  n32wb452_gpio.o
-    0x080022bc   0x080022bc   0x00000034   Code   RO          730    .text.GPIO_ReadOutputDataBit  n32wb452_gpio.o
-    0x080022f0   0x080022f0   0x00000014   Code   RO          738    .text.GPIO_ResetBits  n32wb452_gpio.o
-    0x08002304   0x08002304   0x0000002c   Code   RO          740    .text.GPIO_WriteBit  n32wb452_gpio.o
+    0x080022a0   0x080022a0   0x0000001c   Code   RO          728    .text.GPIO_InitStruct  n32wb452_gpio.o
+    0x080022bc   0x080022bc   0x00000034   Code   RO          734    .text.GPIO_ReadOutputDataBit  n32wb452_gpio.o
+    0x080022f0   0x080022f0   0x00000014   Code   RO          742    .text.GPIO_ResetBits  n32wb452_gpio.o
+    0x08002304   0x08002304   0x0000002c   Code   RO          744    .text.GPIO_WriteBit  n32wb452_gpio.o
     0x08002330   0x08002330   0x00000004   Code   RO           23    .text.HardFault_Handler  n32wb452_it.o
-    0x08002334   0x08002334   0x00000054   Code   RO          815    .text.I2C_CheckEvent  n32wb452_i2c.o
-    0x08002388   0x08002388   0x0000002c   Code   RO          777    .text.I2C_ConfigAck  n32wb452_i2c.o
-    0x080023b4   0x080023b4   0x00000034   Code   RO          785    .text.I2C_ConfigInt  n32wb452_i2c.o
-    0x080023e8   0x080023e8   0x000000aa   Code   RO          761    .text.I2C_DeInit    n32wb452_i2c.o
+    0x08002334   0x08002334   0x00000054   Code   RO          819    .text.I2C_CheckEvent  n32wb452_i2c.o
+    0x08002388   0x08002388   0x0000002c   Code   RO          781    .text.I2C_ConfigAck  n32wb452_i2c.o
+    0x080023b4   0x080023b4   0x00000034   Code   RO          789    .text.I2C_ConfigInt  n32wb452_i2c.o
+    0x080023e8   0x080023e8   0x000000aa   Code   RO          765    .text.I2C_DeInit    n32wb452_i2c.o
     0x08002492   0x08002492   0x00000002   PAD
-    0x08002494   0x08002494   0x0000002c   Code   RO          767    .text.I2C_Enable    n32wb452_i2c.o
-    0x080024c0   0x080024c0   0x0000002c   Code   RO          769    .text.I2C_EnableDMA  n32wb452_i2c.o
-    0x080024ec   0x080024ec   0x0000002c   Code   RO          771    .text.I2C_EnableDmaLastSend  n32wb452_i2c.o
-    0x08002518   0x08002518   0x0000002c   Code   RO          773    .text.I2C_GenerateStart  n32wb452_i2c.o
-    0x08002544   0x08002544   0x0000002c   Code   RO          775    .text.I2C_GenerateStop  n32wb452_i2c.o
-    0x08002570   0x08002570   0x00000062   Code   RO          819    .text.I2C_GetFlag   n32wb452_i2c.o
+    0x08002494   0x08002494   0x0000002c   Code   RO          771    .text.I2C_Enable    n32wb452_i2c.o
+    0x080024c0   0x080024c0   0x0000002c   Code   RO          773    .text.I2C_EnableDMA  n32wb452_i2c.o
+    0x080024ec   0x080024ec   0x0000002c   Code   RO          775    .text.I2C_EnableDmaLastSend  n32wb452_i2c.o
+    0x08002518   0x08002518   0x0000002c   Code   RO          777    .text.I2C_GenerateStart  n32wb452_i2c.o
+    0x08002544   0x08002544   0x0000002c   Code   RO          779    .text.I2C_GenerateStop  n32wb452_i2c.o
+    0x08002570   0x08002570   0x00000062   Code   RO          823    .text.I2C_GetFlag   n32wb452_i2c.o
     0x080025d2   0x080025d2   0x00000002   PAD
-    0x080025d4   0x080025d4   0x00000204   Code   RO          763    .text.I2C_Init      n32wb452_i2c.o
-    0x080027d8   0x080027d8   0x0000002e   Code   RO          765    .text.I2C_InitStruct  n32wb452_i2c.o
+    0x080025d4   0x080025d4   0x00000204   Code   RO          767    .text.I2C_Init      n32wb452_i2c.o
+    0x080027d8   0x080027d8   0x0000002e   Code   RO          769    .text.I2C_InitStruct  n32wb452_i2c.o
     0x08002806   0x08002806   0x00000002   PAD
     0x08002808   0x08002808   0x0000006a   Code   RO            2    .text.I2C_Polling_Test  main.o
     0x08002872   0x08002872   0x00000002   PAD
-    0x08002874   0x08002874   0x0000000e   Code   RO          789    .text.I2C_RecvData  n32wb452_i2c.o
+    0x08002874   0x08002874   0x0000000e   Code   RO          793    .text.I2C_RecvData  n32wb452_i2c.o
     0x08002882   0x08002882   0x00000002   PAD
-    0x08002884   0x08002884   0x0000003c   Code   RO          791    .text.I2C_SendAddr7bit  n32wb452_i2c.o
-    0x080028c0   0x080028c0   0x00000014   Code   RO          787    .text.I2C_SendData  n32wb452_i2c.o
+    0x08002884   0x08002884   0x0000003c   Code   RO          795    .text.I2C_SendAddr7bit  n32wb452_i2c.o
+    0x080028c0   0x080028c0   0x00000014   Code   RO          791    .text.I2C_SendData  n32wb452_i2c.o
     0x080028d4   0x080028d4   0x00000004   Code   RO           25    .text.MemManage_Handler  n32wb452_it.o
     0x080028d8   0x080028d8   0x00000002   Code   RO           21    .text.NMI_Handler   n32wb452_it.o
     0x080028da   0x080028da   0x00000002   PAD
-    0x080028dc   0x080028dc   0x000000aa   Code   RO          294    .text.NVIC_Init     misc.o
+    0x080028dc   0x080028dc   0x000000aa   Code   RO          298    .text.NVIC_Init     misc.o
     0x08002986   0x08002986   0x00000002   PAD
-    0x08002988   0x08002988   0x0000001c   Code   RO          292    .text.NVIC_PriorityGroupConfig  misc.o
-    0x080029a4   0x080029a4   0x0000002c   Code   RO          898    .text.RCC_ConfigSysclk  n32wb452_rcc.o
-    0x080029d0   0x080029d0   0x00000038   Code   RO          940    .text.RCC_EnableAPB1PeriphClk  n32wb452_rcc.o
-    0x08002a08   0x08002a08   0x00000038   Code   RO          946    .text.RCC_EnableAPB1PeriphReset  n32wb452_rcc.o
-    0x08002a40   0x08002a40   0x00000038   Code   RO          938    .text.RCC_EnableAPB2PeriphClk  n32wb452_rcc.o
-    0x08002a78   0x08002a78   0x00000038   Code   RO          944    .text.RCC_EnableAPB2PeriphReset  n32wb452_rcc.o
-    0x08002ab0   0x08002ab0   0x000001c4   Code   RO          934    .text.RCC_GetClocksFreqValue  n32wb452_rcc.o
-    0x08002c74   0x08002c74   0x00000010   Code   RO          900    .text.RCC_GetSysclkSrc  n32wb452_rcc.o
+    0x08002988   0x08002988   0x0000001c   Code   RO          296    .text.NVIC_PriorityGroupConfig  misc.o
+    0x080029a4   0x080029a4   0x0000002c   Code   RO          902    .text.RCC_ConfigSysclk  n32wb452_rcc.o
+    0x080029d0   0x080029d0   0x00000038   Code   RO          944    .text.RCC_EnableAPB1PeriphClk  n32wb452_rcc.o
+    0x08002a08   0x08002a08   0x00000038   Code   RO          950    .text.RCC_EnableAPB1PeriphReset  n32wb452_rcc.o
+    0x08002a40   0x08002a40   0x00000038   Code   RO          942    .text.RCC_EnableAPB2PeriphClk  n32wb452_rcc.o
+    0x08002a78   0x08002a78   0x00000038   Code   RO          948    .text.RCC_EnableAPB2PeriphReset  n32wb452_rcc.o
+    0x08002ab0   0x08002ab0   0x000001c4   Code   RO          938    .text.RCC_GetClocksFreqValue  n32wb452_rcc.o
+    0x08002c74   0x08002c74   0x00000010   Code   RO          904    .text.RCC_GetSysclkSrc  n32wb452_rcc.o
     0x08002c84   0x08002c84   0x00000002   Code   RO           31    .text.SVC_Handler   n32wb452_it.o
     0x08002c86   0x08002c86   0x00000002   PAD
-    0x08002c88   0x08002c88   0x0000016e   Code   RO         1537    .text.SetSysClock   system_n32wb452.o
+    0x08002c88   0x08002c88   0x0000016e   Code   RO         1541    .text.SetSysClock   system_n32wb452.o
     0x08002df6   0x08002df6   0x00000002   PAD
-    0x08002df8   0x08002df8   0x00000098   Code   RO         1539    .text.SetVDDDBKTrim  system_n32wb452.o
+    0x08002df8   0x08002df8   0x00000098   Code   RO         1543    .text.SetVDDDBKTrim  system_n32wb452.o
     0x08002e90   0x08002e90   0x00000010   Code   RO           48    .text.SysTick_Handler  bsp_sys.o
-    0x08002ea0   0x08002ea0   0x00000128   Code   RO         1535    .text.SystemInit    system_n32wb452.o
+    0x08002ea0   0x08002ea0   0x00000128   Code   RO         1539    .text.SystemInit    system_n32wb452.o
     0x08002fc8   0x08002fc8   0x00000010   Code   RO          147    .text.USART2_IRQHandler  bsp_uart.o
     0x08002fd8   0x08002fd8   0x00000010   Code   RO          151    .text.USART3_IRQHandler  bsp_uart.o
-    0x08002fe8   0x08002fe8   0x00000024   Code   RO         1499    .text.USART_ClrFlag  n32wb452_usart.o
-    0x0800300c   0x0800300c   0x00000092   Code   RO         1463    .text.USART_ConfigInt  n32wb452_usart.o
+    0x08002fe8   0x08002fe8   0x00000024   Code   RO         1503    .text.USART_ClrFlag  n32wb452_usart.o
+    0x0800300c   0x0800300c   0x00000092   Code   RO         1467    .text.USART_ConfigInt  n32wb452_usart.o
     0x0800309e   0x0800309e   0x00000002   PAD
-    0x080030a0   0x080030a0   0x00000120   Code   RO         1451    .text.USART_DeInit  n32wb452_usart.o
-    0x080031c0   0x080031c0   0x0000002c   Code   RO         1461    .text.USART_Enable  n32wb452_usart.o
-    0x080031ec   0x080031ec   0x00000044   Code   RO         1497    .text.USART_GetFlagStatus  n32wb452_usart.o
-    0x08003230   0x08003230   0x000000b0   Code   RO         1501    .text.USART_GetIntStatus  n32wb452_usart.o
-    0x080032e0   0x080032e0   0x0000014e   Code   RO         1453    .text.USART_Init    n32wb452_usart.o
+    0x080030a0   0x080030a0   0x00000120   Code   RO         1455    .text.USART_DeInit  n32wb452_usart.o
+    0x080031c0   0x080031c0   0x0000002c   Code   RO         1465    .text.USART_Enable  n32wb452_usart.o
+    0x080031ec   0x080031ec   0x00000044   Code   RO         1501    .text.USART_GetFlagStatus  n32wb452_usart.o
+    0x08003230   0x08003230   0x000000b0   Code   RO         1505    .text.USART_GetIntStatus  n32wb452_usart.o
+    0x080032e0   0x080032e0   0x0000014e   Code   RO         1457    .text.USART_Init    n32wb452_usart.o
     0x0800342e   0x0800342e   0x00000002   PAD
-    0x08003430   0x08003430   0x00000010   Code   RO         1479    .text.USART_ReceiveData  n32wb452_usart.o
-    0x08003440   0x08003440   0x00000018   Code   RO         1477    .text.USART_SendData  n32wb452_usart.o
-    0x08003458   0x08003458   0x00000028   Code   RO         1455    .text.USART_StructInit  n32wb452_usart.o
+    0x08003430   0x08003430   0x00000010   Code   RO         1483    .text.USART_ReceiveData  n32wb452_usart.o
+    0x08003440   0x08003440   0x00000018   Code   RO         1481    .text.USART_SendData  n32wb452_usart.o
+    0x08003458   0x08003458   0x00000028   Code   RO         1459    .text.USART_StructInit  n32wb452_usart.o
     0x08003480   0x08003480   0x00000004   Code   RO           29    .text.UsageFault_Handler  n32wb452_it.o
     0x08003484   0x08003484   0x00000042   Code   RO           46    .text.__NVIC_SetPriority  bsp_sys.o
     0x080034c6   0x080034c6   0x00000002   PAD
@@ -3079,89 +3088,90 @@ Memory Map of the image
     0x08003818   0x08003818   0x000000d2   Code   RO          169    .text.bsp_uart_error  bsp_uart.o
     0x080038ea   0x080038ea   0x00000002   PAD
     0x080038ec   0x080038ec   0x00000180   Code   RO          135    .text.bsp_uart_polingInit  bsp_uart.o
-    0x08003a6c   0x08003a6c   0x00000010   Code   RO          278    .text.delay_ms      imu_driver.o
+    0x08003a6c   0x08003a6c   0x00000010   Code   RO          280    .text.delay_ms      imu_driver.o
     0x08003a7c   0x08003a7c   0x00000030   Code   RO          163    .text.fputc         bsp_uart.o
-    0x08003aac   0x08003aac   0x00000008   Code   RO          280    .text.get_tick      imu_driver.o
+    0x08003aac   0x08003aac   0x00000008   Code   RO          282    .text.get_tick      imu_driver.o
     0x08003ab4   0x08003ab4   0x0000006e   Code   RO          133    .text.get_uart_state  bsp_uart.o
     0x08003b22   0x08003b22   0x00000002   PAD
-    0x08003b24   0x08003b24   0x00000036   Code   RO          276    .text.i2c_read_reg  imu_driver.o
+    0x08003b24   0x08003b24   0x00000036   Code   RO          278    .text.i2c_read_reg  imu_driver.o
     0x08003b5a   0x08003b5a   0x00000002   PAD
-    0x08003b5c   0x08003b5c   0x00000036   Code   RO          274    .text.i2c_write_reg  imu_driver.o
+    0x08003b5c   0x08003b5c   0x00000036   Code   RO          276    .text.i2c_write_reg  imu_driver.o
     0x08003b92   0x08003b92   0x00000002   PAD
-    0x08003b94   0x08003b94   0x000000e0   Code   RO          197    .text.icm42688_config_accel_internal  icm42688p.o
-    0x08003c74   0x08003c74   0x0000014a   Code   RO          199    .text.icm42688_config_fifo_internal  icm42688p.o
-    0x08003dbe   0x08003dbe   0x00000002   PAD
-    0x08003dc0   0x08003dc0   0x000000e0   Code   RO          195    .text.icm42688_config_gyro_internal  icm42688p.o
-    0x08003ea0   0x08003ea0   0x00000132   Code   RO          201    .text.icm42688_config_interrupt_internal  icm42688p.o
-    0x08003fd2   0x08003fd2   0x00000002   PAD
-    0x08003fd4   0x08003fd4   0x000000d6   Code   RO          193    .text.icm42688_config_sensor  icm42688p.o
-    0x080040aa   0x080040aa   0x00000002   PAD
-    0x080040ac   0x080040ac   0x00000048   Code   RO          207    .text.icm42688_convert_accel_raw_to_ms2  icm42688p.o
-    0x080040f4   0x080040f4   0x00000048   Code   RO          209    .text.icm42688_convert_gyro_raw_to_rads  icm42688p.o
-    0x0800413c   0x0800413c   0x0000002c   Code   RO          211    .text.icm42688_convert_temp_raw_to_celsius  icm42688p.o
-    0x08004168   0x08004168   0x00000094   Code   RO          241    .text.icm42688_get_error_string  icm42688p.o
-    0x080041fc   0x080041fc   0x00000160   Code   RO          181    .text.icm42688_init  icm42688p.o
-    0x0800435c   0x0800435c   0x00000112   Code   RO          203    .text.icm42688_read_raw_data  icm42688p.o
-    0x0800446e   0x0800446e   0x00000002   PAD
-    0x08004470   0x08004470   0x00000084   Code   RO          183    .text.icm42688_read_reg_internal  icm42688p.o
-    0x080044f4   0x080044f4   0x000000f4   Code   RO          205    .text.icm42688_read_sensor_data  icm42688p.o
-    0x080045e8   0x080045e8   0x00000084   Code   RO          185    .text.icm42688_write_reg_internal  icm42688p.o
-    0x0800466c   0x0800466c   0x000001a4   Code   RO          272    .text.imu_init      imu_driver.o
-    0x08004810   0x08004810   0x000000fa   Code   RO            4    .text.main          main.o
-    0x0800490a   0x0800490a   0x00000002   PAD
-    0x0800490c   0x0800490c   0x00000020   Code   RO         1574    i.__0printf         mc_w.l(printfa.o)
-    0x0800492c   0x0800492c   0x0000000e   Code   RO         1654    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0800493a   0x0800493a   0x00000002   Code   RO         1655    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0800493c   0x0800493c   0x0000000e   Code   RO         1656    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x0800494a   0x0800494a   0x00000002   PAD
-    0x0800494c   0x0800494c   0x00000184   Code   RO         1581    i._fp_digits        mc_w.l(printfa.o)
-    0x08004ad0   0x08004ad0   0x000006dc   Code   RO         1582    i._printf_core      mc_w.l(printfa.o)
-    0x080051ac   0x080051ac   0x00000024   Code   RO         1583    i._printf_post_padding  mc_w.l(printfa.o)
-    0x080051d0   0x080051d0   0x0000002e   Code   RO         1584    i._printf_pre_padding  mc_w.l(printfa.o)
-    0x080051fe   0x080051fe   0x00000002   PAD
-    0x08005200   0x08005200   0x00000014   Data   RO          282    .rodata..L__const.imu_init.comm_config  imu_driver.o
-    0x08005214   0x08005214   0x00000022   Data   RO          284    .rodata..L__const.imu_init.config  imu_driver.o
-    0x08005236   0x08005236   0x00000002   PAD
-    0x08005238   0x08005238   0x00000010   Data   RO          263    .rodata.accel_sensitivity_lut  icm42688p.o
-    0x08005248   0x08005248   0x00000020   Data   RO          264    .rodata.gyro_sensitivity_lut  icm42688p.o
-    0x08005268   0x08005268   0x00000010   Data   RO          973    .rodata.s_AdcHclkPresTable  n32wb452_rcc.o
-    0x08005278   0x08005278   0x00000020   Data   RO          974    .rodata.s_AdcPllClkPresTable  n32wb452_rcc.o
-    0x08005298   0x08005298   0x00000010   Data   RO          972    .rodata.s_ApbAhbPresTable  n32wb452_rcc.o
-    0x080052a8   0x080052a8   0x0000001a   Data   RO            9    .rodata.str1.1      main.o
-    0x080052c2   0x080052c2   0x000000a2   Data   RO          261    .rodata.str1.1      icm42688p.o
-    0x08005364   0x08005364   0x0000009f   Data   RO          283    .rodata.str1.1      imu_driver.o
-    0x08005403   0x08005403   0x00000001   PAD
-    0x08005404   0x08005404   0x00000020   Data   RO         1653    Region$$Table       anon$$obj.o
+    0x08003b94   0x08003b94   0x0000009a   Code   RO          195    .text.icm42688_config_accel_internal  icm42688p.o
+    0x08003c2e   0x08003c2e   0x00000002   PAD
+    0x08003c30   0x08003c30   0x00000138   Code   RO          199    .text.icm42688_config_fifo_internal  icm42688p.o
+    0x08003d68   0x08003d68   0x0000009a   Code   RO          197    .text.icm42688_config_gyro_internal  icm42688p.o
+    0x08003e02   0x08003e02   0x00000002   PAD
+    0x08003e04   0x08003e04   0x00000120   Code   RO          201    .text.icm42688_config_interrupt_internal  icm42688p.o
+    0x08003f24   0x08003f24   0x00000176   Code   RO          193    .text.icm42688_config_sensor  icm42688p.o
+    0x0800409a   0x0800409a   0x00000002   PAD
+    0x0800409c   0x0800409c   0x00000048   Code   RO          207    .text.icm42688_convert_accel_raw_to_ms2  icm42688p.o
+    0x080040e4   0x080040e4   0x00000048   Code   RO          209    .text.icm42688_convert_gyro_raw_to_rads  icm42688p.o
+    0x0800412c   0x0800412c   0x0000002c   Code   RO          211    .text.icm42688_convert_temp_raw_to_celsius  icm42688p.o
+    0x08004158   0x08004158   0x00000094   Code   RO          241    .text.icm42688_get_error_string  icm42688p.o
+    0x080041ec   0x080041ec   0x00000180   Code   RO          181    .text.icm42688_init  icm42688p.o
+    0x0800436c   0x0800436c   0x0000010e   Code   RO          203    .text.icm42688_read_raw_data  icm42688p.o
+    0x0800447a   0x0800447a   0x00000002   PAD
+    0x0800447c   0x0800447c   0x00000084   Code   RO          183    .text.icm42688_read_reg_internal  icm42688p.o
+    0x08004500   0x08004500   0x00000102   Code   RO          205    .text.icm42688_read_sensor_data  icm42688p.o
+    0x08004602   0x08004602   0x00000002   PAD
+    0x08004604   0x08004604   0x00000084   Code   RO          185    .text.icm42688_write_reg_internal  icm42688p.o
+    0x08004688   0x08004688   0x000001a4   Code   RO          274    .text.imu_init      imu_driver.o
+    0x0800482c   0x0800482c   0x000000fa   Code   RO            4    .text.main          main.o
+    0x08004926   0x08004926   0x00000002   PAD
+    0x08004928   0x08004928   0x00000020   Code   RO         1578    i.__0printf         mc_w.l(printfa.o)
+    0x08004948   0x08004948   0x0000000e   Code   RO         1658    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08004956   0x08004956   0x00000002   Code   RO         1659    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08004958   0x08004958   0x0000000e   Code   RO         1660    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08004966   0x08004966   0x00000002   PAD
+    0x08004968   0x08004968   0x00000184   Code   RO         1585    i._fp_digits        mc_w.l(printfa.o)
+    0x08004aec   0x08004aec   0x000006dc   Code   RO         1586    i._printf_core      mc_w.l(printfa.o)
+    0x080051c8   0x080051c8   0x00000024   Code   RO         1587    i._printf_post_padding  mc_w.l(printfa.o)
+    0x080051ec   0x080051ec   0x0000002e   Code   RO         1588    i._printf_pre_padding  mc_w.l(printfa.o)
+    0x0800521a   0x0800521a   0x00000002   PAD
+    0x0800521c   0x0800521c   0x00000014   Data   RO          286    .rodata..L__const.imu_init.comm_config  imu_driver.o
+    0x08005230   0x08005230   0x00000012   Data   RO          288    .rodata..L__const.imu_init.config  imu_driver.o
+    0x08005242   0x08005242   0x00000002   PAD
+    0x08005244   0x08005244   0x00000010   Data   RO          265    .rodata.accel_sensitivity_lut  icm42688p.o
+    0x08005254   0x08005254   0x00000020   Data   RO          266    .rodata.gyro_sensitivity_lut  icm42688p.o
+    0x08005274   0x08005274   0x00000010   Data   RO          977    .rodata.s_AdcHclkPresTable  n32wb452_rcc.o
+    0x08005284   0x08005284   0x00000020   Data   RO          978    .rodata.s_AdcPllClkPresTable  n32wb452_rcc.o
+    0x080052a4   0x080052a4   0x00000010   Data   RO          976    .rodata.s_ApbAhbPresTable  n32wb452_rcc.o
+    0x080052b4   0x080052b4   0x0000001a   Data   RO            9    .rodata.str1.1      main.o
+    0x080052ce   0x080052ce   0x000000a2   Data   RO          261    .rodata.str1.1      icm42688p.o
+    0x08005370   0x08005370   0x000000a2   Data   RO          287    .rodata.str1.1      imu_driver.o
+    0x08005412   0x08005412   0x00000002   PAD
+    0x08005414   0x08005414   0x00000020   Data   RO         1657    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08005428, Size: 0x00001498, Max: 0x00024000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08005438, Size: 0x00001498, Max: 0x00024000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08005428   0x00000004   Data   RW         1617    .data               mc_w.l(stdout.o)
-    0x20000004   0x0800542c   0x00000004   Data   RW         1543    .data.SystemCoreClock  system_n32wb452.o
-    0x20000008   0x08005430   0x00000001   Data   RW          102    .data.i2c_reg_addr  bsp_i2c.o
-    0x20000009   0x08005431   0x00000007   PAD
+    0x20000000   0x08005438   0x00000004   Data   RW         1621    .data               mc_w.l(stdout.o)
+    0x20000004   0x0800543c   0x00000004   Data   RW         1547    .data.SystemCoreClock  system_n32wb452.o
+    0x20000008   0x08005440   0x00000001   Data   RW          102    .data.i2c_reg_addr  bsp_i2c.o
+    0x20000009   0x08005441   0x00000007   PAD
     0x20000010        -       0x00000001   Zero   RW           98    .bss.Comm_Flag      bsp_i2c.o
-    0x20000011   0x08005431   0x00000003   PAD
+    0x20000011   0x08005441   0x00000003   PAD
     0x20000014        -       0x00000004   Zero   RW           97    .bss.I2CTimeout     bsp_i2c.o
     0x20000018        -       0x00000004   Zero   RW          172    .bss.UARTTimeout    bsp_uart.o
     0x2000001c        -       0x00000004   Zero   RW          171    .bss.debug_uart_device  bsp_uart.o
     0x20000020        -       0x00000004   Zero   RW           99    .bss.i2c_current_device  bsp_i2c.o
     0x20000024        -       0x00000008   Zero   RW            8    .bss.i2c_device     main.o
     0x2000002c        -       0x00000001   Zero   RW          103    .bss.i2c_direction  bsp_i2c.o
-    0x2000002d   0x08005431   0x00000003   PAD
+    0x2000002d   0x08005441   0x00000003   PAD
     0x20000030        -       0x00000004   Zero   RW          104    .bss.i2c_rx_buffer  bsp_i2c.o
     0x20000034        -       0x00000002   Zero   RW          105    .bss.i2c_rx_size    bsp_i2c.o
-    0x20000036   0x08005431   0x00000002   PAD
+    0x20000036   0x08005441   0x00000002   PAD
     0x20000038        -       0x00000004   Zero   RW          100    .bss.i2c_tx_buffer  bsp_i2c.o
     0x2000003c        -       0x00000002   Zero   RW          101    .bss.i2c_tx_size    bsp_i2c.o
     0x2000003e        -       0x00000001   Zero   RW           62    .bss.system_clock_ready  bsp_sys.o
-    0x2000003f   0x08005431   0x00000001   PAD
+    0x2000003f   0x08005441   0x00000001   PAD
     0x20000040        -       0x00000004   Zero   RW           63    .bss.system_tick    bsp_sys.o
     0x20000044        -       0x0000000c   Zero   RW           10    .bss.uart3_device   main.o
     0x20000050        -       0x00000048   Zero   RW          173    .bss.uart_states    bsp_uart.o
-    0x20000098        -       0x00001400   Zero   RW         1551    STACK               startup_n32wb452.o
+    0x20000098        -       0x00001400   Zero   RW         1555    STACK               startup_n32wb452.o
 
 
 ==============================================================================
@@ -3175,8 +3185,8 @@ Image component sizes
       3798         24          0          1         22       9741   bsp_i2c.o
        276          0          0          0          5       5286   bsp_sys.o
       2050          0          0          0         80      10258   bsp_uart.o
-      2768         20        210          0          0      22867   icm42688p.o
-       552          0        213          0          0       6368   imu_driver.o
+      2794         20        210          0          0      23563   icm42688p.o
+       552          0        200          0          0       6012   imu_driver.o
        356          0         26          0         20       2822   main.o
        198          0          0          0          0       3041   misc.o
        842          0          0          0          0       4036   n32wb452_dma.o
@@ -3189,9 +3199,9 @@ Image component sizes
        814          0          0          4          0       3333   system_n32wb452.o
 
     ----------------------------------------------------------------------
-     16820         52        956          8       5260     103108   Object Totals
+     16848         52        944          8       5260     103448   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        74          0          3          3         13          0   (incl. Padding)
+        76          0          4          3         13          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -3246,15 +3256,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     20584        158        956         12       5260     103944   Grand Totals
-     20584        158        956         12       5260     103944   ELF Image Totals
-     20584        158        956         12          0          0   ROM Totals
+     20612        158        944         12       5260     104284   Grand Totals
+     20612        158        944         12       5260     104284   ELF Image Totals
+     20612        158        944         12          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                21540 (  21.04kB)
+    Total RO  Size (Code + RO Data)                21556 (  21.05kB)
     Total RW  Size (RW Data + ZI Data)              5272 (   5.15kB)
-    Total ROM Size (Code + RO Data + RW Data)      21552 (  21.05kB)
+    Total ROM Size (Code + RO Data + RW Data)      21568 (  21.06kB)
 
 ==============================================================================
 

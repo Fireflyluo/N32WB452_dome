@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\dame.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\dame.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Fri Oct 31 00:13:27 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Fri Oct 31 16:56:57 2025
 <BR><P>
-<H3>Maximum Stack Usage =        488 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        456 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; imu_init &rArr; icm42688_read_sensor_data &rArr; icm42688_read_raw_data &rArr; icm42688_write_reg_internal
 <P>
@@ -1120,13 +1120,14 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printfa.o(i.__0printf)
 </UL>
-<P><STRONG><a name="[c9]"></a>icm42688_config_sensor</STRONG> (Thumb, 214 bytes, Stack size 24 bytes, icm42688p.o(.text.icm42688_config_sensor))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = icm42688_config_sensor &rArr; icm42688_config_fifo_internal &rArr; icm42688_write_reg_internal
+<P><STRONG><a name="[c9]"></a>icm42688_config_sensor</STRONG> (Thumb, 374 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_config_sensor))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = icm42688_config_sensor &rArr; icm42688_config_interrupt_internal &rArr; icm42688_write_reg_internal
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_interrupt_internal
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_fifo_internal
+<BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_interrupt_internal
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_fifo_internal
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_gyro_internal
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_accel_internal
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_gyro_internal
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_write_reg_internal
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;imu_init
@@ -1138,38 +1139,39 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;imu_init
 </UL>
 
-<P><STRONG><a name="[cb]"></a>icm42688_init</STRONG> (Thumb, 352 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = icm42688_init &rArr; icm42688_write_reg_internal
+<P><STRONG><a name="[cb]"></a>icm42688_init</STRONG> (Thumb, 384 bytes, Stack size 40 bytes, icm42688p.o(.text.icm42688_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = icm42688_init &rArr; icm42688_write_reg_internal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_write_reg_internal
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_reg_internal
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_reg_internal
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;imu_init
 </UL>
 
-<P><STRONG><a name="[cd]"></a>icm42688_read_raw_data</STRONG> (Thumb, 274 bytes, Stack size 40 bytes, icm42688p.o(.text.icm42688_read_raw_data))
+<P><STRONG><a name="[cd]"></a>icm42688_read_raw_data</STRONG> (Thumb, 270 bytes, Stack size 40 bytes, icm42688p.o(.text.icm42688_read_raw_data))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = icm42688_read_raw_data &rArr; icm42688_write_reg_internal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_write_reg_internal
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_reg_internal
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_reg_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_sensor_data
 </UL>
 
-<P><STRONG><a name="[ce]"></a>icm42688_read_sensor_data</STRONG> (Thumb, 244 bytes, Stack size 40 bytes, icm42688p.o(.text.icm42688_read_sensor_data))
+<P><STRONG><a name="[ce]"></a>icm42688_read_sensor_data</STRONG> (Thumb, 258 bytes, Stack size 40 bytes, icm42688p.o(.text.icm42688_read_sensor_data))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = icm42688_read_sensor_data &rArr; icm42688_read_raw_data &rArr; icm42688_write_reg_internal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_raw_data
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_convert_temp_raw_to_celsius
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_convert_gyro_raw_to_rads
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_convert_accel_raw_to_ms2
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_reg_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;imu_init
 </UL>
 
-<P><STRONG><a name="[d2]"></a>imu_init</STRONG> (Thumb, 420 bytes, Stack size 328 bytes, imu_driver.o(.text.imu_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 440<LI>Call Chain = imu_init &rArr; icm42688_read_sensor_data &rArr; icm42688_read_raw_data &rArr; icm42688_write_reg_internal
+<P><STRONG><a name="[d2]"></a>imu_init</STRONG> (Thumb, 420 bytes, Stack size 296 bytes, imu_driver.o(.text.imu_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 408<LI>Call Chain = imu_init &rArr; icm42688_read_sensor_data &rArr; icm42688_read_raw_data &rArr; icm42688_write_reg_internal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_get_error_string
@@ -1184,7 +1186,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[60]"></a>main</STRONG> (Thumb, 250 bytes, Stack size 48 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 488<LI>Call Chain = main &rArr; imu_init &rArr; icm42688_read_sensor_data &rArr; icm42688_read_raw_data &rArr; icm42688_write_reg_internal
+<BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = main &rArr; imu_init &rArr; icm42688_read_sensor_data &rArr; icm42688_read_raw_data &rArr; icm42688_write_reg_internal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_Delay
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_GPIO_TogglePin
@@ -1312,56 +1314,56 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_UART_IRQHandler
 </UL>
 
-<P><STRONG><a name="[c5]"></a>icm42688_read_reg_internal</STRONG> (Thumb, 132 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_read_reg_internal))
+<P><STRONG><a name="[c8]"></a>icm42688_read_reg_internal</STRONG> (Thumb, 132 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_read_reg_internal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = icm42688_read_reg_internal
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_raw_data
+<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_sensor_data
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_raw_data
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_init
-<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_accel_internal
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_gyro_internal
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_interrupt_internal
 </UL>
 
 <P><STRONG><a name="[c4]"></a>icm42688_write_reg_internal</STRONG> (Thumb, 132 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_write_reg_internal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = icm42688_write_reg_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_raw_data
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_sensor
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_init
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_interrupt_internal
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_fifo_internal
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_interrupt_internal
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_fifo_internal
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_gyro_internal
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_accel_internal
-<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_gyro_internal
 </UL>
 
-<P><STRONG><a name="[c7]"></a>icm42688_config_gyro_internal</STRONG> (Thumb, 224 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_config_gyro_internal))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = icm42688_config_gyro_internal &rArr; icm42688_write_reg_internal
-</UL>
-<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_write_reg_internal
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_reg_internal
-</UL>
-<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_sensor
-</UL>
-
-<P><STRONG><a name="[c3]"></a>icm42688_config_accel_internal</STRONG> (Thumb, 224 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_config_accel_internal))
+<P><STRONG><a name="[c3]"></a>icm42688_config_accel_internal</STRONG> (Thumb, 154 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_config_accel_internal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = icm42688_config_accel_internal &rArr; icm42688_write_reg_internal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_write_reg_internal
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_reg_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_sensor
 </UL>
 
-<P><STRONG><a name="[c6]"></a>icm42688_config_fifo_internal</STRONG> (Thumb, 330 bytes, Stack size 40 bytes, icm42688p.o(.text.icm42688_config_fifo_internal))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = icm42688_config_fifo_internal &rArr; icm42688_write_reg_internal
+<P><STRONG><a name="[c6]"></a>icm42688_config_gyro_internal</STRONG> (Thumb, 154 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_config_gyro_internal))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = icm42688_config_gyro_internal &rArr; icm42688_write_reg_internal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_write_reg_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_sensor
 </UL>
 
-<P><STRONG><a name="[c8]"></a>icm42688_config_interrupt_internal</STRONG> (Thumb, 306 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_config_interrupt_internal))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = icm42688_config_interrupt_internal &rArr; icm42688_write_reg_internal
+<P><STRONG><a name="[c5]"></a>icm42688_config_fifo_internal</STRONG> (Thumb, 312 bytes, Stack size 32 bytes, icm42688p.o(.text.icm42688_config_fifo_internal))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = icm42688_config_fifo_internal &rArr; icm42688_write_reg_internal
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_write_reg_internal
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_sensor
+</UL>
+
+<P><STRONG><a name="[c7]"></a>icm42688_config_interrupt_internal</STRONG> (Thumb, 288 bytes, Stack size 40 bytes, icm42688p.o(.text.icm42688_config_interrupt_internal))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = icm42688_config_interrupt_internal &rArr; icm42688_write_reg_internal
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_write_reg_internal
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_read_reg_internal
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;icm42688_config_sensor
 </UL>

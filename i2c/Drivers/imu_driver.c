@@ -6,7 +6,6 @@
 #include "icm42688_reg.h"
 #include <stdio.h>
 
-
 extern BSP_I2C_Device i2c_device;
 // I2C通信函数实现
 static icm42688_err_t i2c_write_reg(uint8_t dev_addr, uint8_t reg_addr,
@@ -60,20 +59,14 @@ int imu_init(void)
     icm42688_sensor_config_t config = {
         .gyro_mode = ICM42688_MODE_LOW_NOISE, // 低噪声模式
         .gyro_fs = ICM42688_GYRO_FS_1000DPS,  // ±1000 dps
-        .gyro_odr = ICM42688_ODR_1000HZ,      // 1000 Hz ODR
+        .gyro_odr = ICM42688_ODR_100HZ,      // 1000 Hz ODR
 
         .accel_mode = ICM42688_MODE_LOW_NOISE, // 低噪声模式
-        .accel_fs = ICM42688_ACCEL_FS_8G,      // ±8g
-        .accel_odr = ICM42688_ODR_1000HZ,      // 1000 Hz ODR
+        .accel_fs = ICM42688_ACCEL_FS_2G,      // ±2g
+        .accel_odr = ICM42688_ODR_100HZ,      // 100 Hz ODR
 
-        .fifo_enable = false, // 禁用FIFO
 
-        .interrupt = {
-            .data_ready_en = true,                    // 使能数据就绪中断
-            .int1_mode = ICM42688_INT_PULSE,          // 脉冲模式
-            .int1_drive = ICM42688_INT_PUSH_PULL,     // 推挽输出
-            .int1_polarity = ICM42688_INT_ACTIVE_HIGH // 高电平有效
-        }};
+      };
 
     ret = icm42688_config_sensor(&sensor, &config);
     if (ret != ICM42688_OK)
@@ -81,21 +74,84 @@ int imu_init(void)
         printf("传感器配置失败: %s\n", icm42688_get_error_string(ret));
         return -1;
     }
-
     // 3. 读取传感器数据
     icm42688_sensor_data_t data;
     while (1)
     {
+
         ret = icm42688_read_sensor_data(&sensor, &data);
         if (ret == ICM42688_OK)
         {
-            printf("加速度(m/s²): X=%.2f, Y=%.2f, Z=%.2f\n",
+            printf("加速度(m/s²): X=%.2f, Y=%.2f, Z=%.2f\r\n",
                    data.accel_x, data.accel_y, data.accel_z);
-            printf("角速度(rad/s): X=%.2f, Y=%.2f, Z=%.2f\n",
+            printf("角速度(rad/s): X=%.2f, Y=%.2f, Z=%.2f\r\n",
                    data.gyro_x, data.gyro_y, data.gyro_z);
-            printf("温度(°C): %.2f\n", data.temperature);
+            printf("温度(°C): %.2f\r\n", data.temperature);
         }
 
         BSP_Delay(100); // 每100ms读取一次
+    }
+}
+typedef struct
+{
+    int16_t x; /**< Raw int16_t value from the x axis */
+    int16_t y; /**< Raw int16_t value from the y axis */
+    int16_t z; /**< Raw int16_t value from the z axis */
+} icm42688RawData_t;
+
+typedef struct
+{
+    float x; /**< value from the x axis */
+    float y; /**< value from the y axis */
+    float z; /**< value from the z axis */
+} icm42688RealData_t;
+void imu_init2(void)
+{
+    uint8_t reg_val = 0;
+    /* 读取 who am i 寄存器 */
+    i2c_read_reg(0x69, ICM42688_REG_WHO_AM_I, &reg_val, 1);
+
+    icm42688_reg_bank_sel_t bank_sel = {.bits.USER_BANK = 0};
+    i2c_write_reg(0x69, ICM42688_REG_BANK_SEL, &bank_sel.reg, 1); // 设置bank 0区域寄存器
+
+    reg_val = 0x01;
+    i2c_write_reg(0x69, ICM42688_REG_DEVICE_CONFIG, &reg_val, 1); // 软复位传感器
+    BSP_Delay(500);
+
+    i2c_write_reg(0x69, ICM42688_REG_BANK_SEL, &bank_sel.reg, 1); // 设置bank 0区域寄存器
+    reg_val = (0x02 << 5);                                        // 量程 ±2g
+    reg_val |= (0x08);                                            // 输出速率 100HZ
+    i2c_write_reg(0x69, ICM42688_REG_ACCEL_CONFIG0, &reg_val, 1);
+
+    i2c_write_reg(0x69, ICM42688_REG_BANK_SEL, &bank_sel.reg, 1); // 设置bank 0区域寄存器
+    // reg_val = icm42688_read_reg(ICM42688_GYRO_CONFIG0);//page73
+    reg_val = (0x01 << 5); // 量程 ±1000dps
+    reg_val |= (0x08);     // 输出速率 100HZ
+    i2c_write_reg(0x69, ICM42688_REG_GYRO_CONFIG0, &reg_val, 1);
+
+    i2c_write_reg(0x69, ICM42688_REG_BANK_SEL, &bank_sel.reg, 1); // 设置bank 0区域寄存器
+    reg_val = 0;
+    i2c_read_reg(0x69, ICM42688_REG_PWR_MGMT0, &reg_val, 1); // 读取PWR—MGMT0当前寄存器的值(page72)
+    reg_val &= ~(1 << 5);                                    // 使能温度测量
+    reg_val |= ((3) << 2);                                   // 设置GYRO_MODE  0:关闭 1:待机 2:预留 3:低噪声
+    reg_val |= (3);                                          // 设置ACCEL_MODE 0:关闭 1:关闭 2:低功耗 3:低噪声
+    i2c_write_reg(0x69, ICM42688_REG_PWR_MGMT0, &reg_val, 1);
+    BSP_Delay(100); // 操作完PWR—MGMT0寄存器后 200us内不能有任何读写寄存器的操作
+
+    while (1)
+    {
+        uint8_t buffer[12] = {0};
+        icm42688RawData_t accRaw;
+        icm42688RawData_t gyroRaw;
+
+        i2c_read_reg(0x69, ICM42688_REG_ACCEL_DATA_X1, buffer, 12);
+
+        accRaw.x = ((uint16_t)buffer[0] << 8) | buffer[1];
+        accRaw.y = ((uint16_t)buffer[2] << 8) | buffer[3];
+        accRaw.z = ((uint16_t)buffer[4] << 8) | buffer[5];
+        gyroRaw.x = ((uint16_t)buffer[6] << 8) | buffer[7];
+        gyroRaw.y = ((uint16_t)buffer[8] << 8) | buffer[9];
+        gyroRaw.z = ((uint16_t)buffer[10] << 8) | buffer[11];
+        BSP_Delay(100);
     }
 }

@@ -48,8 +48,8 @@ extern "C"
 
 /* 超时设置 */
 #define ICM42688_DEFAULT_TIMEOUT_MS 1000
-#define ICM42688_RESET_DELAY_MS 10
-#define ICM42688_MODE_SWITCH_DELAY_MS 50
+#define ICM42688_RESET_DELAY_MS 1000
+#define ICM42688_MODE_SWITCH_DELAY_MS 100
 #define ICM42688_WAKEUP_DELAY_MS 10
 
 /* FIFO相关常量 */
@@ -73,15 +73,15 @@ extern "C"
 #define ICM42688_APEX_SIGNIFICANT_MOTION_MASK (1 << 5)
 
 /* 基于手册典型值的阈值建议（物理量单位） */
-#define ICM42688_GYRO_SELF_TEST_TYPICAL  200.0f  // 典型值 ±200 dps
-#define ICM42688_GYRO_SELF_TEST_TOLERANCE 20.0f   // 容忍范围 ±20 dps
-#define ICM42688_GYRO_SELF_TEST_MIN       (ICM42688_GYRO_SELF_TEST_TYPICAL - ICM42688_GYRO_SELF_TEST_TOLERANCE)
-#define ICM42688_GYRO_SELF_TEST_MAX       (ICM42688_GYRO_SELF_TEST_TYPICAL + ICM42688_GYRO_SELF_TEST_TOLERANCE)
+#define ICM42688_GYRO_SELF_TEST_TYPICAL 200.0f  // 典型值 ±200 dps
+#define ICM42688_GYRO_SELF_TEST_TOLERANCE 20.0f // 容忍范围 ±20 dps
+#define ICM42688_GYRO_SELF_TEST_MIN (ICM42688_GYRO_SELF_TEST_TYPICAL - ICM42688_GYRO_SELF_TEST_TOLERANCE)
+#define ICM42688_GYRO_SELF_TEST_MAX (ICM42688_GYRO_SELF_TEST_TYPICAL + ICM42688_GYRO_SELF_TEST_TOLERANCE)
 
-#define ICM42688_ACCEL_SELF_TEST_TYPICAL  200.0f  // 典型值 ±200 mg
-#define ICM42688_ACCEL_SELF_TEST_TOLERANCE 20.0f   // 容忍范围 ±20 mg
-#define ICM42688_ACCEL_SELF_TEST_MIN      (ICM42688_ACCEL_SELF_TEST_TYPICAL - ICM42688_ACCEL_SELF_TEST_TOLERANCE)
-#define ICM42688_ACCEL_SELF_TEST_MAX      (ICM42688_ACCEL_SELF_TEST_TYPICAL + ICM42688_ACCEL_SELF_TEST_TOLERANCE)
+#define ICM42688_ACCEL_SELF_TEST_TYPICAL 200.0f  // 典型值 ±200 mg
+#define ICM42688_ACCEL_SELF_TEST_TOLERANCE 20.0f // 容忍范围 ±20 mg
+#define ICM42688_ACCEL_SELF_TEST_MIN (ICM42688_ACCEL_SELF_TEST_TYPICAL - ICM42688_ACCEL_SELF_TEST_TOLERANCE)
+#define ICM42688_ACCEL_SELF_TEST_MAX (ICM42688_ACCEL_SELF_TEST_TYPICAL + ICM42688_ACCEL_SELF_TEST_TOLERANCE)
 
     /* ========================================================================== */
     /*                          错误码定义                                       */
@@ -182,48 +182,40 @@ extern "C"
         icm42688_gyro_fs_t gyro_fs;                // 陀螺仪满量程范围
         icm42688_odr_t gyro_odr;                   // 陀螺仪输出数据速率
         icm42688_filter_order_t gyro_filter_order; // 陀螺仪滤波器阶数
-        icm42688_filter_bw_t gyro_filter_bw;       // 陀螺仪滤波器带宽
+
 
         /* 加速度计配置 */
         icm42688_sensor_mode_t accel_mode;          // 加速度计工作模式
         icm42688_accel_fs_t accel_fs;               // 加速度计满量程范围
         icm42688_odr_t accel_odr;                   // 加速度计输出数据速率
         icm42688_filter_order_t accel_filter_order; // 加速度计滤波器阶数
-        icm42688_filter_bw_t accel_filter_bw;       // 加速度计滤波器带宽
+   
 
         /* FIFO配置 */
-        bool fifo_enable;               // FIFO使能
         bool fifo_accel_en;             // 加速度计FIFO使能
         bool fifo_gyro_en;              // 陀螺仪FIFO使能
         bool fifo_temp_en;              // 温度FIFO使能
-        icm42688_fifo_mode_t fifo_mode; // FIFO工作模式
+        bool fifo_tmst_fsync_ev;        // 时间戳/FSYNC 数据包发送⾄ FIFO
         uint16_t fifo_watermark;        // FIFO水印值
 
-        /* 中断配置 */
-        struct
-        {
-            bool data_ready_en;                    // 数据就绪中断使能
-            bool fifo_watermark_en;                // FIFO水印中断使能
-            bool fifo_overflow_en;                 // FIFO溢出中断使能
-            icm42688_int_mode_t int1_mode;         // INT1引脚模式
-            icm42688_int_drive_t int1_drive;       // INT1驱动方式
-            icm42688_int_polarity_t int1_polarity; // INT1极性
-            icm42688_int_mode_t int2_mode;         // INT2引脚模式
-            icm42688_int_drive_t int2_drive;       // INT2驱动方式
-            icm42688_int_polarity_t int2_polarity; // INT2极性
-        } interrupt;
+        /* 高级功能启用标志配置 */
+        bool apex_en;                   // APEX功能使能
+        bool fifo_en;                   // FIFO使能
+        bool interrupt_en;              // 中断使能
 
-        /* APEX功能配置 */
-        struct
-        {
-            bool pedometer_en;          // 计步器使能
-            bool tilt_detection_en;     // 倾斜检测使能
-            bool raise_to_wake_en;      // 抬手唤醒使能
-            bool tap_detection_en;      // 敲击检测使能
-            bool wake_on_motion_en;     // 运动唤醒使能
-            bool significant_motion_en; // 显著运动检测使能
-        } apex;
     } icm42688_sensor_config_t;
+    /* 中断配置 */
+    typedef struct
+    {
+        uint8_t int_pin;              // 中断引脚选择（1: INT1, 2: INT2）
+        uint8_t int_config;           // 中断配置位掩码
+        icm42688_int_mode_t int1_mode;         // INT1引脚模式
+        icm42688_int_drive_t int1_drive;       // INT1驱动方式
+        icm42688_int_polarity_t int1_polarity; // INT1极性
+        icm42688_int_mode_t int2_mode;         // INT2引脚模式
+        icm42688_int_drive_t int2_drive;       // INT2驱动方式
+        icm42688_int_polarity_t int2_polarity; // INT2极性
+    } icm42688_int_config_t;
     /* ========================================================================== */
     /*                          传感器数据输出结构体                                 */
     /* ========================================================================== */

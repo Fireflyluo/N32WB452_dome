@@ -260,22 +260,14 @@ icm42688_err_t icm42688_init(icm42688_device_t *dev,
     dev->current_bank = ICM42688_BANK0; // 默认Bank0
 
     /* 验证设备ID */
-    uint8_t read_data[2] = {0};
     uint8_t whoami;
     icm42688_err_t ret = icm42688_read_reg_internal(dev, ICM42688_REG_WHO_AM_I,
-                                                    read_data, 2);
-    whoami = read_data[0];                                                    
-//    icm42688_err_t ret = icm42688_read_reg_internal(dev, ICM42688_REG_WHO_AM_I,
-//                                                    &whoami, 1);
-    if (ret != ICM42688_OK)
-    {
-        return ret;
-    }
+                                                    &whoami, 2);
 
+    if (ret != ICM42688_OK)
+        return ret;
     if (whoami != ICM42688_WHO_AM_I_ID)
-    {
         return ICM42688_ERR_NOT_READY;
-    }
 
     dev->whoami = whoami;
 
@@ -283,7 +275,7 @@ icm42688_err_t icm42688_init(icm42688_device_t *dev,
     ICM42688_BANK_SELECT(dev, ICM42688_BANK0);
     icm42688_reg_device_config_t dev_config = {
         .bits.SOFT_RESET = 1};
-
+    // dev_config.reg = 0x01;   //等价于
     ret = icm42688_write_reg_internal(dev, ICM42688_REG_DEVICE_CONFIG,
                                       &dev_config.reg, 1);
     if (ret != ICM42688_OK)
@@ -297,6 +289,7 @@ icm42688_err_t icm42688_init(icm42688_device_t *dev,
         dev->comm.delay_ms(ICM42688_RESET_DELAY_MS);
     }
 
+    ICM42688_BANK_SELECT(dev, ICM42688_BANK0);
     /* 配置默认参数 */
     dev->config.gyro_mode = ICM42688_MODE_OFF;
     dev->config.accel_mode = ICM42688_MODE_OFF;
@@ -391,34 +384,46 @@ icm42688_err_t icm42688_config_sensor(icm42688_device_t *dev,
     /* 保存配置参数 */
     dev->config = *config;
 
-    /* 配置陀螺仪 */
-    icm42688_err_t ret = icm42688_config_gyro_internal(dev);
-    if (ret != ICM42688_OK)
-    {
-        return ret;
-    }
-
     /* 配置加速度计 */
-    ret = icm42688_config_accel_internal(dev);
+    icm42688_err_t ret = icm42688_config_accel_internal(dev);
     if (ret != ICM42688_OK)
     {
         return ret;
     }
-
-    /* 配置FIFO */
-    ret = icm42688_config_fifo_internal(dev);
+    /* 配置陀螺仪 */
+    ret = icm42688_config_gyro_internal(dev);
     if (ret != ICM42688_OK)
     {
         return ret;
+    }
+    /* 配置FIFO */
+    if (config->fifo_en == true)
+    {
+        ret = icm42688_config_fifo_internal(dev);
+        if (ret != ICM42688_OK)
+        {
+            return ret;
+        }
     }
 
     /* 配置中断 */
-    ret = icm42688_config_interrupt_internal(dev);
-    if (ret != ICM42688_OK)
+    if (config->interrupt_en == true)
     {
-        return ret;
+        ret = icm42688_config_interrupt_internal(dev);
+        if (ret != ICM42688_OK)
+        {
+            return ret;
+        }
     }
 
+    /* 配置电源 */
+    ICM42688_BANK_SELECT(dev, ICM42688_BANK0);
+    icm42688_reg_pwr_mgmt0_t pwr_config = {
+        .bits.TEMP_DIS = 0,
+        .bits.GYRO_MODE = dev->config.gyro_mode,
+        .bits.ACCEL_MODE = dev->config.accel_mode};
+    icm42688_write_reg_internal(dev, ICM42688_REG_PWR_MGMT0,
+                                &pwr_config.reg, 1);
     /* 等待配置生效 */
     if (dev->comm.delay_ms)
     {
@@ -442,7 +447,7 @@ static icm42688_err_t icm42688_config_gyro_internal(icm42688_device_t *dev)
     /* 配置陀螺仪参数 */
     icm42688_reg_gyro_config0_t gyro_config = {
         .bits.GYRO_ODR = dev->config.gyro_odr,
-        .bits.GYRO_UI_FS_SEL = dev->config.gyro_fs};
+        .bits.GYRO_FS_SEL = dev->config.gyro_fs};
 
     icm42688_err_t ret = icm42688_write_reg_internal(dev, ICM42688_REG_GYRO_CONFIG0,
                                                      &gyro_config.reg, 1);
@@ -451,18 +456,7 @@ static icm42688_err_t icm42688_config_gyro_internal(icm42688_device_t *dev)
         return ret;
     }
 
-    /* 配置电源模式 */
-    icm42688_reg_pwr_mgmt0_t pwr_mgmt0;
-    ret = icm42688_read_reg_internal(dev, ICM42688_REG_PWR_MGMT0, &pwr_mgmt0.reg, 1);
-    if (ret != ICM42688_OK)
-    {
-        return ret;
-    }
-
-    pwr_mgmt0.bits.GYRO_MODE = dev->config.gyro_mode;
-
-    return icm42688_write_reg_internal(dev, ICM42688_REG_PWR_MGMT0,
-                                       &pwr_mgmt0.reg, 1);
+    return ret;
 }
 
 /**
@@ -477,7 +471,7 @@ static icm42688_err_t icm42688_config_accel_internal(icm42688_device_t *dev)
     /* 配置加速度计参数 */
     icm42688_reg_accel_config0_t accel_config = {
         .bits.ACCEL_ODR = dev->config.accel_odr,
-        .bits.ACCEL_UI_FS_SEL = dev->config.accel_fs};
+        .bits.ACCEL_FS_SEL = dev->config.accel_fs};
 
     icm42688_err_t ret = icm42688_write_reg_internal(dev, ICM42688_REG_ACCEL_CONFIG0,
                                                      &accel_config.reg, 1);
@@ -486,18 +480,7 @@ static icm42688_err_t icm42688_config_accel_internal(icm42688_device_t *dev)
         return ret;
     }
 
-    /* 配置电源模式 */
-    icm42688_reg_pwr_mgmt0_t pwr_mgmt0;
-    ret = icm42688_read_reg_internal(dev, ICM42688_REG_PWR_MGMT0, &pwr_mgmt0.reg, 1);
-    if (ret != ICM42688_OK)
-    {
-        return ret;
-    }
-
-    pwr_mgmt0.bits.ACCEL_MODE = dev->config.accel_mode;
-
-    return icm42688_write_reg_internal(dev, ICM42688_REG_PWR_MGMT0,
-                                       &pwr_mgmt0.reg, 1);
+    return ret;
 }
 
 /**
@@ -509,17 +492,8 @@ static icm42688_err_t icm42688_config_fifo_internal(icm42688_device_t *dev)
 {
     ICM42688_BANK_SELECT(dev, ICM42688_BANK0);
 
-    if (!dev->config.fifo_enable)
-    {
-        /* 禁用FIFO */
-        icm42688_reg_fifo_config1_t fifo_config = {.reg = 0};
-        return icm42688_write_reg_internal(dev, ICM42688_REG_FIFO_CONFIG1,
-                                           &fifo_config.reg, 1);
-    }
-
     /* 配置FIFO */
     icm42688_reg_fifo_config1_t fifo_config = {
-        .bits.FIFO_MODE = dev->config.fifo_mode,
         .bits.FIFO_ACCEL_EN = dev->config.fifo_accel_en ? 1 : 0,
         .bits.FIFO_GYRO_EN = dev->config.fifo_gyro_en ? 1 : 0,
         .bits.FIFO_TEMP_EN = dev->config.fifo_temp_en ? 1 : 0};
@@ -552,50 +526,84 @@ static icm42688_err_t icm42688_config_fifo_internal(icm42688_device_t *dev)
     return ret;
 }
 
+
 /**
  * @brief 内部中断配置函数
  * @param dev 设备句柄
  * @return 错误码
+ * @note 此函数配置中断引脚参数、清除方式、并使能数据就绪中断到INT1引脚。
+ *       默认配置：INT1高电平有效、推挽输出、锁存模式（电平触发），手动清除中断。
  */
 static icm42688_err_t icm42688_config_interrupt_internal(icm42688_device_t *dev)
 {
-    ICM42688_BANK_SELECT(dev, ICM42688_BANK0);
+    ICM42688_CHECK_INIT(dev);                  // 检查设备初始化状态
+    ICM42688_BANK_SELECT(dev, ICM42688_BANK0); // 选择Bank 0（必需步骤）
 
-    /* 配置INT1引脚 */
+    // 1. 配置中断引脚电气特性（INT_CONFIG寄存器，Bank 0, Addr 0x14）
+    icm42688_reg_int_config_t int_config = {
+        .bits = {
+            .INT1_POLARITY = 1,      // INT1高电平有效（0:低电平，1:高电平）
+            .INT1_DRIVE_CIRCUIT = 1, // INT1推挽输出（0:开漏，1:推挽）
+            .INT1_MODE = 1,          // INT1锁存模式（0:脉冲，1:锁存）- 实现电平触发
+            .INT2_POLARITY = 0,      // INT2低电平有效（默认）
+            .INT2_DRIVE_CIRCUIT = 0, // INT2开漏输出（默认）
+            .INT2_MODE = 0           // INT2脉冲模式（默认）
+        }};
+    icm42688_err_t ret = icm42688_write_reg_internal(dev, ICM42688_REG_INT_CONFIG,
+                                                     &int_config.reg, 1);
+    if (ret != ICM42688_OK)
+    {
+        return ret; // 错误处理：寄存器写入失败
+    }
+
+    // 2. 配置中断清除方式（INT_CONFIG0寄存器，Bank 0, Addr 0x63）
     icm42688_reg_int_config0_t int_config0 = {
-        .bits.INT1_MODE = dev->config.interrupt.int1_mode,
-        .bits.INT1_DRIVE = dev->config.interrupt.int1_drive,
-        .bits.INT1_POLARITY = dev->config.interrupt.int1_polarity,
-        .bits.INT2_MODE = dev->config.interrupt.int2_mode,
-        .bits.INT2_DRIVE = dev->config.interrupt.int2_drive,
-        .bits.INT2_POLARITY = dev->config.interrupt.int2_polarity};
-
-    icm42688_err_t ret = icm42688_write_reg_internal(dev, ICM42688_REG_INT_CONFIG0,
-                                                     &int_config0.reg, 1);
+        .bits = {
+            .FIFO_FULL_INT_CLEAR = 0, // FIFO满中断手动清除（0:手动，1:自动）
+            .FIFO_THS_INT_CLEAR = 0,  // FIFO阈值中断手动清除
+            .UI_DRDY_INT_CLEAR = 0    // 数据就绪中断手动清除
+            // 保留位保持默认值0
+        }};
+    ret = icm42688_write_reg_internal(dev, ICM42688_REG_INT_CONFIG0,
+                                      &int_config0.reg, 1);
     if (ret != ICM42688_OK)
     {
         return ret;
     }
 
-    /* 配置中断源 */
-    if (dev->config.interrupt.data_ready_en)
+    // 3. 使能中断源并映射到INT1引脚（INT_SOURCE0寄存器，Bank 0, Addr 0x65）
+    icm42688_reg_int_source0_t int_source0 = {
+        .bits = {
+            .UI_AGC_RDY_INT1_EN = 1,           // 使能数据就绪中断到INT1
+            .FIFO_THS_INT1_EN = 0,          // 禁用FIFO阈值中断（根据需求调整）
+            .FIFO_FULL_INT1_EN = 0,         // 禁用FIFO满中断
+        }};
+    ret = icm42688_write_reg_internal(dev, ICM42688_REG_INT_SOURCE0,
+                                      &int_source0.reg, 1);
+    if (ret != ICM42688_OK)
     {
-        // 配置数据就绪中断
-        // 具体寄存器配置根据实际需求实现
+        return ret;
     }
 
-    if (dev->config.interrupt.fifo_watermark_en)
+    // 4. 关键配置：确保INT_ASYNC_RESET位为0（INT_CONFIG1寄存器，Bank 0, Addr 0x64）
+    icm42688_reg_int_config1_t int_config1;
+    ret = icm42688_read_reg_internal(dev, ICM42688_REG_INT_CONFIG1,
+                                     &int_config1.reg, 1);
+    if (ret != ICM42688_OK)
     {
-        // 配置FIFO水印中断
+        return ret;
     }
-
-    if (dev->config.interrupt.fifo_overflow_en)
+    int_config1.bits.INT_ASYNC_RESET = 0; // 必须设置为0以确保中断正确操作
+    ret = icm42688_write_reg_internal(dev, ICM42688_REG_INT_CONFIG1,
+                                      &int_config1.reg, 1);
+    if (ret != ICM42688_OK)
     {
-        // 配置FIFO溢出中断
+        return ret;
     }
 
     return ICM42688_OK;
 }
+
 
 /* ========================================================================== */
 /*                           数据读取函数                                   */
@@ -617,6 +625,7 @@ icm42688_err_t icm42688_read_raw_data(icm42688_device_t *dev,
 
     /* 读取14字节传感器数据（6轴+温度） */
     uint8_t sensor_data[14];
+
     icm42688_err_t ret = icm42688_read_reg_internal(dev, ICM42688_REG_TEMP_DATA1,
                                                     sensor_data, 14);
     if (ret != ICM42688_OK)
@@ -625,13 +634,13 @@ icm42688_err_t icm42688_read_raw_data(icm42688_device_t *dev,
     }
 
     /* 解析原始数据（16位补码格式） */
-    raw_data->accel_x = (int16_t)((sensor_data[1] << 8) | sensor_data[2]);
-    raw_data->accel_y = (int16_t)((sensor_data[3] << 8) | sensor_data[4]);
-    raw_data->accel_z = (int16_t)((sensor_data[5] << 8) | sensor_data[6]);
-    raw_data->gyro_x = (int16_t)((sensor_data[7] << 8) | sensor_data[8]);
-    raw_data->gyro_y = (int16_t)((sensor_data[9] << 8) | sensor_data[10]);
-    raw_data->gyro_z = (int16_t)((sensor_data[11] << 8) | sensor_data[12]);
-    raw_data->temperature = (int16_t)((sensor_data[0] << 8) | sensor_data[13]);
+    raw_data->accel_x = (int16_t)((sensor_data[2] << 8) | sensor_data[3]);
+    raw_data->accel_y = (int16_t)((sensor_data[4] << 8) | sensor_data[5]);
+    raw_data->accel_z = (int16_t)((sensor_data[6] << 8) | sensor_data[3]);
+    raw_data->gyro_x = (int16_t)((sensor_data[8] << 8) | sensor_data[9]);
+    raw_data->gyro_y = (int16_t)((sensor_data[10] << 8) | sensor_data[11]);
+    raw_data->gyro_z = (int16_t)((sensor_data[12] << 8) | sensor_data[13]);
+    raw_data->temperature = (int16_t)((sensor_data[0] << 8) | sensor_data[1]);
 
     /* 更新状态信息 */
     dev->status.data_ready = true;
@@ -702,10 +711,15 @@ icm42688_err_t icm42688_read_sensor_data(icm42688_device_t *dev,
 {
     ICM42688_CHECK_INIT(dev);
     ICM42688_CHECK_PARAM(sensor_data);
+    uint8_t int_status;
+    icm42688_read_reg_internal(dev, ICM42688_REG_INT_STATUS, &int_status, 1);
+
+    icm42688_raw_data_t raw_data;
 
     /* 读取原始数据 */
-    icm42688_raw_data_t raw_data;
+
     icm42688_err_t ret = icm42688_read_raw_data(dev, &raw_data);
+
     if (ret != ICM42688_OK)
     {
         return ret;
@@ -984,15 +998,9 @@ icm42688_err_t icm42688_config_interrupt_pin(icm42688_device_t *dev,
     /* 更新配置 */
     if (int_num == 1)
     {
-        int_config.bits.INT1_MODE = mode;
-        int_config.bits.INT1_DRIVE = drive;
-        int_config.bits.INT1_POLARITY = polarity;
     }
     else
     {
-        int_config.bits.INT2_MODE = mode;
-        int_config.bits.INT2_DRIVE = drive;
-        int_config.bits.INT2_POLARITY = polarity;
     }
 
     /* 写回配置 */
@@ -1110,8 +1118,13 @@ icm42688_err_t icm42688_self_test(icm42688_device_t *dev,
 
     /* 启动自检 */
     icm42688_reg_self_test_config_t self_test_config = {
-        .bits.GYRO_SELF_TEST_EN = 1,
-        .bits.ACCEL_SELF_TEST_EN = 1};
+        .bits.EN_GX_ST = 1,
+        .bits.EN_GY_ST = 1,
+        .bits.EN_GZ_ST = 1,
+        .bits.EN_AX_ST = 1,
+        .bits.EN_AY_ST = 1,
+        .bits.EN_AZ_ST = 1,
+        .bits.ACCEL_ST_POWER = 1};
 
     ret = icm42688_write_reg_internal(dev, ICM42688_REG_SELF_TEST_CONFIG,
                                       &self_test_config.reg, 1);
@@ -1591,7 +1604,7 @@ icm42688_err_t icm42688_config_external_clock(icm42688_device_t *dev,
         return ret;
     }
 
-    intf_config1.bits.RTC_MODE = enable ? 1 : 0;
+    intf_config1.bits.RTC_MOD = enable ? 1 : 0;
 
     ret = icm42688_write_reg_internal(dev, ICM42688_REG_INTF_CONFIG1,
                                       &intf_config1.reg, 1);
@@ -1641,7 +1654,7 @@ icm42688_err_t icm42688_config_gyro_filter(icm42688_device_t *dev,
     }
 
     gyro_config1.bits.GYRO_UI_FILT_ORD = order;
-    gyro_config1.bits.GYRO_UI_FILT_BW = bandwidth;
+    gyro_config1.bits.GYRO_DEC2_M2_ORD = bandwidth;
 
     return icm42688_write_reg_internal(dev, ICM42688_REG_GYRO_CONFIG1,
                                        &gyro_config1.reg, 1);
@@ -1672,7 +1685,7 @@ icm42688_err_t icm42688_config_accel_filter(icm42688_device_t *dev,
     }
 
     accel_config1.bits.ACCEL_UI_FILT_ORD = order;
-    accel_config1.bits.ACCEL_UI_FILT_BW = bandwidth;
+    accel_config1.bits.ACCEL_DEC2_M2_ORD = bandwidth;
 
     return icm42688_write_reg_internal(dev, ICM42688_REG_ACCEL_CONFIG1,
                                        &accel_config1.reg, 1);
@@ -1736,7 +1749,7 @@ icm42688_err_t icm42688_config_timestamp(icm42688_device_t *dev,
     }
 
     tmst_config.bits.TMST_EN = enable ? 1 : 0;
-    tmst_config.bits.TMST_SOURCE = source;
+    tmst_config.bits.TMST_FSYNC_EN = source;
 
     return icm42688_write_reg_internal(dev, ICM42688_REG_TMST_CONFIG,
                                        &tmst_config.reg, 1);

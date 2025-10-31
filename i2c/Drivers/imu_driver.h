@@ -7,7 +7,7 @@ extern "C"
 #endif
 
     int imu_init(void);
-
+ void imu_init2(void);
 #ifdef __cplusplus
 }
 #endif
