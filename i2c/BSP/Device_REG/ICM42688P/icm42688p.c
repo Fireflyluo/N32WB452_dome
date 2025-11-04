@@ -386,34 +386,28 @@ icm42688_err_t icm42688_config_sensor(icm42688_device_t *dev,
 
     /* 配置加速度计 */
     icm42688_err_t ret = icm42688_config_accel_internal(dev);
-    if (ret != ICM42688_OK)
-    {
-        return ret;
-    }
+    if (ret != ICM42688_OK) return ret;
+ 
     /* 配置陀螺仪 */
     ret = icm42688_config_gyro_internal(dev);
-    if (ret != ICM42688_OK)
-    {
-        return ret;
-    }
+    if (ret != ICM42688_OK) return ret;
+ 
     /* 配置FIFO */
     if (config->fifo_en == true)
     {
+        // 需要用户根据实际需求修改中断配置
         ret = icm42688_config_fifo_internal(dev);
-        if (ret != ICM42688_OK)
-        {
-            return ret;
-        }
+        if (ret != ICM42688_OK)  return ret;
+
     }
 
     /* 配置中断 */
     if (config->interrupt_en == true)
     {
+        // 需要用户根据实际需求修改中断配置
         ret = icm42688_config_interrupt_internal(dev);
-        if (ret != ICM42688_OK)
-        {
-            return ret;
-        }
+        if (ret != ICM42688_OK)return ret;
+  
     }
 
     /* 配置电源 */
@@ -526,7 +520,6 @@ static icm42688_err_t icm42688_config_fifo_internal(icm42688_device_t *dev)
     return ret;
 }
 
-
 /**
  * @brief 内部中断配置函数
  * @param dev 设备句柄
@@ -574,9 +567,9 @@ static icm42688_err_t icm42688_config_interrupt_internal(icm42688_device_t *dev)
     // 3. 使能中断源并映射到INT1引脚（INT_SOURCE0寄存器，Bank 0, Addr 0x65）
     icm42688_reg_int_source0_t int_source0 = {
         .bits = {
-            .UI_AGC_RDY_INT1_EN = 1,           // 使能数据就绪中断到INT1
-            .FIFO_THS_INT1_EN = 0,          // 禁用FIFO阈值中断（根据需求调整）
-            .FIFO_FULL_INT1_EN = 0,         // 禁用FIFO满中断
+            .UI_AGC_RDY_INT1_EN = 1, // 使能数据就绪中断到INT1
+            .FIFO_THS_INT1_EN = 0,   // 禁用FIFO阈值中断（根据需求调整）
+            .FIFO_FULL_INT1_EN = 0,  // 禁用FIFO满中断
         }};
     ret = icm42688_write_reg_internal(dev, ICM42688_REG_INT_SOURCE0,
                                       &int_source0.reg, 1);
@@ -603,7 +596,6 @@ static icm42688_err_t icm42688_config_interrupt_internal(icm42688_device_t *dev)
 
     return ICM42688_OK;
 }
-
 
 /* ========================================================================== */
 /*                           数据读取函数                                   */

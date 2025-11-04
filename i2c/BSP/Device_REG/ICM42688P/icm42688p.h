@@ -183,32 +183,30 @@ extern "C"
         icm42688_odr_t gyro_odr;                   // 陀螺仪输出数据速率
         icm42688_filter_order_t gyro_filter_order; // 陀螺仪滤波器阶数
 
-
         /* 加速度计配置 */
         icm42688_sensor_mode_t accel_mode;          // 加速度计工作模式
         icm42688_accel_fs_t accel_fs;               // 加速度计满量程范围
         icm42688_odr_t accel_odr;                   // 加速度计输出数据速率
         icm42688_filter_order_t accel_filter_order; // 加速度计滤波器阶数
-   
 
         /* FIFO配置 */
-        bool fifo_accel_en;             // 加速度计FIFO使能
-        bool fifo_gyro_en;              // 陀螺仪FIFO使能
-        bool fifo_temp_en;              // 温度FIFO使能
-        bool fifo_tmst_fsync_ev;        // 时间戳/FSYNC 数据包发送⾄ FIFO
-        uint16_t fifo_watermark;        // FIFO水印值
+        bool fifo_accel_en;      // 加速度计FIFO使能
+        bool fifo_gyro_en;       // 陀螺仪FIFO使能
+        bool fifo_temp_en;       // 温度FIFO使能
+        bool fifo_tmst_fsync_ev; // 时间戳/FSYNC 数据包发送⾄ FIFO
+        uint16_t fifo_watermark; // FIFO水印值
 
         /* 高级功能启用标志配置 */
-        bool apex_en;                   // APEX功能使能
-        bool fifo_en;                   // FIFO使能
-        bool interrupt_en;              // 中断使能
+        bool apex_en;      // APEX功能使能
+        bool fifo_en;      // FIFO使能
+        bool interrupt_en; // 中断使能
 
     } icm42688_sensor_config_t;
     /* 中断配置 */
     typedef struct
     {
-        uint8_t int_pin;              // 中断引脚选择（1: INT1, 2: INT2）
-        uint8_t int_config;           // 中断配置位掩码
+        uint8_t int_pin;                       // 中断引脚选择（1: INT1, 2: INT2）
+        uint8_t int_config;                    // 中断配置位掩码
         icm42688_int_mode_t int1_mode;         // INT1引脚模式
         icm42688_int_drive_t int1_drive;       // INT1驱动方式
         icm42688_int_polarity_t int1_polarity; // INT1极性
