@@ -103,6 +103,13 @@ if GetOption('target') in ['mdk', 'mdk4', 'mdk5']:
     finally:
         # 恢复原目录
         os.chdir(current_dir)
+        
+        # 删除复制过来的模板文件
+        if os.path.exists(template_dir):
+            for template_file in template_files:
+                copied_file_path = os.path.join(mdk_dir, template_file)
+                if os.path.exists(copied_file_path):
+                    os.remove(copied_file_path)
 else:
     # 正常构建流程
     DoBuilding(TARGET, objs)
