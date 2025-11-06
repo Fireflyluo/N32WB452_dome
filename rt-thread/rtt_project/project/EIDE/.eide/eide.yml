@@ -1,0 +1,298 @@
+version: "4.1"
+name: project
+type: ARM
+deviceName: null
+packDir: null
+srcDirs: []
+virtualFolder:
+  name: <virtual_root>
+  files: []
+  folders:
+    - name: Applications
+      files:
+        - path: ../../applications/main.c
+      folders: []
+    - name: Compiler
+      files:
+        - path: ../../rt-thread/components/libc/compilers/armlibc/syscall_mem.c
+        - path: ../../rt-thread/components/libc/compilers/armlibc/syscalls.c
+        - path: ../../rt-thread/components/libc/compilers/common/cctype.c
+        - path: ../../rt-thread/components/libc/compilers/common/cstdlib.c
+        - path: ../../rt-thread/components/libc/compilers/common/cstring.c
+        - path: ../../rt-thread/components/libc/compilers/common/ctime.c
+        - path: ../../rt-thread/components/libc/compilers/common/cunistd.c
+        - path: ../../rt-thread/components/libc/compilers/common/cwchar.c
+      folders: []
+    - name: DeviceDrivers
+      files:
+        - path: ../../rt-thread/components/drivers/can/can.c
+        - path: ../../rt-thread/components/drivers/core/device.c
+        - path: ../../rt-thread/components/drivers/hwtimer/hwtimer.c
+        - path: ../../rt-thread/components/drivers/i2c/i2c-bit-ops.c
+        - path: ../../rt-thread/components/drivers/i2c/i2c_core.c
+        - path: ../../rt-thread/components/drivers/i2c/i2c_dev.c
+        - path: ../../rt-thread/components/drivers/ipc/completion.c
+        - path: ../../rt-thread/components/drivers/ipc/condvar.c
+        - path: ../../rt-thread/components/drivers/ipc/dataqueue.c
+        - path: ../../rt-thread/components/drivers/ipc/pipe.c
+        - path: ../../rt-thread/components/drivers/ipc/ringblk_buf.c
+        - path: ../../rt-thread/components/drivers/ipc/ringbuffer.c
+        - path: ../../rt-thread/components/drivers/ipc/waitqueue.c
+        - path: ../../rt-thread/components/drivers/ipc/workqueue.c
+        - path: ../../rt-thread/components/drivers/misc/adc.c
+        - path: ../../rt-thread/components/drivers/misc/dac.c
+        - path: ../../rt-thread/components/drivers/pin/pin.c
+        - path: ../../rt-thread/components/drivers/rtc/rtc.c
+        - path: ../../rt-thread/components/drivers/serial/serial.c
+        - path: ../../rt-thread/components/drivers/spi/spi_core.c
+        - path: ../../rt-thread/components/drivers/spi/spi_dev.c
+        - path: ../../rt-thread/components/drivers/watchdog/watchdog.c
+      folders: []
+    - name: Drivers
+      files:
+        - path: ../../board/board.c
+        - path: ../../libraries/N32WB452_Firmware_Library/CMSIS/device/startup/startup_n32wb452.s
+        - path: ../../libraries/n32_drivers/drv_adc.c
+        - path: ../../libraries/n32_drivers/drv_can.c
+        - path: ../../libraries/n32_drivers/drv_dac.c
+        - path: ../../libraries/n32_drivers/drv_gpio.c
+        - path: ../../libraries/n32_drivers/drv_hwtimer.c
+        - path: ../../libraries/n32_drivers/drv_i2c.c
+        - path: ../../libraries/n32_drivers/drv_rtc.c
+        - path: ../../libraries/n32_drivers/drv_spi.c
+        - path: ../../libraries/n32_drivers/drv_usart.c
+        - path: ../../libraries/n32_drivers/drv_wdt.c
+      folders: []
+    - name: Finsh
+      files:
+        - path: ../../rt-thread/components/finsh/cmd.c
+        - path: ../../rt-thread/components/finsh/msh.c
+        - path: ../../rt-thread/components/finsh/shell.c
+        - path: ../../rt-thread/components/finsh/msh_parse.c
+      folders: []
+    - name: Hardware
+      files:
+        - path: ../../hal/test.c
+      folders: []
+    - name: Kernel
+      files:
+        - path: ../../rt-thread/src/clock.c
+        - path: ../../rt-thread/src/components.c
+        - path: ../../rt-thread/src/idle.c
+        - path: ../../rt-thread/src/ipc.c
+        - path: ../../rt-thread/src/irq.c
+        - path: ../../rt-thread/src/klibc/kstdio.c
+        - path: ../../rt-thread/src/klibc/kstring.c
+        - path: ../../rt-thread/src/kservice.c
+        - path: ../../rt-thread/src/mem.c
+        - path: ../../rt-thread/src/memheap.c
+        - path: ../../rt-thread/src/mempool.c
+        - path: ../../rt-thread/src/object.c
+        - path: ../../rt-thread/src/scheduler_comm.c
+        - path: ../../rt-thread/src/scheduler_up.c
+        - path: ../../rt-thread/src/thread.c
+        - path: ../../rt-thread/src/timer.c
+      folders: []
+    - name: libcpu
+      files:
+        - path: ../../rt-thread/libcpu/arm/common/atomic_arm.c
+        - path: ../../rt-thread/libcpu/arm/common/div0.c
+        - path: ../../rt-thread/libcpu/arm/common/showmem.c
+        - path: ../../rt-thread/libcpu/arm/cortex-m4/context_rvds.S
+        - path: ../../rt-thread/libcpu/arm/cortex-m4/cpuport.c
+      folders: []
+    - name: Libraries
+      files:
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_exti.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_rcc.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_tim.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_bkp.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_gpio.c
+        - path: ../../libraries/N32WB452_Firmware_Library/CMSIS/device/system_n32wb452.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/misc.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_rtc.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_wwdg.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_usart.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_spi.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_can.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_iwdg.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_i2c.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_adc.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_dac.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_pwr.c
+      folders: []
+    - name: ::CMSIS
+      files: []
+      folders: []
+dependenceList: []
+outDir: build
+miscInfo:
+  uid: 46b1c7f92e493d5b49842138671bdbef
+targets:
+  rt-thread:
+    cppPreprocessAttrs:
+      defineList:
+        - RT_USING_ARMLIBC
+        - USE_STDPERIPH_DRIVER
+        - N32WB452
+        - __STDC_LIMIT_MACROS
+        - __CLK_TCK=RT_TICK_PER_SECOND
+        - RT_USING_LIBC
+        - __RTTHREAD__
+      incList:
+        - ../../rt-thread/components/drivers/include
+        - ../../rt-thread/components/finsh
+        - ../../rt-thread/components/libc/posix/io/epoll
+        - ../../board
+        - ../../libraries/N32WB452_Firmware_Library/CMSIS/core
+        - ../../rt-thread/components/libc/posix/ipc
+        - ../../libraries/N32WB452_Firmware_Library/CMSIS/device
+        - ../../rt-thread/libcpu/arm/common
+        - ../../rt-thread/components/libc/posix/io/poll
+        - ../../rt-thread/components/libc/compilers/common/include
+        - ../../rt-thread/components/libc/compilers/common/extension
+        - ../../hal
+        - ../../rt-thread/libcpu/arm/cortex-m4
+        - ../..
+        - ../../applications
+        - ../../rt-thread/include
+        - ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/inc
+        - ../../rt-thread/components/libc/compilers/common/extension/fcntl/octal
+        - ../../rt-thread/components/drivers/spi
+        - ../../libraries/n32_drivers/config
+        - ../../rt-thread/components/libc/posix/io/eventfd
+        - ../../libraries/n32_drivers
+        - .cmsis/include
+        - ../MDK/RTE/_rt-thread
+      libList: []
+    excludeList: []
+    toolchain: AC6
+    toolchainConfigMap:
+      AC6:
+        archExtensions: ""
+        cpuType: Cortex-M4
+        floatingPointHardware: single
+        options:
+          version: 3
+          afterBuildTasks:
+            - name: "[Copy linker output for Keil User Commands]"
+              abortAfterFailed: true
+              command: cd .\..\MDK && mkdir ${KEIL_OUTPUT_DIR} & copy "${OutDir}\${ProjectName}.axf" "${KEIL_OUTPUT_DIR}\${KEIL_OUTPUT_NAME}.axf"
+              disable: false
+            - name: fromelf --bin !L --output rtthread.bin
+              abortAfterFailed: true
+              command: cd .\..\MDK && fromelf --bin ${KEIL_OUTPUT_DIR}\${KEIL_OUTPUT_NAME}.axf --output rtthread.bin
+              disable: false
+          asm-compiler:
+            $use: asm-auto
+          beforeBuildTasks: []
+          c/cpp-compiler:
+            language-c: c11
+            language-cpp: c++11
+            one-elf-section-per-function: true
+            optimization: level-0
+            short-enums#wchar: true
+            warnings: ac5-like-warnings
+          global:
+            output-debug-info: enable
+            use-microLIB: true
+          linker:
+            $outputTaskExcludes:
+              - .bin
+            misc-controls: --diag_suppress=L6329
+            output-format: elf
+            ro-base: "0x08000000"
+            rw-base: "0x20000000"
+        scatterFilePath: ../../board/linker_scripts/link.sct
+        storageLayout:
+          RAM:
+            - id: 1
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: RAM
+            - id: 2
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: RAM
+            - id: 3
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: RAM
+            - id: 1
+              isChecked: true
+              mem:
+                size: "0x24000"
+                startAddr: "0x20000000"
+              noInit: false
+              tag: IRAM
+            - id: 2
+              isChecked: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              noInit: false
+              tag: IRAM
+          ROM:
+            - id: 1
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: ROM
+            - id: 2
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: ROM
+            - id: 3
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: ROM
+            - id: 1
+              isChecked: true
+              isStartup: true
+              mem:
+                size: "0x80000"
+                startAddr: "0x8000000"
+              tag: IROM
+            - id: 2
+              isChecked: false
+              isStartup: false
+              mem:
+                size: "0x0"
+                startAddr: "0x0"
+              tag: IROM
+        useCustomScatterFile: true
+    uploadConfigMap:
+      JLink:
+        baseAddr: ""
+        bin: ""
+        cpuInfo:
+          cpuName: "null"
+          vendor: "null"
+        otherCmds: ""
+        proType: 1
+        speed: 8000
+      pyOCD:
+        baseAddr: "0x08000000"
+        bin: ""
+        config: .eide/rt-thread.pyocd.yaml
+        otherCmds: ""
+        speed: 5M
+        targetName: n32wb452ceq6
+    uploader: pyOCD

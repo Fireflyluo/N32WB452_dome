@@ -1,0 +1,71 @@
+# 导入配置和构建相关模块
+import rtconfig
+Import('RTT_ROOT')
+from building import *
+
+# 获取当前目录路径
+cwd = GetCurrentDir()
+
+# 定义与此SConscript文件关联的源文件集合
+
+src = Split('''
+CMSIS/device/system_n32wb452.c
+n32wb452_std_periph_driver/src/n32wb452_gpio.c
+n32wb452_std_periph_driver/src/n32wb452_rcc.c
+n32wb452_std_periph_driver/src/n32wb452_exti.c
+n32wb452_std_periph_driver/src/misc.c
+''')
+
+# 根据RT-Thread配置选项添加相应的外设驱动源文件
+if GetDepend(['RT_USING_SERIAL']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_usart.c']
+
+if GetDepend(['RT_USING_I2C']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_i2c.c']
+
+if GetDepend(['RT_USING_SPI']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_spi.c']
+
+if GetDepend(['RT_USING_CAN']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_can.c']
+
+if GetDepend(['RT_USING_ADC']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_adc.c']
+
+if GetDepend(['RT_USING_DAC']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_dac.c']
+
+if GetDepend(['RT_USING_HWTIMER']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_tim.c']
+
+if GetDepend(['RT_USING_RTC']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_rtc.c']
+    src += ['n32wb452_std_periph_driver/src/n32wb452_pwr.c']
+    src += ['n32wb452_std_periph_driver/src/n32wb452_bkp.c']
+
+if GetDepend(['RT_USING_WDT']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_wwdg.c']
+    src += ['n32wb452_std_periph_driver/src/n32wb452_iwdg.c']
+
+if GetDepend(['RT_USING_SDIO']):
+    src += ['n32wb452_std_periph_driver/src/n32wb452_sdio.c']
+
+# 如果使用USB功能，添加USB驱动相关路径和源文件
+if GetDepend(['RT_USING_BSP_USB']):
+    path += [cwd + '/n32wb452_usbfs_driver/inc']
+    src  += [cwd + '/n32wb452_usbfs_driver/src']
+
+# 定义头文件搜索路径
+path = [
+    cwd + '/CMSIS/device',
+    cwd + '/CMSIS/core',
+    cwd + '/n32wb452_std_periph_driver/inc',]
+
+# 定义预处理器宏定义
+CPPDEFINES = ['USE_STDPERIPH_DRIVER']
+
+# 定义库组，包含所有源文件、依赖关系、头文件路径和宏定义
+group = DefineGroup('Libraries', src, depend = [''], CPPPATH = path, CPPDEFINES = CPPDEFINES)
+
+# 返回构建组给上级SConscript文件
+Return('group')

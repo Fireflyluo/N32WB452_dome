@@ -1,0 +1,60 @@
+# 导入RT-Thread根目录路径和配置
+Import('RTT_ROOT')
+Import('rtconfig')
+# 导入构建相关函数
+from building import *
+
+# 获取当前目录路径
+cwd = GetCurrentDir()
+
+# 添加通用驱动程序
+src = Split("""
+""")
+
+# 根据RT-Thread配置选项添加相应的驱动源文件
+if GetDepend(['RT_USING_PIN']):
+    src += ['drv_gpio.c']
+
+if GetDepend(['RT_USING_SERIAL']):
+    if GetDepend(['RT_USING_SERIAL_V2']):
+        src += ['drv_usart_v2.c']
+    else:
+        src += ['drv_usart.c']
+
+if GetDepend(['RT_USING_HWTIMER']):
+    src += ['drv_hwtimer.c']
+
+if GetDepend(['RT_USING_PWM']):
+    src += ['drv_pwm.c']
+
+if GetDepend(['RT_USING_SPI']):
+    src += ['drv_spi.c']
+
+if GetDepend(['RT_USING_I2C', 'RT_USING_I2C_BITOPS']):
+    if GetDepend('BSP_USING_I2C1') or GetDepend('BSP_USING_I2C2') or GetDepend('BSP_USING_I2C3') or GetDepend('BSP_USING_I2C4'):
+        src += ['drv_i2c.c']
+
+if GetDepend(['RT_USING_ADC']):
+    src += Glob('drv_adc.c')
+
+if GetDepend(['RT_USING_DAC']):
+    src += Glob('drv_dac.c')
+
+if GetDepend(['RT_USING_CAN']):
+    src += ['drv_can.c']
+
+if GetDepend(['RT_USING_RTC']):
+    src += ['drv_rtc.c']
+
+if GetDepend(['RT_USING_WDT']):
+    src += ['drv_wdt.c']
+
+# 定义头文件搜索路径
+path =  [cwd]
+path += [cwd + '/config']
+
+# 定义驱动组，包含所有源文件、依赖关系和头文件路径
+group = DefineGroup('Drivers', src, depend = [''], CPPPATH = path)
+
+# 返回构建组给上级SConscript文件
+Return('group')

@@ -1,0 +1,108 @@
+import os
+import sys
+import rtconfig
+
+# 获取RT-Thread根目录路径
+if os.getenv('RTT_ROOT'):
+    RTT_ROOT = os.getenv('RTT_ROOT')  # 从环境变量获取
+else:
+    RTT_ROOT = os.path.normpath(os.getcwd() + '/../../..')  # 默认向上三级目录
+
+# 设置RTT_ROOT环境变量
+if not os.getenv("RTT_ROOT"): 
+    RTT_ROOT="rt-thread"  # 如果仍未设置，则使用默认值
+
+# 将RT-Thread工具目录添加到Python路径
+sys.path = sys.path + [os.path.join(RTT_ROOT, 'tools')]
+try:
+    from building import *  # 导入构建相关函数
+except:
+    print('Cannot found RT-Thread root directory, please check RTT_ROOT')
+    print(RTT_ROOT)
+    exit(-1)
+
+# 设置目标文件名称
+TARGET = 'rt-thread.' + rtconfig.TARGET_EXT
+
+# 初始化SCons构建环境
+DefaultEnvironment(tools=[])
+env = Environment(tools = ['mingw'],  # 使用mingw工具链
+    AS = rtconfig.AS, ASFLAGS = rtconfig.AFLAGS,      # 汇编器配置
+    CC = rtconfig.CC, CFLAGS = rtconfig.CFLAGS,       # C编译器配置
+    AR = rtconfig.AR, ARFLAGS = '-rc',                # 归档工具配置
+    CXX = rtconfig.CXX, CXXFLAGS = rtconfig.CXXFLAGS, # C++编译器配置
+    LINK = rtconfig.LINK, LINKFLAGS = rtconfig.LFLAGS) # 链接器配置
+env.PrependENVPath('PATH', rtconfig.EXEC_PATH)        # 添加工具链路径到环境变量
+
+# 针对IAR编译器的特殊配置
+if rtconfig.PLATFORM in ['iccarm']:
+    env.Replace(CCCOM = ['$CC $CFLAGS $CPPFLAGS $_CPPDEFFLAGS $_CPPINCFLAGS -o $TARGET $SOURCES'])
+    env.Replace(ARFLAGS = [''])
+    env.Replace(LINKCOM = env["LINKCOM"] + ' --map rt-thread.map')
+
+# 导出全局变量供其他脚本使用
+Export('RTT_ROOT')
+Export('rtconfig')
+
+# 获取SDK根目录路径
+SDK_ROOT = os.path.abspath('./')
+
+# 查找库文件路径
+if os.path.exists(SDK_ROOT + '/libraries'):
+    libraries_path_prefix = SDK_ROOT + '/libraries'  # 在当前目录查找
+else:
+    libraries_path_prefix = os.path.dirname(SDK_ROOT) + '/libraries'  # 在上级目录查找
+
+SDK_LIB = libraries_path_prefix
+Export('SDK_LIB')
+
+# 准备构建环境，获取基础对象列表
+objs = PrepareBuilding(env, RTT_ROOT, has_libcpu=False)
+
+# 设置N32芯片库类型
+n32_library = 'N32WB452_Firmware_Library'
+rtconfig.BSP_LIBRARY_TYPE = n32_library
+
+# 包含N32固件库的构建脚本
+objs.extend(SConscript(os.path.join(libraries_path_prefix, n32_library, 'SConscript')))
+
+# 包含N32驱动库的构建脚本
+objs.extend(SConscript(os.path.join(libraries_path_prefix, 'n32_drivers', 'SConscript')))
+
+# 执行最终构建过程
+# DoBuilding(TARGET, objs)
+# 执行最终构建过程
+import os
+import shutil
+
+# 检查是否生成MDK工程
+if GetOption('target') in ['mdk', 'mdk4', 'mdk5']:
+    # 确保MDK目录存在
+    mdk_dir = rtconfig.MDK_PROJECT_PATH
+    if not os.path.exists(mdk_dir):
+        os.makedirs(mdk_dir)
+    
+    # 保存当前目录
+    current_dir = os.getcwd()
+    
+    # 从project/template目录复制模板文件到MDK目录
+    template_dir = os.path.join(current_dir, 'project', 'template')
+    if os.path.exists(template_dir):
+        template_files = ['template.uvprojx', 'template.uvproj', 'template.Uv2']
+        for template_file in template_files:
+            src_path = os.path.join(template_dir, template_file)
+            if os.path.exists(src_path):
+                shutil.copy2(src_path, os.path.join(mdk_dir, template_file))
+    
+    # 切换到MDK目录
+    os.chdir(mdk_dir)
+    
+    try:
+        # 执行构建
+        DoBuilding(TARGET, objs)
+    finally:
+        # 恢复原目录
+        os.chdir(current_dir)
+else:
+    # 正常构建流程
+    DoBuilding(TARGET, objs)

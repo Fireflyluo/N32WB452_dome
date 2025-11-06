@@ -57,6 +57,7 @@
 │   ├── Algorithm                   # 算法库 (crc, filter, math)
 │   ├── Data_Structure              # 数据结构 (ringbuff, queue, list)
 │   └── Utilities                   # 工具函数 (printf重定向, 位操作)
+├── RTOS                            # RTOS层 (可选)
 ├── Platform                        # 平台抽象层 (可选)
 │   ├── platform.c                  # 系统时钟/延时抽象
 │   └── gpio_abstract.h             # GPIO操作抽象接口

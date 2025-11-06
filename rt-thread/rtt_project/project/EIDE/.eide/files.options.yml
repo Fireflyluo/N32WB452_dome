@@ -1,0 +1,58 @@
+##########################################################################################
+#                        Append Compiler Options For Source Files
+##########################################################################################
+
+# syntax:
+#   <your pattern>: <compiler options>
+# For get pattern syntax, please refer to: https://www.npmjs.com/package/micromatch
+#
+# examples:
+#   'main.cpp':           --cpp11 -Og ...
+#   'src/*.c':            -gnu -O2 ...
+#   'src/lib/**/*.cpp':   --cpp11 -Os ...
+#   '!Application/*.c':   -O0
+#   '**/*.c':             -O2 -gnu ...
+
+version: "2.1"
+options:
+    rt-thread:
+        files: {}
+        virtualPathFiles:
+            <virtual_root>/DeviceDrivers/can.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/device.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/hwtimer.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/i2c-bit-ops.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/i2c_core.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/i2c_dev.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/completion.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/condvar.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/dataqueue.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/pipe.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/ringblk_buf.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/ringbuffer.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/waitqueue.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/workqueue.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/adc.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/dac.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/pin.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/rtc.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/serial.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/spi_core.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/spi_dev.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/DeviceDrivers/watchdog.c: -D__RT_IPC_SOURCE__
+            <virtual_root>/Kernel/clock.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/components.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/idle.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/ipc.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/irq.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/kstdio.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/kstring.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/kservice.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/mem.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/memheap.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/mempool.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/object.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/scheduler_comm.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/scheduler_up.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/thread.c: -D__RT_KERNEL_SOURCE__
+            <virtual_root>/Kernel/timer.c: -D__RT_KERNEL_SOURCE__

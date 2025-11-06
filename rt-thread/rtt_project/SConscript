@@ -1,0 +1,24 @@
+# 用于模块编译的脚本
+import os
+# 导入RT-Thread根目录路径
+Import('RTT_ROOT')
+# 导入构建相关函数
+from building import *
+
+# 获取当前目录路径
+cwd = GetCurrentDir()
+# 初始化对象列表
+objs = []
+# 获取当前目录下的所有文件和文件夹列表
+list = os.listdir(cwd)
+
+# 遍历所有子目录
+for d in list:
+    path = os.path.join(cwd, d)
+    # 检查子目录下是否存在SConscript文件
+    if os.path.isfile(os.path.join(path, 'SConscript')):
+        # 如果存在，则递归调用该SConscript文件并将其返回的对象添加到当前对象列表中
+        objs = objs + SConscript(os.path.join(d, 'SConscript'))
+
+# 返回对象列表给上级SConscript文件
+Return('objs')
