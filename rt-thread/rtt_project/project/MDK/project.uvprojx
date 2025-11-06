@@ -339,9 +339,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>RT_USING_ARMLIBC, USE_STDPERIPH_DRIVER, N32WB452, __STDC_LIMIT_MACROS, __CLK_TCK=RT_TICK_PER_SECOND, RT_USING_LIBC, __RTTHREAD__</Define>
+              <Define>N32WB452, RT_USING_ARMLIBC, __RTTHREAD__, USE_STDPERIPH_DRIVER, RT_USING_LIBC, __STDC_LIMIT_MACROS, __CLK_TCK=RT_TICK_PER_SECOND</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\finsh;..\..\rt-thread\components\libc\posix\io\epoll;..\..\rt-thread\components\drivers\include;..\..\board;..\..\libraries\N32WB452_Firmware_Library\CMSIS\core;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\libc\posix\ipc;..\..\libraries\N32WB452_Firmware_Library\CMSIS\device;..\..\rt-thread\components\drivers\include;..\..\rt-thread\libcpu\arm\common;..\..\rt-thread\components\libc\posix\io\poll;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\libc\compilers\common\include;..\..\rt-thread\components\libc\compilers\common\extension;..\..\rt-thread\components\drivers\include;..\..\hal;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\drivers\include;..\..\rt-thread\libcpu\arm\cortex-m4;..\..;..\..\applications;..\..\rt-thread\components\drivers\include;..\..\rt-thread\include;..\..\rt-thread\components\drivers\include;..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\inc;..\..\rt-thread\components\libc\compilers\common\extension\fcntl\octal;..\..\rt-thread\components\drivers\spi;..\..\libraries\n32_drivers\config;..\..\rt-thread\components\libc\posix\io\eventfd;..\..\rt-thread\components\drivers\include;..\..\libraries\n32_drivers</IncludePath>
+              <IncludePath>..\..\libraries\n32_drivers;..\..\libraries\N32WB452_Firmware_Library\CMSIS\device;..\..\rt-thread\components\drivers\include;..\..;..\..\rt-thread\components\drivers\include;..\..\hal;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\libc\posix\io\poll;..\..\applications;..\..\rt-thread\components\drivers\include;..\..\rt-thread\libcpu\arm\cortex-m4;..\..\rt-thread\components\libc\posix\io\epoll;..\..\libraries\n32_drivers\config;..\..\rt-thread\components\libc\posix\io\eventfd;..\..\rt-thread\components\libc\compilers\common\extension\fcntl\octal;..\..\board;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\drivers\include;..\..\rt-thread\libcpu\arm\common;..\..\rt-thread\include;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\drivers\include;..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\inc;..\..\rt-thread\components\finsh;..\..\rt-thread\components\drivers\include;..\..\rt-thread\components\drivers\include;..\..\libraries\N32WB452_Firmware_Library\CMSIS\core;..\..\rt-thread\components\libc\compilers\common\extension;..\..\rt-thread\components\libc\compilers\common\include;..\..\rt-thread\components\drivers\spi;..\..\rt-thread\components\libc\posix\ipc;..\..\rt-thread\components\drivers\include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1743,14 +1743,9 @@
           <GroupName>Finsh</GroupName>
           <Files>
             <File>
-              <FileName>cmd.c</FileName>
+              <FileName>msh_parse.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\rt-thread\components\finsh\cmd.c</FilePath>
-            </File>
-            <File>
-              <FileName>msh.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\rt-thread\components\finsh\msh.c</FilePath>
+              <FilePath>..\..\rt-thread\components\finsh\msh_parse.c</FilePath>
             </File>
             <File>
               <FileName>shell.c</FileName>
@@ -1758,9 +1753,14 @@
               <FilePath>..\..\rt-thread\components\finsh\shell.c</FilePath>
             </File>
             <File>
-              <FileName>msh_parse.c</FileName>
+              <FileName>msh.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\rt-thread\components\finsh\msh_parse.c</FilePath>
+              <FilePath>..\..\rt-thread\components\finsh\msh.c</FilePath>
+            </File>
+            <File>
+              <FileName>cmd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\rt-thread\components\finsh\cmd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2709,14 +2709,9 @@
           <GroupName>Libraries</GroupName>
           <Files>
             <File>
-              <FileName>n32wb452_exti.c</FileName>
+              <FileName>n32wb452_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_exti.c</FilePath>
-            </File>
-            <File>
-              <FileName>n32wb452_rcc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_rcc.c</FilePath>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_usart.c</FilePath>
             </File>
             <File>
               <FileName>n32wb452_tim.c</FileName>
@@ -2724,24 +2719,9 @@
               <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_tim.c</FilePath>
             </File>
             <File>
-              <FileName>n32wb452_bkp.c</FileName>
+              <FileName>n32wb452_exti.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_bkp.c</FilePath>
-            </File>
-            <File>
-              <FileName>n32wb452_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>system_n32wb452.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\CMSIS\device\system_n32wb452.c</FilePath>
-            </File>
-            <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\misc.c</FilePath>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_exti.c</FilePath>
             </File>
             <File>
               <FileName>n32wb452_rtc.c</FileName>
@@ -2749,19 +2729,9 @@
               <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_rtc.c</FilePath>
             </File>
             <File>
-              <FileName>n32wb452_wwdg.c</FileName>
+              <FileName>n32wb452_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_wwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>n32wb452_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>n32wb452_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_spi.c</FilePath>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_bkp.c</FilePath>
             </File>
             <File>
               <FileName>n32wb452_can.c</FileName>
@@ -2769,14 +2739,24 @@
               <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_can.c</FilePath>
             </File>
             <File>
+              <FileName>n32wb452_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32wb452_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32wb452_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_gpio.c</FilePath>
+            </File>
+            <File>
               <FileName>n32wb452_iwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_iwdg.c</FilePath>
-            </File>
-            <File>
-              <FileName>n32wb452_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_i2c.c</FilePath>
             </File>
             <File>
               <FileName>n32wb452_adc.c</FileName>
@@ -2784,14 +2764,34 @@
               <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_adc.c</FilePath>
             </File>
             <File>
-              <FileName>n32wb452_dac.c</FileName>
+              <FileName>system_n32wb452.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_dac.c</FilePath>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\CMSIS\device\system_n32wb452.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32wb452_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_i2c.c</FilePath>
             </File>
             <File>
               <FileName>n32wb452_pwr.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32wb452_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>n32wb452_wwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\libraries\N32WB452_Firmware_Library\n32wb452_std_periph_driver\src\n32wb452_wwdg.c</FilePath>
             </File>
           </Files>
         </Group>
