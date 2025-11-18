@@ -65,10 +65,10 @@ virtualFolder:
       folders: []
     - name: Finsh
       files:
-        - path: ../../rt-thread/components/finsh/cmd.c
-        - path: ../../rt-thread/components/finsh/msh.c
         - path: ../../rt-thread/components/finsh/shell.c
+        - path: ../../rt-thread/components/finsh/cmd.c
         - path: ../../rt-thread/components/finsh/msh_parse.c
+        - path: ../../rt-thread/components/finsh/msh.c
       folders: []
     - name: Hardware
       files:
@@ -103,23 +103,23 @@ virtualFolder:
       folders: []
     - name: Libraries
       files:
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_exti.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_rcc.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_tim.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_bkp.c
         - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_gpio.c
         - path: ../../libraries/N32WB452_Firmware_Library/CMSIS/device/system_n32wb452.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/misc.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_rtc.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_wwdg.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_usart.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_exti.c
         - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_spi.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_can.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_iwdg.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_i2c.c
-        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_adc.c
         - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_dac.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_wwdg.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/misc.c
         - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_pwr.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_iwdg.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_tim.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_rtc.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_can.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_adc.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_i2c.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_rcc.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_bkp.c
+        - path: ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/src/n32wb452_usart.c
       folders: []
     - name: ::CMSIS
       files: []
@@ -127,41 +127,41 @@ virtualFolder:
 dependenceList: []
 outDir: build
 miscInfo:
-  uid: 46b1c7f92e493d5b49842138671bdbef
+  uid: ca8fe5b4878eafd0d7dc466a0998407d
 targets:
   rt-thread:
     cppPreprocessAttrs:
       defineList:
+        - __RTTHREAD__
+        - __CLK_TCK=RT_TICK_PER_SECOND
         - RT_USING_ARMLIBC
         - USE_STDPERIPH_DRIVER
         - N32WB452
         - __STDC_LIMIT_MACROS
-        - __CLK_TCK=RT_TICK_PER_SECOND
         - RT_USING_LIBC
-        - __RTTHREAD__
       incList:
-        - ../../rt-thread/components/drivers/include
-        - ../../rt-thread/components/finsh
-        - ../../rt-thread/components/libc/posix/io/epoll
-        - ../../board
-        - ../../libraries/N32WB452_Firmware_Library/CMSIS/core
-        - ../../rt-thread/components/libc/posix/ipc
-        - ../../libraries/N32WB452_Firmware_Library/CMSIS/device
-        - ../../rt-thread/libcpu/arm/common
-        - ../../rt-thread/components/libc/posix/io/poll
         - ../../rt-thread/components/libc/compilers/common/include
-        - ../../rt-thread/components/libc/compilers/common/extension
-        - ../../hal
-        - ../../rt-thread/libcpu/arm/cortex-m4
-        - ../..
+        - ../../rt-thread/components/drivers/include
+        - ../../rt-thread/components/libc/posix/io/epoll
         - ../../applications
-        - ../../rt-thread/include
+        - ../../board
+        - ../..
+        - ../../hal
+        - ../../rt-thread/components/finsh
+        - ../../libraries/N32WB452_Firmware_Library/CMSIS/core
         - ../../libraries/N32WB452_Firmware_Library/n32wb452_std_periph_driver/inc
-        - ../../rt-thread/components/libc/compilers/common/extension/fcntl/octal
-        - ../../rt-thread/components/drivers/spi
-        - ../../libraries/n32_drivers/config
         - ../../rt-thread/components/libc/posix/io/eventfd
+        - ../../rt-thread/components/drivers/spi
+        - ../../libraries/N32WB452_Firmware_Library/CMSIS/device
+        - ../../rt-thread/components/libc/compilers/common/extension
+        - ../../rt-thread/include
         - ../../libraries/n32_drivers
+        - ../../rt-thread/libcpu/arm/cortex-m4
+        - ../../libraries/n32_drivers/config
+        - ../../rt-thread/components/libc/compilers/common/extension/fcntl/octal
+        - ../../rt-thread/components/libc/posix/io/poll
+        - ../../rt-thread/libcpu/arm/common
+        - ../../rt-thread/components/libc/posix/ipc
         - .cmsis/include
         - ../MDK/RTE/_rt-thread
       libList: []
@@ -185,10 +185,12 @@ targets:
               disable: false
           asm-compiler:
             $use: asm-auto
+            misc-controls: ""
           beforeBuildTasks: []
           c/cpp-compiler:
             language-c: c11
             language-cpp: c++11
+            link-time-optimization: false
             one-elf-section-per-function: true
             optimization: level-0
             short-enums#wchar: true
@@ -203,6 +205,7 @@ targets:
             output-format: elf
             ro-base: "0x08000000"
             rw-base: "0x20000000"
+            xo-base: ""
         scatterFilePath: ../../board/linker_scripts/link.sct
         storageLayout:
           RAM:
@@ -293,6 +296,6 @@ targets:
         bin: ""
         config: .eide/rt-thread.pyocd.yaml
         otherCmds: ""
-        speed: 5M
-        targetName: n32wb452ceq6
+        speed: 4M
+        targetName: cortex_m
     uploader: pyOCD

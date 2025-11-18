@@ -11,7 +11,10 @@ config SOC_N32WB452
     select RT_USING_USER_MAIN
     default y
 
+
 menu "Onboard Peripheral Drivers"
+
+source "hal/sensors/Kconfig"
 
 endmenu
 

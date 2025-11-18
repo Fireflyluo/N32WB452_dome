@@ -1,0 +1,32 @@
+# 导入构建相关函数
+from building import *
+import os
+
+# 获取当前目录路径
+cwd = GetCurrentDir()
+# 设置C/C++头文件搜索路径为当前目录
+CPPPATH = [cwd]
+
+# 获取当前目录下所有.c源文件
+src = []
+
+
+# 如果有直接放在 sensors 目录下的通用源文件
+src += Glob('*.c')
+
+# 定义驱动组，包含所有源文件、依赖关系和头文件路径
+group = DefineGroup('Sensors', src, depend = [''], CPPPATH = CPPPATH)
+
+
+
+# 获取当前目录下的所有文件和文件夹列表
+list = os.listdir(cwd)
+# 遍历所有子目录
+for item in list:
+    # 检查子目录下是否存在SConscript文件
+    if os.path.isfile(os.path.join(cwd, item, 'SConscript')):
+        # 如果存在，则递归调用该SConscript文件并将其返回的组添加到当前组中
+        group = group + SConscript(os.path.join(item, 'SConscript'))
+
+# 返回构建组给上级SConscript文件
+Return('group')

@@ -1,0 +1,7 @@
+    # 板上硬件
+    config BSP_USING_ICM42688
+        bool "Enable onboard ICM42688 IMU"
+        select BSP_USING_I2C1
+        default y
+        help
+            ICM42688 is soldered on the main board

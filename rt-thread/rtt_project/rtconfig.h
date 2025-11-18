@@ -44,7 +44,7 @@
 #define RT_USING_DEVICE
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 128
-#define RT_CONSOLE_DEVICE_NAME "usart3"
+#define RT_CONSOLE_DEVICE_NAME "usart1"
 #define RT_VER_NUM 0x50100
 #define RT_BACKTRACE_LEVEL_MAX_NR 32
 /* end of RT-Thread Kernel */
@@ -101,7 +101,6 @@
 #define RT_USING_PIN
 #define RT_USING_HWTIMER
 
-
 /* Using USB */
 
 /* end of Using USB */
@@ -122,7 +121,9 @@
 
 /* POSIX (Portable Operating System Interface) layer */
 
+
 /* Interprocess Communication (IPC) */
+
 
 /* Socket is in the 'Network' category */
 
@@ -146,6 +147,7 @@
 /* RT-Thread online packages */
 
 /* IoT - internet of things */
+
 
 /* Wi-Fi */
 
@@ -275,6 +277,7 @@
 
 /* Arduino libraries */
 
+
 /* Projects and Demos */
 
 /* end of Projects and Demos */
@@ -326,24 +329,17 @@
 
 /* Onboard Peripheral Drivers */
 
+#define BSP_USING_ICM42688
+/* end of Onboard Peripheral Drivers */
+
 /* On-chip Peripheral Drivers */
 
 #define BSP_USING_GPIO
 #define BSP_USING_UART
 #define BSP_USING_USART3
-#define BSP_USING_SPI
 #define BSP_USING_I2C1
-#define BSP_I2C1_SCL_PIN 24
-#define BSP_I2C1_SDA_PIN 25
-#define BSP_USING_RTC
-#define BSP_RTC_USING_LSE
-#define BSP_USING_WDT
-#define BSP_USING_HWTIMER
-#define BSP_USING_ADC
-#define BSP_USING_ADC1
-#define BSP_USING_DAC
-#define BSP_USING_DAC1
-#define BSP_USING_DAC2
+#define BSP_I2C1_SCL_PIN 22
+#define BSP_I2C1_SDA_PIN 23
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */

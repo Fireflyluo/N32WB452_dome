@@ -44,6 +44,7 @@
 #define LIST_DFS_OPT_ID 0x100
 #define LIST_FIND_OBJ_NR 8
 
+
 static long clear(void)
 {
     rt_kprintf("\x1b[2J\x1b[H");
